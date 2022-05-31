@@ -32,6 +32,6 @@ namespace Model.EF
 
         public DateTime? CreateDate { get; set; }
 
-        public int? UpdateBy { get; set; }
+        public decimal? UpdateBy { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model Model.EF.RealEstate
+﻿@model Model.ViewModel.RealEstateViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -24,6 +24,17 @@
         var editor = CKEDITOR.replace('txtContent', {
             customConfig: '/Assets/Admin/js/plugins/ckeditor/config.js',
         });
+        $('#btnSelectImage1').on('click', function (e) {
+            e.preventDefault();
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtImage1').val(url);
+            };
+            finder.popup();
+        })
+        var editor = CKEDITOR.replace('txtContent', {
+            customConfig: '/Assets/Admin/js/plugins/ckeditor/config.js',
+        });
     </script>
 
 }
@@ -38,24 +49,24 @@
 
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
+                <div class="form-group">
 
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="ddlProvince">Tỉnh thành</label>
-                        <select id="ddlProvince" class="form-control">
-                            <option value="">--Không chọn--</option>
-                        </select>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="ddlProvince">Tỉnh thành</label>
+                            <select id="ddlProvince" class="form-control">
+                                <option value="">--Không chọn--</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="ddlDistrict">Quận huyện</label>
-                        <select id="ddlDistrict" class="form-control">
-                            <option value="">--Không chọn--</option>
-                        </select>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="ddlDistrict">Quận huyện</label>
+                            <select id="ddlDistrict" class="form-control">
+                                <option value="">--Không chọn--</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-6">
@@ -75,13 +86,13 @@
                         </div>
                     </div>
 
-                    
+
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model=>model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-8 ">
                         @Html.TextBoxFor(model => model.Address, new { @class = "form-control", id = "divResult" })
-                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger"})
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
@@ -92,10 +103,17 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.CatID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.CatID, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
-                        @Html.DropDownListFor(model => model.CatID, null, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.CatID, null, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.CatID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Danh mục bất động sản", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(model => model.CateID, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CateID, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
@@ -115,14 +133,21 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.LinkImage, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-8">
-                        @Html.TextBoxFor(model => model.Image, new { @class = "form-control", id = "txtImage" })
+                        @Html.TextBoxFor(model => model.LinkImage, new { @class = "form-control", id = "txtImage" })
                         <a id="btnSelectImage" href="#">Choose picture</a>
+                        @Html.ValidationMessageFor(model => model.LinkImage, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LinkImage1, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(model => model.LinkImage1, new { @class = "form-control", id = "txtImage1" })
+                        <a id="btnSelectImage1" href="#">Choose picture</a>
                         @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
 
 
                 <div class="form-group">

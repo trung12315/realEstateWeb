@@ -1,0 +1,94 @@
+﻿@model  List<Model.EF.RealEstate>
+@{
+    Layout = null;
+    <script src="~/Assets/client/js/app.js"></script>
+
+}
+
+<section id="aa-advance-search">
+    <div class="container">
+        <div class="aa-advance-search-area">
+            @using (Html.BeginForm("SearchCategory", "Category", FormMethod.Get))
+            {
+                <div class="form">
+                    <div class="aa-advance-search-top">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="aa-single-advance-search">
+                                    <label for="ddlProvince">Chọn danh mục </label>
+                                    <select name="search" class="trung">
+                                        <option >Tất cả</option>
+                                        <option value="Đất">Đất</option>
+                                        <option value="Căn hộ chung cư">Căn Hộ chung cư</option>
+                                        <option value="Nhà ở">Nhà ở</option>
+                                        <option value="Mặt bằng">Mặt bằng kinh doanh</option>
+                                        <option value="Phòng trọ">Phòng trọ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="aa-single-advance-search">
+                                    <label for="ddlProvince">Chọn Tỉnh/TP</label>
+                                    <select id="ddlProvince" class="trung">
+                                        <option selected="" value="0">Tất cả </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="aa-single-advance-search">
+                                    <label for="ddlProvince">Chọn Quận/huyện</label>
+                                    <select id="ddlDistrict" name="" class="trung">
+                                        <option selected="" value="0">Tất cả</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="col-md-2">
+                                <div class="aa-single-advance-search">
+                                    <label for="ddlProvince">Chọn Phường/xã</label>
+                                    <select id="ddlWard" name="" class="trung">
+                                        <option selected="" value="0">Tất cả</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="aa-single-advance-search">
+                                    <input class="aa-search-btn" type="submit" value="Search">
+                                </div>
+                            </div>
+                            <div>
+                                <input type="hidden" id="divResult" name="searchString" value=" "/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aa-advance-search-bottom">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="aa-single-filter-search">
+                                    <span>AREA (SQ)</span>
+                                    <span>FROM</span>
+                                    <span id="skip-value-lower"  class="example-val">30.00</span>
+                                    <span>TO</span>
+                                    <span id="skip-value-upper" class="example-val">100.00</span>
+                                    <div id="aa-sqrfeet-range" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="aa-single-filter-search">
+                                    <span>PRICE ($)</span>
+                                    <span>FROM</span>
+                                    <span id="skip-value-lower2" class="example-val">30.00</span>
+                                    <span>TO</span>
+                                    <span id="skip-value-upper2" class="example-val">100.00</span>
+                                    <div id="aa-price-range" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

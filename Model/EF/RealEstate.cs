@@ -9,6 +9,12 @@ namespace Model.EF
     [Table("RealEstate")]
     public partial class RealEstate
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public RealEstate()
+        {
+            Images = new HashSet<Image>();
+        }
+
         public int RealEstateID { get; set; }
 
         [StringLength(250)]
@@ -20,7 +26,7 @@ namespace Model.EF
         [StringLength(500)]
         public string Description { get; set; }
 
-        public decimal? Price { get; set; }
+        public double? Price { get; set; }
 
         [StringLength(250)]
         public string Image { get; set; }
@@ -55,6 +61,8 @@ namespace Model.EF
 
         public int? CatID { get; set; }
 
+        public int? CateID { get; set; }
+
         [StringLength(10)]
         public string Acreage { get; set; }
 
@@ -63,5 +71,14 @@ namespace Model.EF
 
         [StringLength(50)]
         public string Lng { get; set; }
+
+        public virtual Category Category { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Image> Images { get; set; }
+
+        public virtual RealEstateCategory RealEstateCategory { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

@@ -9,6 +9,12 @@ namespace Model.EF
     [Table("RealEstateCategory")]
     public partial class RealEstateCategory
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public RealEstateCategory()
+        {
+            RealEstates = new HashSet<RealEstate>();
+        }
+
         [Key]
         public int CateID { get; set; }
 
@@ -37,5 +43,8 @@ namespace Model.EF
         public int? UpdateBy { get; set; }
 
         public DateTime? UpdateDate { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RealEstate> RealEstates { get; set; }
     }
 }

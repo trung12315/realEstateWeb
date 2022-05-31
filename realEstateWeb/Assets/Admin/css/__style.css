@@ -1,7 +1,11 @@
-﻿.form-group{
-margin-left:10px;
-                }
-.form-content{
+﻿.form-group {
+    margin-left: 10px;
+
+}
+.form-control{
+
+}
+.form-content {
     display: flex;
 }
 .form-group input[type=text]{

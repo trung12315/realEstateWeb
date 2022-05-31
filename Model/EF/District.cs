@@ -6,8 +6,8 @@ namespace Model.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("District")]
-    public partial class District
+    [Table("district")]
+    public partial class district
     {
         [Key]
         [Column(Order = 0)]

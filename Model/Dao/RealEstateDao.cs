@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Model.Dao
 {
@@ -19,6 +20,12 @@ namespace Model.Dao
         {
             db = new bdsWebContext();
         }
+        //public RealEstate DocXml()
+        //{
+        //    List<ImageModel> imagesmodel = new List<ImageModel>();
+        //    XmlDocument doc = new XmlDocument();
+            
+        //}
         public RealEstate GetByID(long id)
         {
             return db.RealEstates.Find(id);
@@ -57,6 +64,12 @@ namespace Model.Dao
             }
 
         }
+        public void UpdateImages(int id, string images)
+        {
+            var product = db.RealEstates.Find(id);
+            product.MoreImage = images;
+            db.SaveChanges();
+        }
         public bool UpdateMaps(RealEstate entity)
         {
 
@@ -85,7 +98,23 @@ namespace Model.Dao
             }
 
         }
-        public IEnumerable<RealEstate> ListAllPaging(string searchString, int page, int pageSize)
+        public IEnumerable<RealEstate> Search(string search, string searchString, int pageIndex , int pageSize )
+        {
+            IQueryable<RealEstate> model = db.RealEstates;
+            if (!string.IsNullOrEmpty(searchString) || !string.IsNullOrEmpty(search))
+            {
+                //totalRecord = db.RealEstates.Where(x => x.Address.Contains(SearchString) && x.RealEstateCategory.Name.Contains(search)).Count();
+                model = model.Where(x => x.Address.Contains(searchString) && x.RealEstateCategory.Name.Contains(search));
+            }
+            //else if (!string.IsNullOrEmpty(search))
+            //{
+
+            //}
+            //else ()
+            return model.OrderByDescending(x => x.CreateDate).ToPagedList(pageIndex,pageSize);
+            
+        }
+        public IEnumerable<RealEstate> ListAllPaging(string searchString, int page=5, int pageSize=9)
         {
             IQueryable<RealEstate> model = db.RealEstates;
             if (!string.IsNullOrEmpty(searchString))
@@ -140,6 +169,10 @@ namespace Model.Dao
                          });
             return model.OrderByDescending(x => x.CreateDate).ToPagedList(page, pageSize);
         }
+        public List<RealEstate> ListNewRealEstate(int top)
+        {
+            return db.RealEstates.OrderByDescending(x => x.CreateDate).Take(top).ToList();
+        }
 
         public RealEstate ViewDetail(int id)
         {
@@ -166,18 +199,34 @@ namespace Model.Dao
 
         }
 
-        public long Create(RealEstate realRstate)
+        public long Create(RealEstateViewModel viewModel)
         {
+
+            RealEstate realestate = new RealEstate();
             DateTime dt = DateTime.Now;
             String.Format("{0:dd/MM/yyyy}", dt);
             //Xử lý alias
-            if (string.IsNullOrEmpty(realRstate.MetaTile))
-            {
-                realRstate.MetaTile = StringHelper.ToUnsignString(realRstate.Name);
-            }
-            realRstate.CreateDate = dt;
+            //if (string.IsNullOrEmpty(realestate.MetaTile))
+            //{
+            //    realestate.MetaTile = StringHelper.ToUnsignString(realestate.Name);
+            //}
+            realestate.CreateDate = dt;
+            realestate.Address = viewModel.Address;
+            realestate.Name = viewModel.Name;
+            realestate.CateID = viewModel.CateID;
+            realestate.CatID = viewModel.CatID;
+            realestate.Description = viewModel.Description;
+            realestate.Acreage = viewModel.Acreage;
+            realestate.Detail = viewModel.Detail;
+            realestate.Status = viewModel.Status;
 
-            db.RealEstates.Add(realRstate);
+            db.RealEstates.Add(realestate);
+            db.SaveChanges();
+            int foreignKey = realestate.RealEstateID;
+            Image image = new Image();
+            image.LinkImage = viewModel.LinkImage;
+            image.RealEstateID = foreignKey;
+            db.Images.Add(image);
             db.SaveChanges();
 
             //Xử lý tag
@@ -201,7 +250,7 @@ namespace Model.Dao
             //    }
             //}
 
-            return realRstate.RealEstateID;
+            return viewModel.RealEstateID;
         }
 
         public long Edit(RealEstate realRstate)
@@ -238,7 +287,17 @@ namespace Model.Dao
 
             return realRstate.RealEstateID;
         }
-
+        public List<RealEstate> Listrelatedproducts(long id)
+        {
+            var realEstate = db.RealEstates.Find(id);
+            return db.RealEstates.Where(x => x.RealEstateID != id && x.CatID == realEstate.CatID).ToList();
+        }
+        public List<RealEstate> ListByCategoryId(int categoryID, ref int totalRecord, int pageIndex = 1, int pageSize = 3)
+        {
+            totalRecord = db.RealEstates.Where(x => x.CatID == categoryID).Count();
+            var model = db.RealEstates.Where(x => x.CatID == categoryID).OrderByDescending(x => x.CreateDate).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            return model;
+        }
         //public void RemoveAllContentTag(long contentId)
         //{
         //    db.ContentTags.RemoveRange(db.ContentTags.Where(x => x.ContentID == contentId));
@@ -288,47 +347,47 @@ namespace Model.Dao
             return db.RealEstates.Where(x => x.Name.Contains(keyword)).Select(x => x.Name).ToList();
         }
 
-        public List<RealEstateViewModel> Search(string keyword, ref int totalRecord, int pageIndex = 1, int pageSize = 2)
-        {
-            totalRecord = db.RealEstates.Where(x => x.Name.Contains(keyword)).Count();
-            var model = (from a in db.RealEstates
-                         join b in db.RealEstateCategories
-                         on a.CatID equals b.CateID
-                         where a.Name.Contains(keyword)
-                         select new
-                         {
-                             CateMetaTile = b.MetaDescription,
-                             CateName = b.Name,
-                             CreateBy = a.CreateBy,
-                             Description = a.Description,
-                             CreateDate = a.CreateDate,
-                             RealEstateID = a.RealEstateID,
-                             Detail = a.Detail,
-                             Price = a.Price,
-                             Image = a.Image,
-                             Name = a.Name,
-                             MetaTile = a.MetaTile,
-                             Address = a.Address,
-                             Acreage = a.Acreage
-                         }).AsEnumerable().Select(x => new RealEstateViewModel()
-                         {
-                             //CateMetaTitle = x.CateMetaTile,
-                             CateName = x.Name,
-                             CreateBy = x.CreateBy,
-                             Description = x.Description,
-                             CreateDate = x.CreateDate,
-                             RealEstateID = x.RealEstateID,
-                             Detail = x.Detail,
-                             Price = x.Price,
-                             Image = x.Image,
-                             Name = x.Name,
-                             MetaTile = x.MetaTile,
-                             Address = x.Address,
-                             Acreage = x.Acreage
-                         });
-            model.OrderByDescending(x => x.CreateDate).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            return model.ToList();
-        }
+        //public List<RealEstateViewModel> Search(string keyword, ref int totalRecord, int pageIndex = 1, int pageSize = 2)
+        //{
+        //    totalRecord = db.RealEstates.Where(x => x.Name.Contains(keyword)).Count();
+        //    var model = (from a in db.RealEstates
+        //                 join b in db.RealEstateCategories
+        //                 on a.CatID equals b.CateID
+        //                 where a.Name.Contains(keyword)
+        //                 select new
+        //                 {
+        //                     CateMetaTile = b.MetaDescription,
+        //                     CateName = b.Name,
+        //                     CreateBy = a.CreateBy,
+        //                     Description = a.Description,
+        //                     CreateDate = a.CreateDate,
+        //                     RealEstateID = a.RealEstateID,
+        //                     Detail = a.Detail,
+        //                     Price = a.Price,
+        //                     Image = a.Image,
+        //                     Name = a.Name,
+        //                     MetaTile = a.MetaTile,
+        //                     Address = a.Address,
+        //                     Acreage = a.Acreage
+        //                 }).AsEnumerable().Select(x => new RealEstateViewModel()
+        //                 {
+        //                     //CateMetaTitle = x.CateMetaTile,
+        //                     CateName = x.Name,
+        //                     CreateBy = x.CreateBy,
+        //                     Description = x.Description,
+        //                     CreateDate = x.CreateDate,
+        //                     RealEstateID = x.RealEstateID,
+        //                     Detail = x.Detail,
+        //                     Price = x.Price,
+        //                     Image = x.Image,
+        //                     Name = x.Name,
+        //                     MetaTile = x.MetaTile,
+        //                     Address = x.Address,
+        //                     Acreage = x.Acreage
+        //                 });
+        //    model.OrderByDescending(x => x.CreateDate).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+        //    return model.ToList();
+        //}
 
         public List<RealEstate> ListHotNews(int top)
         {

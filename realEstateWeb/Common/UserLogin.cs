@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace realEstateWeb.Common
+namespace realEstateWeb
 {
+    [Serializable]
     public class UserLogin
     {
-        public long UserID { get; set; }
+        public int UserID { get; set; }
         public string Username { get; set; }
     }
 }

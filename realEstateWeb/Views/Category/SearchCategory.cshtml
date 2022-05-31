@@ -1,0 +1,161 @@
+﻿@*@model List<Model.ViewModel.RealEstateViewModel>*@
+@*@model PagedList.IPagedList<Model.EF.RealEstate>*@
+
+@model PagedList.IPagedList<Model.EF.RealEstate>
+@using PagedList.Mvc;
+
+@{
+    //var dao = (Model.EF.RealEstate)ViewBag.CateID;
+    //var category = (Model.EF.Category)ViewBag.Category;
+    ViewBag.Title = "SearchCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="~/Assets/client/js/app.js"></script>
+}
+
+<section id="aa-property-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-property-header-inner">
+                    <h2>Properties Page</h2>
+                    <ol class="breadcrumb">
+                        <li><a href="#">HOME</a></li>
+                        <li class="active">PROPERTIES</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@{ Html.RenderAction("Search", "Category");}
+
+<section id="aa-properties">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="aa-properties-content">
+                    <div class="aa-properties-content-head">
+                        <div class="aa-properties-content-head-left">
+                            <form action="" class="aa-sort-form">
+                                <label for="">Sort by</label>
+                                <select name="">
+                                    <option value="1" selected="Default">Default</option>
+                                    <option value="2">Name</option>
+                                    <option value="3">Price</option>
+                                    <option value="4">Date</option>
+                                </select>
+                            </form>
+                            <form action="" class="aa-show-form">
+                                <label for="">Show</label>
+                                <select name="">
+                                    <option value="1" selected="12">6</option>
+                                    <option value="2">12</option>
+                                    <option value="3">24</option>
+                                </select>
+                            </form>
+                        </div>
+                        <div class="aa-properties-content-head-right">
+                            <a id="aa-grid-properties" href="#"><span class="fa fa-th"></span></a>
+                            <a id="aa-list-properties" href="#"><span class="fa fa-list"></span></a>
+                        </div>
+                    </div>
+                    <!-- start properties content head -->
+                    <!-- Start properties content body -->
+
+                    <div class="aa-properties-content-body">
+                        @foreach (var item in Model)
+                        {
+                            <ul class="aa-properties-nav">
+                                <li>
+                                    <article class="aa-properties-item">
+                                        <a class="aa-properties-item-img" href="#">
+                                            <img alt="img" src="@item.Image">
+                                        </a>
+                                        <div class="aa-properties-item-content">
+                                            <div class="aa-properties-info">
+                                                <span>@item.Address</span>
+                                                <span>2 Beds</span>
+                                                <span>3 Baths</span>
+                                                <span>1100 SQ FT</span>
+                                            </div>
+                                            <div class="aa-properties-about">
+                                                <h3><a href="#">@item.Name</a></h3>
+                                                <p>@item.CreateDate</p>
+                                            </div>
+                                            <div class="aa-properties-detial">
+                                                <span class="aa-price">
+                                                    @item.Price
+                                                </span>
+                                                <a class="aa-secondary-btn" href="#">View Details</a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="pagination-list">
+                                @Html.PagedListPager(Model, page => Url.Action("SearchCategory", new { page, search = @ViewBag.search , @searchString = @ViewBag.SearchString }))
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Start properties sidebar -->
+
+            <div class="col-md-4">
+                <aside class="aa-properties-sidebar">
+
+
+                    <!-- Start Single properties sidebar -->
+                    <!-- Start Single properties sidebar -->
+                    <div class="aa-properties-single-sidebar">
+                        <h3>Tin mới đăng</h3>
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object" src="img/item/1.jpg" alt="img">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="#">This is Title</a></h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <span>$65000</span>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object" src="img/item/1.jpg" alt="img">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="#">This is Title</a></h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <span>$65000</span>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object" src="img/item/1.jpg" alt="img">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="#">This is Title</a></h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <span>$65000</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+    
+</section>
+

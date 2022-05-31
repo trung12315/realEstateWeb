@@ -1,4 +1,5 @@
-﻿<header id="aa-header">
+﻿
+<header id="aa-header">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -17,8 +18,28 @@
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <div class="aa-header-right">
-                                <a href="register.html" class="aa-register">Register</a>
-                                <a href="signin.html" class="aa-login">Login</a>
+                                <a href="signin.html" class="aa-register">ĐĂNG TIN MỚI</a>
+                                @{
+                                    var session = (UserLogin)Session[realEstateWeb.Common.CommonConstants.USER_SESSION];
+                                }
+                                @if (session == null)
+                                {
+                                    <a href="/User/Login" class="aa-register">ĐĂNG NHẬP</a>
+                                }
+                                else
+                                {
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <a href="" class="aa-login">@session.Username</a>
+
+                                    <a class="" data-toggle="dropdown" href="properties.html">...<span class="caret"></span></a>
+                                    <ul class="" role="menu">
+                                        <li><a class="" href="">@Html.ActionLink("Logout", "Logout", "User")</a></li>
+                                        <li><a class="" href="">Quan li tai khoan </a></li>
+
+                                    </ul>
+
+                                }
+
                             </div>
                         </div>
                     </div>
@@ -42,30 +63,33 @@
                 </button>
                 <!-- LOGO -->
                 <!-- Text based logo -->
-                <a class="navbar-brand aa-logo" href="index.html"> Home <span>Property</span></a>
+                <a class="navbar-brand aa-logo" href="/Home/Index"> Home <span>Property</span></a>
                 <!-- Image based logo -->
                 <!-- <a class="navbar-brand aa-logo-img" href="index.html"><img src="img/logo.png" alt="logo"></a> -->
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul id="top-menu" class="nav navbar-nav navbar-right aa-main-nav">
-                    <li class="active"><a href="index.html">HOME</a></li>
+                    <li class="active"><a href="/Home/Index">HOME</a></li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="properties.html">PROPERTIES <span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="properties.html">REAL ESTATE<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="properties.html">PROPERTIES</a></li>
-                            <li><a href="properties-detail.html">PROPERTIES DETAIL</a></li>
+                            <li><a class="" href="/Home/index1">CĂN HỘ CHUNG CƯ </a></li>
+                            <li><a class="" href="properties-detail.html">NHÀ Ở</a></li>
+                            <li><a class="" href="properties-detail.html">ĐẤT</a></li>
+                            <li><a class="" href="properties-detail.html">MẶT BẰNG</a></li>
+                            <li><a class="" href="/Home/index1">PHÒNG TRỌ</a></li>
                         </ul>
                     </li>
-                    <li><a href="gallery.html">GALLERY</a></li>
+                    <li><a href="gallery.html">BLOG</a></li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="blog-archive.html">BLOG <span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="blog-archive.html">HƯỚNG DẪN <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="blog-archive.html">BLOG</a></li>
-                            <li><a href="blog-single.html">BLOG DETAILS</a></li>
+                            <li><a class="" href="blog-archive.html">BLOG</a></li>
+                            <li><a class="" href="blog-single.html">HƯỚNG DẪN</a></li>
                         </ul>
                     </li>
-                    <li><a href="contact.html">CONTACT</a></li>
-                    <li><a href="404.html">404 PAGE</a></li>
+                    <li><a class="" href="contact.html">NỘP TIỀN </a></li>
+                    <li><a class="" href="404.html">BẢNG GIÁ</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

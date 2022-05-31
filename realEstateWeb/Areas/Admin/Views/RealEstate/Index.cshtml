@@ -70,6 +70,7 @@
                                     <td><a href="#" class="btn-active" data-id="@item.RealEstateID">@Html.Raw(item.Status ? "<strong>Kích hoạt</strong>" : "Khoá")</a></td>
 
                                     <td>
+                                        <a href="#" data-id="@item.RealEstateID" class="btn-images">Quản lí ảnh </a>
                                         <a href="/Admin/Content/Edit/@item.RealEstateID">Edit</a>
                                         <br />
                                         @Ajax.ActionLink("Delete", "Delete", new { @id = item.RealEstateID }, new AjaxOptions
@@ -101,3 +102,28 @@
 
 </div>
 <!-- End of Main Content -->
+<div id="imagesManange" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title">Quản lý ảnh</h4>
+            </div>
+            <div class="modal-body">
+                <div id="imagesList" style="margin:5px;">
+
+                </div>
+                <input type="button" id="btnChooImages" class="btn btn-primary" value="chọn ảnh" />
+                <input type="hidden" id="hidProductID" value="0" />
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btnSaveImages">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

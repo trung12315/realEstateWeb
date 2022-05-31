@@ -21,6 +21,18 @@ namespace realEstateWeb
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 namespaces: new[] { "realEstateWeb.Controllers" }
             );
+            routes.MapRoute(
+                name: "Login",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "User", action = "User", id = UrlParameter.Optional },
+                namespaces: new[] { "realEstateWeb.Controllers" }
+            );
+            routes.MapRoute(
+               name: "trung",
+               url: "{controller}/{action}/{id}",
+               defaults: new { controller = "Home", action = "Test", id = UrlParameter.Optional },
+               namespaces: new[] { "realEstateWeb.Controllers" }
+           );
         }
     }
 }

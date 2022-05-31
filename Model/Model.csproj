@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BotDetect, Version=4.4.2.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.4.2\lib\net35\BotDetect.dll</HintPath>
+    </Reference>
+    <Reference Include="BotDetect.Web.Mvc, Version=4.4.2.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.4.2\lib\net35\BotDetect.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -50,6 +56,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.SQLite, Version=1.0.115.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -60,16 +69,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dao\CategoryDao.cs" />
+    <Compile Include="Dao\ImageDao.cs" />
     <Compile Include="Dao\RealEstateCategoryDao.cs" />
     <Compile Include="Dao\RealEstateDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="EF\bdsWebContext.cs" />
+    <Compile Include="EF\Category.cs" />
     <Compile Include="EF\Contact.cs" />
-    <Compile Include="EF\District.cs" />
-    <Compile Include="EF\Entity.cs" />
+    <Compile Include="EF\district.cs" />
     <Compile Include="EF\Feedback.cs" />
+    <Compile Include="EF\Image.cs" />
     <Compile Include="EF\Menu.cs" />
-    <Compile Include="EF\Province.cs" />
+    <Compile Include="EF\province.cs" />
     <Compile Include="EF\RealEstate.cs" />
     <Compile Include="EF\RealEstateCategory.cs" />
     <Compile Include="EF\RealEstateComment.cs" />
@@ -79,9 +91,11 @@
     <Compile Include="EF\sysdiagram.cs" />
     <Compile Include="EF\Tag.cs" />
     <Compile Include="EF\User.cs" />
-    <Compile Include="EF\Village.cs" />
-    <Compile Include="EF\Ward.cs" />
+    <Compile Include="EF\village.cs" />
+    <Compile Include="EF\ward.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ImageModel.cs" />
+    <Compile Include="ViewModel\LoginModel.cs" />
     <Compile Include="ViewModel\RealEstateViewModel.cs" />
     <Compile Include="ViewModel\StringMetatitle.cs" />
   </ItemGroup>
@@ -105,6 +119,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
 </Project>

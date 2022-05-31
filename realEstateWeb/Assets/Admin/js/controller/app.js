@@ -41,7 +41,7 @@ $(document).ready(function () {
         var districtText = $("#ddlDistrict option:selected").text();
         var wardText = $("#ddlWard option:selected").text();
         var villageText = $("#ddlVillage option:selected").text();
-        var html = " Tỉnh thành: " + provinceText + " " + "Quận huyện: " + districtText + " " + "Xã phường: " + wardText + "Thôn xóm" + villageText;
+        var html = villageText+", " + wardText+", " + districtText +", "+ provinceText;
         $("#divResult").val(html);
     });
 });
