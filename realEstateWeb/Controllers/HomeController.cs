@@ -16,7 +16,7 @@ namespace realEstateWeb.Controllers
             //var dao1 = new CategoryDao();
             ViewBag.CateID = new SelectList(dao.ListAll(), "CateID", "Name", selectedId);
         }
-            public ActionResult Index(string searchString, int page = 1, int pageSize = 9)
+            public ActionResult Index(string searchString, int page = 1, int pageSize = 12)
         {
             var productdao = new RealEstateDao();
             var image = new ImageDao();

@@ -15,8 +15,10 @@ namespace realEstateWeb.Areas.Admin.Controllers
     public class RealEstateController : BaseController
     {
         // GET: Admin/RealEstate
+
         public ActionResult Index(string searchString, int page=1, int pageSize =10)
         {
+
             var dao = new RealEstateDao();
             var model = dao.ListAllPaging(searchString, page, pageSize);
             ViewBag.SearchString = searchString;

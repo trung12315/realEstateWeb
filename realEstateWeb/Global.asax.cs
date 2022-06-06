@@ -23,6 +23,13 @@ namespace realEstateWeb
         {
             Application.Lock();
             Application["PageView"] = (int)Application["PageView"] + 1;
+            Application["OnLine"] = (int)Application["OnLine"] + 1;
+            Application.UnLock();
+        }
+        protected void Session_End()
+        {
+            Application.Lock();           
+            Application["OnLine"] = (int)Application["OnLine"] - 1;
             Application.UnLock();
         }
     }

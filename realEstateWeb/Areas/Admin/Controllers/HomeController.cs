@@ -1,4 +1,5 @@
 ﻿using Model.Dao;
+using realEstateWeb.Common;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,9 +15,22 @@ namespace realEstateWeb.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
-            ViewBag.SoNguoiTruyCap = HttpContext.Application["PageView"];
+            ViewBag.SoNguoiTruyCap = HttpContext.Application["PageView"].ToString();
+            ViewBag.SoNguoiDangTruyCap = HttpContext.Application["OnLine"].ToString();
+            var session = (UserLogin)Session[CommonConstants.USER_SESSION];
+            if (session == null)
+            {
+                return Redirect("/Admin/Login");
+            }
+            else
+            { 
+            
+
+            var dao = new RealEstateDao();
+            var a = dao.TongBaiDang();
+            ViewBag.TongBaiDang = a.ToString();
             return View();
-      
+        }
         }
     }
 }

@@ -462,7 +462,9 @@ h2 {
 }
 
 .aa-properties-content-body .media img {
+    margin-top:5px;
     width: 150px;
+    height:110px;
 }
 
 .media:hover {
@@ -474,7 +476,9 @@ img {
 }
 
 .aa-properties-content-body .media {
-    margin-top: 20px;
+   
+    border-bottom: 1px solid #F5BCA9;
+    margin-top: 3px;
 }
 
 .aa-primary-btn {
@@ -1231,7 +1235,7 @@ img {
     -o-transition: all 0.5s;
     transition: all 0.5s;
 }
-
+   
     .aa-properties-item:hover {
         box-shadow: 1px 2px 5px 3px #ccc;
     }
@@ -1294,6 +1298,12 @@ img {
             .aa-properties-item .aa-properties-item-content .aa-properties-about h3 {
                 margin-top: 0px;
                 font-size: 16px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                line-height: 25px;
+                -webkit-line-clamp: 2;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
             }
 
             .aa-properties-item .aa-properties-item-content .aa-properties-about p {
@@ -1954,6 +1964,7 @@ img {
         display: inline;
         float: left;
         width: 100%;
+       /* border-right:1px solid #ccc*/
     }
 
         #aa-properties .aa-properties-content .aa-properties-content-head {
@@ -2008,6 +2019,8 @@ img {
             display: inline;
             float: left;
             width: 100%;
+            border-right: 1px solid #888;
+            background: #FBF8EF;
         }
 
             #aa-properties .aa-properties-content .aa-properties-content-body .aa-properties-nav {

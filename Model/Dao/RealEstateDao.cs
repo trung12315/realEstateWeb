@@ -26,6 +26,11 @@ namespace Model.Dao
         //    XmlDocument doc = new XmlDocument();
             
         //}
+        public string TongBaiDang()
+        {
+            string TongBaiDang = db.RealEstates.Count().ToString();
+            return TongBaiDang;
+        }
         public RealEstate GetByID(long id)
         {
             return db.RealEstates.Find(id);
@@ -129,7 +134,7 @@ namespace Model.Dao
             return model.OrderByDescending(x => x.CreateDate).ToPagedList(pageIndex,pageSize);
             
         }
-        public IEnumerable<RealEstate> ListAllPaging(string searchString, int page=5, int pageSize=9)
+        public IEnumerable<RealEstate> ListAllPaging(string searchString, int page=5, int pageSize=12)
         {
             IQueryable<RealEstate> model = db.RealEstates;
             if (!string.IsNullOrEmpty(searchString))

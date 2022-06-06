@@ -27,6 +27,9 @@
     <link href="~/Assets/Admin/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="~/Assets/Admin/css/__style.css" rel="stylesheet">
     <link href="~/Assets/client/Css/__map.css" rel="stylesheet">
+    @*<link rel="stylesheet" href="~/Assets/Admin/css/style.css">*@
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="~/Assets/Admin/img/favicon.ico" />
 
 
 
@@ -103,10 +106,20 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">admin</span>
-                                <img class="img-profile rounded-circle"
-                                     src="~/Assets/client/images/avatar_news.png">
-                            </a>
+                                @{
+                                    var session = (UserLogin)Session[realEstateWeb.Common.CommonConstants.USER_SESSION];
+                                }
+                                @if (session == null)
+                                {
+                                 
+                                }
+                                else
+                                {
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">@session.Username</span>
+                                }
+                                    <img class="img-profile rounded-circle"
+                                         src="~/Assets/client/img/qqw.jpg">
+                                </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
@@ -115,9 +128,9 @@
                                     Profile
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="/Admin/Login">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    @Html.ActionLink("Logout", "Logout", "User")
+                                    LogOut
                                 </a>
                             </div>
                         </li>
