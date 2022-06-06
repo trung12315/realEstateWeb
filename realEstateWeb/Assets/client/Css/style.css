@@ -35,16 +35,370 @@
 #RESPONSIVE DESIGN
 */
 /* BASE - Base tyles, Variables, Mixins, etc. */
-.post-attributes{
-    display:flex;
+
+body {
+    margin: 0;
 }
-.item-price {
-        margin-right: 40px;
+
+
+
+.header {
+    height: 45px;
+    width: 100%;
+    background-color: #055699;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    display: flex;
+    color: #fff;
+    top: 0;
+    position: fixed;
+}
+
+    .header h2 {
+        padding-top: 0;
+        padding-bottom: 0.75rem;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #fff;
     }
+
+.nav-header {
+    display: flex;
+}
+
+    .nav-header li {
+        list-style-type: none;
+        padding-left: 20px;
+    }
+
+        .nav-header li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+.main {
+    margin-top: 140px;
+    /* background-color: red; */
+    /* height: 900px; */
+    display: flex;
+}
+
+.body-right .main-container .container-left .address h2 {
+    color: black;
+    font-size: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.body-left {
+    border-left: 1px solid #ccc;
+    width: 17%;
+    padding: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: fixed;
+}
+
+.info-my {
+    width: 100%;
+    height: 200px;
+}
+
+.my-info {
+    display: flex;
+}
+
+    .my-info img {
+        border-radius: 50%;
+    }
+
+.thongtincuatoi h4 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.thongtincuatoi span {
+    margin-top: 0;
+}
+
+#btn-yellow {
+    height: 25px;
+    background-color: yellow;
+    border-radius: 2px;
+    border: 1px solid yellow;
+}
+
+.my-btn {
+    margin-top: 20px;
+}
+
+#btn-red {
+    height: 25px;
+    background-color: red;
+    border-radius: 2px;
+    border: 1px solid red;
+    color: #fff;
+}
+
+.info-tt {
+}
+
+    .info-tt .tt-svg {
+        padding-top: 20px;
+    }
+
+        .info-tt .tt-svg span {
+            padding-left: 10px;
+        }
+
+
+.body-right {
+    margin-left: 17%;
+    width: 83%;
+    padding-left: 30px;
+    padding-top: 10px;
+}
+
+.right-margin {
+    margin: 10px 20px;
+}
+
+.body-right .dangtin {
+    width: 100%;
+    height: 35px;
+    background-color: #e9ecef;
+    border-radius: 2px;
+}
+
+    .body-right .dangtin ul {
+        list-style-type: none;
+        display: flex;
+    }
+
+        .body-right .dangtin ul li {
+            padding-right: 20px;
+            padding-top: 10px;
+            color: #007bff;
+        }
+
+.dangtin-new {
+    height: 100px;
+}
+
+    .dangtin-new h2 {
+        margin-top: 20px;
+        color: black;
+        font-size: 40px;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+.canhbao {
+    height: 70px;
+    border: 1px solid crimson;
+    background-color: #f5c6cb;
+    padding: 10px;
+}
+
+.main-container {
+    width: 100%;
+    display: flex;
+}
+
+.container-left {
+    width: 64%;
+}
+
+.container-right {
+    width: 36%;
+}
+
+    .container-right .map iframe {
+        margin-left: 30px;
+        margin-top: 40px;
+        width: 350px;
+        height: 350px;
+    }
+
+.luuuy-cach {
+    width: 70%;
+    margin: 20px;
+}
+
+.container-right .luuuy {
+    height: 300px;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
+}
+
+.adress-new {
+    display: flex;
+}
+
+    .adress-new .new {
+        margin-right: 20px;
+    }
+
+        .adress-new .new label {
+            display: block;
+            padding-bottom: 10px;
+        }
+
+.sonha {
+    margin-top: 25px;
+}
+
+    .sonha label, .diachichinhxac label, .loaichuyenmuc label, .canho, .tieude label, .noidungmota label, .thongtinlienhe label,
+    .doituongchothue label {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        color: black;
+        background-color: #fff;
+        border-radius: 2px;
+    }
+
+    .sonha input {
+        outline: none;
+        padding: 0;
+        text-indent: 10px;
+        width: 150px;
+        height: 27px;
+    }
+
+
+.diachichinhxac {
+    margin-top: 20px;
+}
+
+    .diachichinhxac input {
+        width: 650px;
+        padding: 0;
+        margin: 0;
+        height: 27px;
+        outline: none;
+        text-indent: 10px;
+    }
+
+.loaichuyenmuc {
+    margin-top: 20px;
+}
+
+    .loaichuyenmuc select, .doituongchothue select {
+        height: 30px;
+        width: 350px;
+        outline: none;
+        margin-top: 5px;
+    }
+
+.tieude {
+    margin-top: 20px;
+}
+
+.noidungmota {
+    margin-top: 20px;
+}
+
+.tieude input {
+    width: 650px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    text-indent: 10px;
+}
+
+.thongtinlienhe {
+    margin-top: 20px;
+}
+
+    .thongtinlienhe input {
+        margin: 0;
+        padding: 0;
+        outline: none;
+        width: 350px;
+        height: 30px;
+    }
+
+.addimages {
+    display: flex;
+    width: 650px;
+    height: 150px;
+    border: 2px dashed gray;
+}
+
+    .addimages img {
+        margin-left: 40%;
+        margin-top: 20px;
+    }
+
+.addimage {
+    display: flex;
+    width: 650px;
+    height: 150px;
+    /*    border: 2px dashed gray;*/
+}
+
+.addimage img {
+    margin-left: -3px;
+    margin-top: -68px;
+}
+
+
+.videolink input {
+    height: 30px;
+    width: 650px;
+    margin: 0;
+    padding: none;
+    outline: none;
+}
+
+.btn {
+    margin-top: 20px;
+}
+
+    .btn button {
+        height: 40px;
+        width: 650px;
+        color: #fff;
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+
+.footer {
+    margin-top: 140px;
+    height: 500px;
+    width: 90%;
+    border: 4px dashed gray;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.thontinlienhe {
+    display: flex;
+}
+
+    .thontinlienhe .thanhtoan {
+        width: 33.33%;
+    }
+
+.post-attributes {
+    display: flex;
+}
+
+.item-price {
+    margin-right: 40px;
+}
+
 .pagination {
     padding-left: 20px;
     text-align: center;
 }
+
 body {
     background-color: #ffffff;
     font-family: "Open Sans", sans-serif;
@@ -52,6 +406,7 @@ body {
     font-size: 15px;
     overflow-x: hidden;
 }
+
 .main-title {
     height: 100px;
 }
@@ -72,6 +427,7 @@ body {
             font-size: 13px;
             color: darkgray;
         }
+
 .no-padding {
     padding: 0;
 }
@@ -104,19 +460,23 @@ h2 {
     line-height: 40px;
     margin: 0;
 }
+
 .aa-properties-content-body .media img {
     width: 150px;
 }
+
 .media:hover {
     box-shadow: 1px 2px 5px 3px #ccc;
 }
+
 img {
-    
     border: none;
 }
-.aa-properties-content-body .media{
-    margin-top:20px;
+
+.aa-properties-content-body .media {
+    margin-top: 20px;
 }
+
 .aa-primary-btn {
     font-size: 16px;
     padding: 10px 30px;
@@ -273,8 +633,8 @@ img {
         }
 
         #aa-menu-area .main-navbar .navbar-header .aa-logo {
-            border: 2px solid #fff;
-            color: #fff;
+            border: 2px solid #888;
+            color: #555;
             font-family: "Poppins", sans-serif;
             font-size: 30px;
             padding: 15px;
@@ -293,7 +653,7 @@ img {
             }
 
         #aa-menu-area .main-navbar .navbar-nav li a {
-            color: #fff;
+            color: #555;
             -webkit-transition: all 0.5s;
             -moz-transition: all 0.5s;
             -ms-transition: all 0.5s;
@@ -314,7 +674,7 @@ img {
             border-radius: 0;
             margin-top: 5px;
         }
-/*.aa-header-right .drop-menu {
+            /*.aa-header-right .drop-menu {
     border: none;
     border-radius: 0;
     margin-top: 5px;
@@ -798,9 +1158,9 @@ img {
     display: inline;
     float: left;
     width: 100%;
-    margin :0px 0px 0px 0px;
-    text-align:center;
-    text-align:center;
+    margin: 0px 0px 0px 0px;
+    text-align: center;
+    text-align: center;
 }
 
     .aa-title p {
@@ -862,7 +1222,7 @@ img {
     display: inline;
     float: left;
     margin-top: 30px;
-    margin-right:22px;   
+    margin-right: 22px;
     width: 270px;
     position: relative;
     -webkit-transition: all 0.5s;
@@ -911,7 +1271,6 @@ img {
     }
 
         .aa-properties-item .aa-properties-item-content .aa-properties-info {
-            
             display: inline;
             float: left;
             padding: 10px;
@@ -939,7 +1298,7 @@ img {
 
             .aa-properties-item .aa-properties-item-content .aa-properties-about p {
                 font-size: 11px;
-                margin:0px 0px 0px 0px;
+                margin: 0px 0px 0px 0px;
             }
 
         .aa-properties-item .aa-properties-item-content .aa-properties-detial {
@@ -1152,7 +1511,7 @@ img {
 
                             #aa-agents .aa-agents-area .aa-agents-content .aa-agents-slider li .aa-single-agents .aa-agents-img img {
                                 width: 100%;
-                                height:230px;
+                                height: 230px;
                             }
 
                         #aa-agents .aa-agents-area .aa-agents-content .aa-agents-slider li .aa-single-agents .aa-agetns-info {
@@ -1661,10 +2020,8 @@ img {
             }
 
                 #aa-properties .aa-properties-content .aa-properties-content-body .aa-properties-nav li {
-                    
                     float: left;
-                    width:225px;
-                    
+                    width: 225px;
                     /*width: 46.1%;*/
                 }
 
@@ -1681,7 +2038,6 @@ img {
                         display: block;
                         width: 50%;
                         float: left;
-
                     }
 
                     #aa-properties .aa-properties-content .aa-properties-content-body .aa-list-view li .aa-properties-item .aa-properties-item-content {
@@ -3098,20 +3454,22 @@ img {
         height: 420px;
     }
 
-    #aa-properties .aa-properties-content .aa-properties-content-body .aa-properties-nav li .aa-properties-item{
-        width:200px;
+    #aa-properties .aa-properties-content .aa-properties-content-body .aa-properties-nav li .aa-properties-item {
+        width: 200px;
         /*padding-right:20px;*/
         /*width: 45.2%;*/
     }
+
         #aa-properties .aa-properties-content .aa-properties-content-body .aa-properties-nav li .aa-properties-item .aa-properties-item-img {
             width: 200px;
             /*padding-right: 20px;*/
             /*width: 45.2%;*/
         }
-        #aa-properties .aa-properties-content .aa-properties-content-body .aa-properties-nav li .aa-properties-item .aa-properties-item-img img {
-            width: 200px;
-            /*width: 45.2%;*/
-        }
+
+            #aa-properties .aa-properties-content .aa-properties-content-body .aa-properties-nav li .aa-properties-item .aa-properties-item-img img {
+                width: 200px;
+                /*width: 45.2%;*/
+            }
 
     #aa-properties .aa-properties-content .aa-properties-content-body .aa-list-view li {
         width: 100%;
@@ -3205,7 +3563,7 @@ img {
     }
 
         /*#aa-properties .aa-properties-content .aa-properties-content-body .aa-properties-nav li {*/
-           /* width: 45.9%;*/
+        /* width: 45.9%;*/
         /*}*/
 
         #aa-properties .aa-properties-content .aa-properties-content-body .aa-list-view li {
@@ -3327,7 +3685,7 @@ img {
         margin-left: 0;
     }
 
-       /* #aa-properties .aa-properties-content .aa-properties-content-body .aa-properties-nav li {
+    /* #aa-properties .aa-properties-content .aa-properties-content-body .aa-properties-nav li {
             margin: 0;
             width: 100%;
         }*/
@@ -3786,9 +4144,10 @@ img {
     .comments .media-left, .media > .pull-left {
         padding-right: 0;
     }
-   .media .media-left {
-        width:150px;
-        height:150px;
+
+    .media .media-left {
+        width: 150px;
+        height: 150px;
     }
 
     .aa-comments-area .comments .commentlist .children {

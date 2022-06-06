@@ -19,13 +19,14 @@ namespace Model.ViewModel
 
         public string Description { get; set; }
 
-        public decimal? Price { get; set; }
+        public float Price { get; set; }
 
         public string Image { get; set; }
 
         public int UserID { get; set; }
+        public string Phone { get; set; }
         public string Detail { get; set; }
-
+       
         public DateTime? CreateDate { get; set; }
         //public string CateMetaTitle { set; get; }
 

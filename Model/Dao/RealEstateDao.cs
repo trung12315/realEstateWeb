@@ -64,6 +64,15 @@ namespace Model.Dao
             }
 
         }
+        public void UpdateImage(string images)
+        {
+            RealEstate realestate = new RealEstate();
+            int foreignKey = realestate.RealEstateID;
+            Image image = new Image();
+            image.RealEstateID = foreignKey;
+            image.LinkImage = images;
+            db.SaveChanges();
+        }
         public void UpdateImages(int id, string images)
         {
             var product = db.RealEstates.Find(id);
@@ -97,6 +106,12 @@ namespace Model.Dao
                 return false;
             }
 
+        }
+        public List<RealEstate> ListByCategoryId(int categoryID, ref int totalRecord, int pageIndex = 1, int pageSize = 3)
+        {
+            totalRecord = db.RealEstates.Where(x => x.CatID == categoryID).Count();
+            var model = db.RealEstates.Where(x => x.CatID == categoryID).OrderByDescending(x => x.CreateDate).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            return model;
         }
         public IEnumerable<RealEstate> Search(string search, string searchString, int pageIndex , int pageSize )
         {
@@ -287,17 +302,22 @@ namespace Model.Dao
 
             return realRstate.RealEstateID;
         }
+        public List<Image> ListImages(long id, int a=1)
+        {
+            var image = db.Images.Find(id);
+            return db.Images.Where(x => x.RealEstateID == id).ToList();
+        }
+        public List<Image> ListImage(long id)
+        {
+            var image = db.Images.Find(id);
+            return db.Images.Where(x => x.RealEstateID == id ).ToList();
+        }
         public List<RealEstate> Listrelatedproducts(long id)
         {
             var realEstate = db.RealEstates.Find(id);
             return db.RealEstates.Where(x => x.RealEstateID != id && x.CatID == realEstate.CatID).ToList();
         }
-        public List<RealEstate> ListByCategoryId(int categoryID, ref int totalRecord, int pageIndex = 1, int pageSize = 3)
-        {
-            totalRecord = db.RealEstates.Where(x => x.CatID == categoryID).Count();
-            var model = db.RealEstates.Where(x => x.CatID == categoryID).OrderByDescending(x => x.CreateDate).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            return model;
-        }
+   
         //public void RemoveAllContentTag(long contentId)
         //{
         //    db.ContentTags.RemoveRange(db.ContentTags.Where(x => x.ContentID == contentId));

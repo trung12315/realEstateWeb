@@ -22,6 +22,7 @@ namespace realEstateWeb.Controllers
             var realestate = new RealEstateDao().ViewDetail(id);
             ViewBag.Category = new RealEstateCategoryDao().ViewDetail(realestate.CatID.Value);
             ViewBag.relatedProducts = new RealEstateDao().Listrelatedproducts(id);
+            ViewBag.Image = new RealEstateDao().ListImage(id);
 
 
 

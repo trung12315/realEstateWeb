@@ -58,15 +58,15 @@
                     images: JSON.stringify(images)
                 },
                 dataType: 'json',
-                success: function (response) {
-                    if (response.status) {
-                        $('#imagesManange').modal('hide');
-                        $('#imagesList').html('');
-                        alert('Lưu thành công');
-                    }
+                //success: function (response) {
+                //    if (response.status) {
+                //        $('#imagesManange').modal('hide');
+                //        $('#imagesList').html('');
+                //        alert('Lưu thành công');
+                //    }
 
-                    //thong bao thanh cong
-                }
+                //    //thong bao thanh cong
+                //}
             });
         });
     },

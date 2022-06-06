@@ -1,0 +1,271 @@
+﻿@model Model.ViewModel.RealEstateViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="~/Assets/Admin/js/controller/app.js"></script>
+
+
+}
+
+
+
+
+<div class="main">
+    <div class="body-left">
+        <div class="aside-info">
+            <div class="info-my">
+                <div class="my-info">
+                    <div class="image-info"><img src="./images/user.png" alt="" width="50"></div>
+                    <div class="thongtincuatoi">
+                        <h4>Nguyễn Thành Trung</h4>
+                        <span>025252514</span>
+                    </div>
+                </div>
+                <div class="my-code">
+                    <label for="">Mã thành viên: <strong>115837</strong></label><br>
+                    <label for="">TK Chính: <strong>0 đ</strong></label>
+                </div>
+                <div class="my-btn">
+                    <button id="btn-yellow">Nạp tiền</button>
+                    <button id="btn-red">Đăng tin</button>
+                </div>
+            </div>
+            <div class="info-tt">
+                <div class="tt-svg"><i class="fa-solid fa-file-lines"></i><a><span>Quản lí tin đăng</span></a></div>
+                <div class="tt-svg">
+                    <i class="fa-solid fa-pen-to-square"></i><a><span>Sửa thông tin cá nhân</span></a>
+                </div>
+                <div class="tt-svg"><i class="fa-solid fa-dollar-sign"></i><a><span>Nạp tiền vào tại khoản</span></a></div>
+                <div class="tt-svg"><i class="fa-solid fa-calendar"></i><span>Lịch thanh toán</span></div>
+                <div class="tt-svg">
+                    <i class="fa-solid fa-hand-holding-dollar"></i><a><span>Bảng giá dịch vụ</span></a>
+                </div>
+                <div class="tt-svg"><i class="fa-solid fa-comment"></i><a><span>Liên hệ</span></a></div>
+                <div class="tt-svg"><i class="fa-solid fa-arrow-right-from-bracket"></i><a><span>Thoát</span></a></div>
+            </div>
+        </div>
+    </div>
+    <div class="body-right">
+        <div class="right-margin">
+            <div class="dangtin">
+                <ul>
+                    <li><a>Phòng trọ</a></li>
+                    <li>Quản lí</li>
+                    <li>Đăng tin mới</li>
+                </ul>
+            </div>
+            <div class="dangtin-new">
+                <h2>Đăng tin mới</h2>
+            </div>
+            <div class="canhbao">
+                <p>
+                    Nếu bạn đã từng đăng tin trên Phongtro123.com, hãy sử dụng chức năng ĐẨY TIN / GIA HẠN / NÂNG CẤP
+                    VIP trong mục QUẢN LÝ TIN ĐĂNG để làm mới, đẩy tin lên cao thay vì đăng tin mới. Tin đăng trùng
+                    nhau sẽ không được duyệt.
+                </p>
+            </div>
+            <div class="main-container">
+
+
+                <div class="container-left">
+                    <div class="address">
+                        <h2>Địa chỉ cho thuê</h2>
+                    </div>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="adress-new">
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="new">
+                                <div>
+                                    <label for="ddlProvince">Tỉnh/Thành Phố</label>
+                                </div>
+                                <select id="ddlProvince" style="width: 150px; height: 40px;" class="js-example-basic-single"
+                                        name="state">
+                                    <option value="">--Chọn Tỉnh/TP--</option>
+                                </select>
+                            </div>
+                            <div class="new">
+                                <div>
+                                    <label for="ddlDistrict">Quận/Huyện</label>
+                                </div>
+                                <select id="ddlDistrict" style="width: 150px; height: 40px;" class="js-example-basic-single"
+                                        name="state">
+                                    <option value="">--Chọn Quận/Huyện--</option>
+                                </select>
+                            </div>
+                            <div class="new">
+                                <div>
+                                    <label for="ddlWard">Phường/xã</label>
+                                </div>
+                                <select id="ddlWard" style="width: 150px; height: 40px;" class="js-example-basic-single"
+                                        name="state">
+                                    <option value="">--Chọn Phường/Xã--</option>
+                                </select>
+                            </div>
+                            <div class="new">
+                                <div>
+                                    <label for="ddlVillage">Thôn/xóm</label>
+                                </div>
+                                <select id="ddlVillage" style="width: 150px; height: 40px;" class="js-example-basic-single"
+                                        name="state">
+                                    <option value="">--Chọn Thôn/xóm--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="sonha">
+                            <label for="">Số nhà</label><br>
+                            <input type="text">
+                        </div>
+                        <div class="diachichinhxac">
+                            <label for="">Địa chỉ chính xác</label><br>
+                            @Html.TextBoxFor(model => model.Address, new { @class = "form-control", id = "divResult" })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="thontinmota">
+                            <h3>Thông tin mô tả</h3>
+                        </div>
+                        <div class="loaichuyenmuc">
+                            <label for="">Danh mục bất động sản</label><br>
+                            @Html.DropDownListFor(model => model.CatID, null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CatID, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="loaichuyenmuc">
+                            <label for="">Loại Tin đăng</label><br>
+                            @Html.DropDownListFor(model => model.CateID, null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CateID, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="tieude">
+                            <label for="">Tiêu đề</label><br>
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="noidungmota">
+                            <label for="">Nội dung mô tả</label><br>
+                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="thongtinlienhe">
+                            <label for="">Thông tin liên hệ</label><br>
+                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="thongtinlienhe">
+                            <label for="">Giá cho thuê</label><br>
+                            @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="thongtinlienhe">
+                            <label for="">Diện tích</label><br>
+                            @Html.TextBoxFor(model => model.Acreage, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Acreage, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="doituongchothue">
+                            <label for="">Đối tượng cho thuê</label><br>
+                            <select name="" id="">
+                                <option value="">--Tất cả--</option>
+                                <option value="">Nam</option>
+                                <option value="">Nữ</option>
+                            </select>
+                        </div>
+
+
+                        <div class="hinhanh">
+                            <h3>Hình ảnh</h3><br>
+                            <p>Cập nhật hình ảnh rõ ràng sẽ cho thuê nhanh hơn</p><br>
+                            <div>
+                                <div class="addimages">
+                                    <img id="btnChooImages" src="~/Assets/client/img/slider/addimage.png" alt="" width="110">
+                                </div>
+                                <div id="imagesList" style="margin:5px;">
+                                </div>
+                                <input type="hidden" id="strimage" name="image" />
+                            </div>
+
+                            @*<input type="hidden" id="image" name="images"/>*@
+                        </div>
+
+                        <div class="video">
+                            <h3>Video</h3>
+                        </div>
+
+                        <div class="videolink">
+                            <label for="">Video Link(Youtube)</label><br>
+                            <input type="text">
+                        </div>
+                        <div class="uploadvideotumay">
+                            <label for="">Hoặc upload Video từ máy của bạn</label>
+                            <div class="addimage">
+                                <img src="./images/upvideo.png" alt="" width="140">
+                            </div>
+                        </div>
+
+
+                        <div class="btn">
+                            <div class="">
+                                <input id="btnSaveImages" type="submit" value="Đăng Tin"  />
+                            </div>
+
+                        </div>
+
+                    }
+                </div>
+                    <div class="container-right">
+                        <div class="map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.771503266693!2d108.21123561387952!3d16.0773427888759!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3142184792140755%3A0xd4058cb259787dac!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBTxrAgUGjhuqFtIEvhu7kgdGh14bqtdCAtIMSQ4bqhaSBo4buNYyDEkMOgIE7hurVuZw!5e0!3m2!1svi!2s!4v1652888884600!5m2!1svi!2s"
+                                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div class="luuuy">
+                            <div class="luuuy-cach">
+                                <h3>
+                                    Lưu ý khi đăng tin
+                                </h3>
+                                <ul>
+                                    <li>Nội dung phải viết bằng tiếng Việt có dấu</li>
+                                    <li>Tiêu đề tin không dài quá 100 kí tự</li>
+                                    <li>Các bạn nên điền đầy đủ thông tin vào các mục để tin đăng có hiệu quả hơn.</li>
+                                    <li>Để tăng độ tin cậy và tin rao được nhiều người quan tâm hơn, hãy sửa vị trí tin rao của bạn trên bản đồ bằng cách kéo icon tới đúng vị trí của tin rao.</li>
+                                    <li>Tin đăng có hình ảnh rõ ràng sẽ được xem và gọi gấp nhiều lần so với tin rao không có ảnh. Hãy đăng ảnh để được giao dịch nhanh chóng!</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @{
+        <script src="/Assets/Admin/js/plugins/ckfinder/ckfinder.js"></script>
+        <script src="/Assets/Admin/js/plugins/ckeditor/ckeditor.js"></script>
+        <script>
+
+
+
+            $('#btnChooImages').off('click').on('click', function (a) {
+                a.preventDefault();
+                var finder = new CKFinder();
+                finder.selectActionFunction = function (url) {
+                    $('#imagesList').append('<div><img src="' + url + '" width="100" /><a href="#" class="btn-delImage"><i class="fa fa-times"></i></a></div>');
+
+                    $('.btn-delImage').off('click').on('click', function (a) {
+                        a.preventDefault();
+                        $(this).parent().remove();
+                    });
+                };
+                finder.popup();
+            });
+
+            $('#btnSaveImages').off('click').on('click', function () {
+                var images = [];
+                /*var id = $('#hidProductID').val();*/
+                $.each($('#imagesList img'), function (i, item) {
+                    images.push($(item).prop('src'));
+                })
+                $("#strimage").val(images);
+
+            });
+        </script>
+    }

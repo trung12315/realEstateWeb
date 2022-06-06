@@ -18,7 +18,18 @@
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <div class="aa-header-right">
-                                <a href="signin.html" class="aa-register">ĐĂNG TIN MỚI</a>
+                                @{
+                                    var sessiona = (UserLogin)Session[realEstateWeb.Common.CommonConstants.USER_SESSION];
+                                }
+                                @if (sessiona == null)
+                                {
+                                    <a href="/User/Login" class="aa-register">ĐĂNG TIN MỚI</a>
+                                }
+                                else
+                                {
+                                    <a href="/Post/Create" class="aa-register">ĐĂNG TIN MỚI</a>
+                                }
+
                                 @{
                                     var session = (UserLogin)Session[realEstateWeb.Common.CommonConstants.USER_SESSION];
                                 }

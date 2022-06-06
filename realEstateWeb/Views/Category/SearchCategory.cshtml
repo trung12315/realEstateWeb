@@ -65,33 +65,21 @@
                     <div class="aa-properties-content-body">
                         @foreach (var item in Model)
                         {
-                            <ul class="aa-properties-nav">
-                                <li>
-                                    <article class="aa-properties-item">
-                                        <a class="aa-properties-item-img" href="#">
-                                            <img alt="img" src="@item.Image">
-                                        </a>
-                                        <div class="aa-properties-item-content">
-                                            <div class="aa-properties-info">
-                                                <span>@item.Address</span>
-                                                <span>2 Beds</span>
-                                                <span>3 Baths</span>
-                                                <span>1100 SQ FT</span>
-                                            </div>
-                                            <div class="aa-properties-about">
-                                                <h3><a href="#">@item.Name</a></h3>
-                                                <p>@item.CreateDate</p>
-                                            </div>
-                                            <div class="aa-properties-detial">
-                                                <span class="aa-price">
-                                                    @item.Price
-                                                </span>
-                                                <a class="aa-secondary-btn" href="#">View Details</a>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </li>
-                            </ul>
+                        <ul class="commentlist">
+                            <li>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <img alt="img" src="@item.Image" class="media-object news-img">
+                                    </div>
+                                    <div class="media-body">
+                                        <a class="author-name">Adam Barney</a><br>
+                                        <span class="comments-date">@item.RealEstateCategory.Name</span>
+                                        <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English</p>
+                                        <a class="reply-btn" href="#">Reply</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                         }
                     </div>
                     <div class="row">

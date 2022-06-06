@@ -16,6 +16,14 @@ namespace realEstateWeb
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Application["PageView"] = 0;
+            Application["OnLine"] = 0;
+        }
+        protected void Session_Start()
+        {
+            Application.Lock();
+            Application["PageView"] = (int)Application["PageView"] + 1;
+            Application.UnLock();
         }
     }
 }

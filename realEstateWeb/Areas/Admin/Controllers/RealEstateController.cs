@@ -109,7 +109,7 @@ namespace realEstateWeb.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Create(RealEstateViewModel viewModel)
+        public ActionResult Create(RealEstateViewModel viewModel,string images)
         {
             if (ModelState.IsValid)
             {
@@ -125,6 +125,7 @@ namespace realEstateWeb.Areas.Admin.Controllers
                 //{
                 //    realestate.MetaTile = StringHelper.ToUnsignString(realestate.Name);
                 //}
+                realestate.Image = viewModel.LinkImage;
                 realestate.CreateDate = dt;
                 realestate.Address = viewModel.Address;
                 realestate.Name = viewModel.Name;

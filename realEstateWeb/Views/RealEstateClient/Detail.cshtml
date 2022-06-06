@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var category = (Model.EF.RealEstateCategory)ViewBag.Category;
     var relatedProducts = (List<Model.EF.RealEstate>)ViewBag.relatedProducts;
+    var image = (List<Model.EF.Image>)ViewBag.Image;
 }
 
 <section id="aa-properties">
@@ -13,11 +14,14 @@
                 <div class="aa-properties-content">
                     <!-- Start properties content body -->
                     <div class="aa-properties-details">
+                       
                         <div class="aa-properties-details-img">
-                            <img src="img/slider/1.jpg" alt="img">
-                            <img src="img/slider/2.jpg" alt="img">
-                            <img src="img/slider/3.jpg" alt="img">
-                        </div>
+                            @foreach (var i in image)
+                            {
+                                <img src="@i.LinkImage" alt="img">
+                            }
+                            </div>
+                        
                         <div class="aa-properties-info">
                             <h2>
                                 @Model.Name
