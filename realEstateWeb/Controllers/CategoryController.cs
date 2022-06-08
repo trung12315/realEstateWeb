@@ -39,16 +39,42 @@ namespace realEstateWeb.Controllers
             SetViewBag();
             return View();
         }
-        public ActionResult SearchCategory(string search, string searchString, int page = 1, int pageSize = 2)
+        public ActionResult SearchCategory(string search, string searchString, string tp, string qh, string px, int page = 1, int pageSize = 6)
         {
             //int totalRecord = 0;
+
             var model = new RealEstateDao().Search(search, searchString, page, pageSize);
             ViewBag.NewProducts = new RealEstateDao().ListNewRealEstate(10);
+            var abc = "Tất cả";
             ViewBag.searchString = searchString;
+          
+            if (!string.IsNullOrEmpty(search))
+            {
+                ViewBag.search = search;
+            }
+            else { ViewBag.search = abc; }
             //ViewBag.Total = totalRecord;
             //ViewBag.pageIndex = page;
-            ViewBag.search = search;
-            ViewBag.T = searchString;
+            if (!string.IsNullOrEmpty(tp))
+            {
+                ViewBag.tp = tp;
+            }
+            else { ViewBag.tp = abc; }
+
+            if (!string.IsNullOrEmpty(qh))
+            {
+                ViewBag.qh = qh;
+            }
+            else { ViewBag.qh = abc; }
+
+            if (!string.IsNullOrEmpty(px))
+            {
+                ViewBag.px = px;
+            }
+            else { ViewBag.px = abc; }
+
+           
+            //ViewBag.T = searchString;
             //ViewBag.searchString= searchString;
             //int maxpage = 5;
             //int totalpage = 0;

@@ -24,8 +24,14 @@ namespace Model.Dao
         //{
         //    List<ImageModel> imagesmodel = new List<ImageModel>();
         //    XmlDocument doc = new XmlDocument();
-            
+
         //}
+        public List<RealEstate> Manage(int id)
+        {
+            
+            var model = db.RealEstates.Where(x => x.UserID == id).OrderByDescending(x => x.CreateDate).ToList();
+            return model;
+        }
         public string TongBaiDang()
         {
             string TongBaiDang = db.RealEstates.Count().ToString();
@@ -118,7 +124,7 @@ namespace Model.Dao
             var model = db.RealEstates.Where(x => x.CatID == categoryID).OrderByDescending(x => x.CreateDate).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             return model;
         }
-        public IEnumerable<RealEstate> Search(string search, string searchString, int pageIndex , int pageSize )
+        public IEnumerable<RealEstate> Search(string search, string searchString, int pageIndex , int pageSize=6 )
         {
             IQueryable<RealEstate> model = db.RealEstates;
             if (!string.IsNullOrEmpty(searchString) || !string.IsNullOrEmpty(search))
@@ -126,11 +132,10 @@ namespace Model.Dao
                 //totalRecord = db.RealEstates.Where(x => x.Address.Contains(SearchString) && x.RealEstateCategory.Name.Contains(search)).Count();
                 model = model.Where(x => x.Address.Contains(searchString) && x.RealEstateCategory.Name.Contains(search));
             }
-            //else if (!string.IsNullOrEmpty(search))
-            //{
-
-            //}
-            //else ()
+            else
+            {
+                model = db.RealEstates;
+            }
             return model.OrderByDescending(x => x.CreateDate).ToPagedList(pageIndex,pageSize);
             
         }
@@ -320,7 +325,7 @@ namespace Model.Dao
         public List<RealEstate> Listrelatedproducts(long id)
         {
             var realEstate = db.RealEstates.Find(id);
-            return db.RealEstates.Where(x => x.RealEstateID != id && x.CatID == realEstate.CatID).ToList();
+            return db.RealEstates.Where(x => x.RealEstateID != id && x.CatID == realEstate.CatID ).OrderByDescending(x => x.CreateDate).Take(5).ToList();
         }
    
         //public void RemoveAllContentTag(long contentId)

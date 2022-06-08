@@ -7,9 +7,16 @@ var provinceUrl = baseService + "/GetAllProvinces";
 var districtUrl = baseService + "/GetAllDistrictByProvinceId";
 var wardUrl = baseService + "/GetAllWardByDistrictId";
 var villageUrl = baseService + "/GetAllVillagedByWardId";
+
 $(document).ready(function () {
     // load danh sách country
-    _getProvince();
+
+    $("#abc").on('change', function () {
+            _getProvince();
+        
+    });
+    
+    
     //$("#ddlCountry").on('change', function () {
     //    var id = $(this).val();
     //    if (id != undefined && id != '') {
@@ -18,16 +25,27 @@ $(document).ready(function () {
     //});
 
     $("#ddlProvince").on('change', function () {
-        var id = $(this).val();
+       
+        var provinceText = $("#ddlProvince option:selected").text();
+        $("#divtp").val(provinceText);
+        $("#divResult").val(provinceText);
         //var provinceText = $("#ddlProvince option:selected").text();
         //var html = provinceText
         //$("#divResult").val(html);
+        var id = $(this).val();
         if (id != undefined && id != '') {
             _getDistrict(id);
+
         }
         
     });
     $("#ddlDistrict").on('change', function () {
+        
+        var provinceText = $("#ddlProvince option:selected").text();
+        var districtText = $("#ddlDistrict option:selected").text();
+        var html = districtText + ", " + provinceText;
+        $("#divqh").val(districtText);
+        $("#divResult").val(html);
         var id = $(this).val();
         if (id != undefined && id != '') {
             _getWard(id);
@@ -43,6 +61,7 @@ $(document).ready(function () {
         var wardText = $("#ddlWard option:selected").text();
         var html = wardText + ", " + districtText + ", " + provinceText;
         $("#divResult").val(html);
+        $("#divpx").val(wardText);
     });
     //$("#ddlVillage").on('change', function () {
     //    /* var countryText = $("#ddlCountry option:selected").text();*/

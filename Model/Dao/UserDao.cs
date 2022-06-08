@@ -26,6 +26,11 @@ namespace Model.Dao
             db.SaveChanges();
             return entity.UserID;
         }
+        public string TongUser()
+        {
+            string TongBaiDang = db.Users.Count().ToString();
+            return TongBaiDang;
+        }
         public bool Update(User entity)
         {
             try
@@ -52,7 +57,7 @@ namespace Model.Dao
             }
 
         }
-        public IEnumerable<User> ListAllPaging(string searchString, int page, int pageSize)
+        public IEnumerable<User> ListAllPaging(string searchString, int page, int pageSize=3)
         {
             IQueryable<User> model = db.Users;
             if (!string.IsNullOrEmpty(searchString))
@@ -67,9 +72,10 @@ namespace Model.Dao
             return db.Users.SingleOrDefault(x => x.Username == userName);
         }
 
-        public User ViewDetail1(long id)
+        public User ViewDetail1(int id)
         {
-            return db.Users.Find(id);
+            var result = db.Users.SingleOrDefault(x => x.UserID == id);
+            return result;
         }
 
         public User ViewDetail(int id)
@@ -132,7 +138,11 @@ namespace Model.Dao
         {
             return db.Users.Count(x => x.Username == userName) > 0;
         }
-        public bool CheckEmail(string email)
+        public bool CheckPhone(string phone)
+        {
+            return db.Users.Count(x => x.Phone == phone) > 0;
+        }
+            public bool CheckEmail(string email)
         {
             return db.Users.Count(x => x.Email == email) > 0;
         }

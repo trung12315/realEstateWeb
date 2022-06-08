@@ -34,8 +34,18 @@ namespace realEstateWeb.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            var session = (UserLogin)Session[CommonConstants.USER_SESSION];
+            if (session == null)
+                return Redirect("/");
+            else
+            {
+                var username = session.UserID;
+                ViewBag.User = new UserDao().ViewDetail1(username);
+               
+            }
             SetViewBag();
             return View();
+
 
         }
         [HttpPost]

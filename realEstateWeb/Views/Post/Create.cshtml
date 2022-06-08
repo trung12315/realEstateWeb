@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var user = (Model.EF.User)ViewBag.User;
     <script src="~/Assets/Admin/js/controller/app.js"></script>
 
 
@@ -12,17 +13,18 @@
 
 <div class="main">
     <div class="body-left">
-        <div class="aside-info">
+        <div style="margin-left:10px" class="aside-info">
+
             <div class="info-my">
                 <div class="my-info">
-                    <div class="image-info"><img src="./images/user.png" alt="" width="50"></div>
-                    <div class="thongtincuatoi">
-                        <h4>Nguyễn Thành Trung</h4>
-                        <span>025252514</span>
+                    <div class="image-info"><img src="~/Assets/client/img/user.png" alt="" width="50"></div>
+                    <div style="margin-left:10px;" class="thongtincuatoi">
+                        <h4>@user.Name</h4>
+                        <span>@user.Phone</span>
                     </div>
                 </div>
                 <div class="my-code">
-                    <label for="">Mã thành viên: <strong>115837</strong></label><br>
+                    <label for="">Mã thành viên:@user.UserID <strong></strong></label><br>
                     <label for="">TK Chính: <strong>0 đ</strong></label>
                 </div>
                 <div class="my-btn">

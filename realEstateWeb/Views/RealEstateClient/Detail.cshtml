@@ -6,35 +6,79 @@
     var relatedProducts = (List<Model.EF.RealEstate>)ViewBag.relatedProducts;
     var image = (List<Model.EF.Image>)ViewBag.Image;
 }
-
+<section id="aa-property-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-property-header-inner">
+                    <h2>Properties Page</h2>
+                    <ol class="breadcrumb">
+                        <li><a href="#">HOME</a></li>
+                        <li class="active">PROPERTIES</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@{ Html.RenderAction("Search", "Category");}
 <section id="aa-properties">
     <div class="container">
         <div class="row">
             <div class="col-md-8">
                 <div class="aa-properties-content">
+                    <div class="aa-properties-content-head">
+                        <div class="aa-properties-content-head-left">
+                            <form action="" class="aa-sort-form">
+                                <label for="">Sort by</label>
+                                <select name="">
+                                    <option value="1" selected="Default">Default</option>
+                                    <option value="2">Name</option>
+                                    <option value="3">Price</option>
+                                    <option value="4">Date</option>
+                                </select>
+                            </form>
+                            <form action="" class="aa-show-form">
+                                <label for="">Show</label>
+                                <select name="">
+                                    <option value="1" selected="12">6</option>
+                                    <option value="2">12</option>
+                                    <option value="3">24</option>
+                                </select>
+                            </form>
+                        </div>
+                        <div class="aa-properties-content-head-right">
+                            <a id="aa-grid-properties" href="#"><span class="fa fa-th"></span></a>
+                            <a id="aa-list-properties" href="#"><span class="fa fa-list"></span></a>
+                        </div>
+                    </div>
                     <!-- Start properties content body -->
                     <div class="aa-properties-details">
-                       
+
                         <div class="aa-properties-details-img">
                             @foreach (var i in image)
                             {
                                 <img src="@i.LinkImage" alt="img">
                             }
-                            </div>
-                        
-                        <div class="aa-properties-info">
-                            <h2>
-                                @Model.Name
+                        </div>
 
+                        <div class="aa-properties-info">
+                            <h2 style="font-size:25px; color: brown">
+                                @Model.Name
                             </h2>
-                            <div class="post-attributes">
-                                <div class="item-price"> 2</div>
-                                <div class="item published"> 3</div>
-                                <div class="item hashtag">4</div>
+                            <div style="margin: 30px 0">
+                                <span><i style="margin-right: 10px; color: blue;" class="fa-solid fa-location-dot"></i>@Model.Address</span>
                             </div>
-                            <span class="aa-price">$65000</span>
+                            <div>
+                                <span style="display: inline-block; color: gray; padding-right: 100px "><i style="margin-right: 10px; " class="fa-solid fa-warehouse"></i>@Model.Acreage</span>
+                                <span style="display: inline-block;  color: gray; padding-right: 100px "><i style="margin-right: 10px;" class="fa-solid fa-clock"></i>@Model.CreateDate</span>
+                                <span style="display: inline-block;  color: gray; padding-right: 100px "><i style="margin-right: 10px;" class="fa-solid fa-hashtag"></i>@Model.CatID</span>
+                            </div>
+
+                            <span style="color: forestgreen;" class="aa-price">$@Model.Price</span>
+                            <h4>Thông tin mô tả</h4>
                             <p>@Model.Description</p>
-                            <h4>Propery Features</h4>
+
                             <ul>
                                 <li>4 Bedroom</li>
                                 <li>3 Baths</li>
@@ -138,102 +182,33 @@
             <!-- Start properties sidebar -->
             <div class="col-md-4">
                 <aside class="aa-properties-sidebar">
-                    <!-- Start Single properties sidebar -->
-                    <div class="aa-properties-single-sidebar">
-                        <h3>Properties Search</h3>
-                        <form action="">
-                            <div class="aa-single-advance-search">
-                                <input type="text" placeholder="Type Your Location">
-                            </div>
-                            <div class="aa-single-advance-search">
-                                <select id="" name="">
-                                    <option selected="" value="0">Category</option>
-                                    <option value="1">Flat</option>
-                                    <option value="2">Land</option>
-                                    <option value="3">Plot</option>
-                                    <option value="4">Commercial</option>
-                                </select>
-                            </div>
-                            <div class="aa-single-advance-search">
-                                <select id="" name="">
-                                    <option selected="" value="0">Type</option>
-                                    <option value="1">Flat</option>
-                                    <option value="2">Land</option>
-                                    <option value="3">Plot</option>
-                                    <option value="4">Commercial</option>
-                                </select>
-                            </div>
-                            <div class="aa-single-advance-search">
-                                <select id="" name="">
-                                    <option selected="" value="0">Type</option>
-                                    <option value="1">Flat</option>
-                                    <option value="2">Land</option>
-                                    <option value="3">Plot</option>
-                                    <option value="4">Commercial</option>
-                                </select>
-                            </div>
-                            <div class="aa-single-filter-search">
-                                <span>AREA (SQ)</span>
-                                <span>FROM</span>
-                                <span id="skip-value-lower" class="example-val">30.00</span>
-                                <span>TO</span>
-                                <span id="skip-value-upper" class="example-val">100.00</span>
-                                <div id="aa-sqrfeet-range" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
-                                </div>
-                            </div>
-                            <div class="aa-single-filter-search">
-                                <span>PRICE ($)</span>
-                                <span>FROM</span>
-                                <span id="skip-value-lower2" class="example-val">30.00</span>
-                                <span>TO</span>
-                                <span id="skip-value-upper2" class="example-val">100.00</span>
-                                <div id="aa-price-range" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
-                                </div>
-                            </div>
-                            <div class="aa-single-advance-search">
-                                <input type="submit" value="Search" class="aa-search-btn">
-                            </div>
-                        </form>
+                    <div class="user" style="text-align:center">
+                         <img src="https://phongtro123.com/images/default-user.png" alt="" width="200" style="border-radius:50%;" />
+                        <h3 style="margin-bottom:0px;">viet</h3>
+                        <span style="margin-top:2px; font-size:10px;">dang hoạt động</span><br />
+                        <a class="btn phone">0367399815</a><br />
+                        <a class="btn zalo">Nhắn Zalo</a><br />
+                       
                     </div>
                     <!-- Start Single properties sidebar -->
                     <div class="aa-properties-single-sidebar">
                         <h3>Populer Properties</h3>
+                        @foreach (var a in relatedProducts)
+                        {
                         <div class="media">
                             <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="img/item/1.jpg" alt="img">
+                                <a href="/RealEstateClient/Detail/@a.RealEstateID">
+                                    <img class="media-object" src="@a.Image" alt="img">
                                 </a>
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading"><a href="#">This is Title</a></h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <span>$65000</span>
+                                <h4 class="media-heading"><a href="/RealEstateClient/Detail/@a.RealEstateID">@a.Name</a></h4>
+                                <p>@a.Description</p>
+                                <span>@a.Price</span>
                             </div>
                         </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="img/item/1.jpg" alt="img">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">This is Title</a></h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <span>$65000</span>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="img/item/1.jpg" alt="img">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">This is Title</a></h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <span>$65000</span>
-                            </div>
-                        </div>
+                        }
+                        
                     </div>
                 </aside>
             </div>

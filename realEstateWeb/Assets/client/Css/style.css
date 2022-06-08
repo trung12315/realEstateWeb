@@ -80,7 +80,7 @@ body {
         }
 
 .main {
-    margin-top: 140px;
+    margin-top: 120px;
     /* background-color: red; */
     /* height: 900px; */
     display: flex;
@@ -251,15 +251,29 @@ body {
     margin-top: 25px;
 }
 
-    .sonha label, .diachichinhxac label, .loaichuyenmuc label, .canho, .tieude label, .noidungmota label, .thongtinlienhe label,
-    .doituongchothue label {
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: 700;
-        font-size: 14px;
-        color: black;
-        background-color: #fff;
-        border-radius: 2px;
-    }
+.menu-dropdown {
+    display: none;
+}
+
+.header-dropdown:hover .menu-dropdown {
+    color: red;
+    display: block;
+}
+
+/*.navbar {
+    margin-left: -210px;
+}
+*/
+
+.sonha label, .diachichinhxac label, .loaichuyenmuc label, .canho, .tieude label, .noidungmota label, .thongtinlienhe label,
+.doituongchothue label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: black;
+    background-color: #fff;
+    border-radius: 2px;
+}
 
     .sonha input {
         outline: none;
@@ -462,9 +476,11 @@ h2 {
 }
 
 .aa-properties-content-body .media img {
-    margin-top:5px;
+    margin-top: 5px;
     width: 150px;
-    height:110px;
+    margin-bottom: 10px;
+    height: 130px;
+    margin-left: 10px;
 }
 
 .media:hover {
@@ -540,7 +556,7 @@ img {
 ====================*/
 
 #aa-header {
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #888;
     left: 0;
     position: absolute;
     right: 0;
@@ -563,7 +579,7 @@ img {
         }
 
             #aa-header .aa-header-area .aa-header-left .aa-telephone-no {
-                color: #fff;
+                color: #555;
                 float: left;
                 font-size: 15px;
             }
@@ -581,7 +597,7 @@ img {
                 }
 
             #aa-header .aa-header-area .aa-header-left .aa-email {
-                color: #fff;
+                color: #555;
                 float: left;
                 letter-spacing: 0.5px;
                 margin-left: 20px;
@@ -593,22 +609,22 @@ img {
                 }
 
         #aa-header .aa-header-area .aa-header-right {
-            display: inline;
+            display: inline-flex;
             float: left;
             width: 100%;
             text-align: right;
         }
 
             #aa-header .aa-header-area .aa-header-right .aa-register {
-                border-right: 1px solid #f8f8f8;
-                color: #fff;
+                border-right: 1px solid #888;
+                color: #555;
                 margin-right: 5px;
                 padding-right: 10px;
                 font-size: 15px;
             }
 
             #aa-header .aa-header-area .aa-header-right .aa-login {
-                color: #fff;
+                color: #555;
                 font-size: 15px;
             }
 
@@ -623,7 +639,7 @@ img {
     right: 0;
     top: 35px;
     width: 100%;
-    z-index: 99;
+    z-index: 1;
 }
 
     #aa-menu-area .main-navbar {
@@ -1294,17 +1310,58 @@ img {
             width: 100%;
             padding: 10px;
         }
-
-            .aa-properties-item .aa-properties-item-content .aa-properties-about h3 {
-                margin-top: 0px;
-                font-size: 16px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                line-height: 25px;
-                -webkit-line-clamp: 2;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-            }
+.aa-properties-sidebar .user .phone {
+    font-weight: 700;
+    font-size: 1.5rem;
+    width: 100%;
+    background: #16c784;
+    border-color: #16c784;
+    background: linear-gradient(to right,#16c784,#16c784);
+    margin-top:10px;
+  
+}
+.aa-properties-sidebar .user .zalo {
+    width: 100%;
+    background: #fff;
+    border-color: #333;
+    background: linear-gradient(to right,#fff,#fff);
+    color: #333;
+    margin-bottom: 5px;
+    margin-top:5px;
+}
+.media-body a:hover {
+    text-decoration: underline;
+}
+.media-body a {
+    color:brown;
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom:7px;
+    line-height: 25px;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+.media-body p {
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 25px;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+.aa-properties-item .aa-properties-item-content .aa-properties-about h3 {
+    margin-top: 0px;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 25px;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
 
             .aa-properties-item .aa-properties-item-content .aa-properties-about p {
                 font-size: 11px;
@@ -1973,6 +2030,7 @@ img {
             float: left;
             padding: 10px 15px;
             width: 100%;
+            margin-bottom:10px;
         }
 
             #aa-properties .aa-properties-content .aa-properties-content-head .aa-properties-content-head-left {
@@ -2019,8 +2077,9 @@ img {
             display: inline;
             float: left;
             width: 100%;
-            border-right: 1px solid #888;
+            border: 1px solid #ccc;            
             background: #FBF8EF;
+            margin-top:10px;
         }
 
             #aa-properties .aa-properties-content .aa-properties-content-body .aa-properties-nav {
@@ -4110,6 +4169,7 @@ img {
     }
 
     #aa-properties .aa-properties-content .aa-properties-content-head {
+        margin-bottom: 10px;
         padding: 20px;
     }
 

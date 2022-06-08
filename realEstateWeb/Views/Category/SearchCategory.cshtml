@@ -27,13 +27,103 @@
         </div>
     </div>
 </section>
-@{ Html.RenderAction("Search", "Category");}
+<section id="aa-advance-search">
+    <div class="container">
+        <div class="aa-advance-search-area">
+            @using (Html.BeginForm("SearchCategory", "Category", FormMethod.Get))
+            {
+                <div class="form">
+                    <div class="aa-advance-search-top">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="aa-single-advance-search">
+                                    <label for="ddlProvince">Chọn danh mục </label>
+                                    <select id="abc" name="search" class="trung">
+                                        <option value="">@ViewBag.search</option>
+                                        <option value="Đất">Đất</option>
+                                        <option value="Căn hộ chung cư">Căn Hộ chung cư</option>
+                                        <option value="Nhà ở">Nhà ở</option>
+                                        <option value="Mặt bằng">Mặt bằng kinh doanh</option>
+                                        <option value="Phòng trọ">Phòng trọ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="aa-single-advance-search">
+                                    <label for="ddlProvince">Chọn Tỉnh/TP</label>
+                                    <select id="ddlProvince" name="" class="trung">
+                                        <option selected="" value="@ViewBag.tp">@ViewBag.tp</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="aa-single-advance-search">
+                                    <label for="ddlProvince">Chọn Quận/huyện</label>
+                                    <select id="ddlDistrict" name="" class="trung">
+                                        <option selected=""  value="@ViewBag.qh">@ViewBag.qh</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="col-md-2">
+                                <div class="aa-single-advance-search">
+                                    <label for="ddlProvince">Chọn Phường/xã</label>
+                                    <select id="ddlWard" name="" class="trung">
+                                        <option selected="" value="@ViewBag.px">@ViewBag.px</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="aa-single-advance-search">
+                                    <input class="aa-search-btn" type="submit" value="Search">
+                                </div>
+                            </div>
+                            <div>
+                                <input type="hidden" id="divResult" name="searchString" value="" />
+                                <input type="hidden" id="divtp" name="tp" value="" />
+                                <input type="hidden" id="divqh" name="qh" value="" />
+                                <input type="hidden" id="divpx" name="px" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aa-advance-search-bottom">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="aa-single-filter-search">
+                                    <span>AREA (SQ)</span>
+                                    <span>FROM</span>
+                                    <span id="skip-value-lower" class="example-val">30.00</span>
+                                    <span>TO</span>
+                                    <span id="skip-value-upper" class="example-val">100.00</span>
+                                    <div id="aa-sqrfeet-range" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="aa-single-filter-search">
+                                    <span>PRICE ($)</span>
+                                    <span>FROM</span>
+                                    <span id="skip-value-lower2" class="example-val">30.00</span>
+                                    <span>TO</span>
+                                    <span id="skip-value-upper2" class="example-val">100.00</span>
+                                    <div id="aa-price-range" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
+    </div>
+</section>
 
 <section id="aa-properties">
     <div class="container">
         <div class="row">
             <div class="col-md-8">
                 <div class="aa-properties-content">
+
                     <div class="aa-properties-content-head">
                         <div class="aa-properties-content-head-left">
                             <form action="" class="aa-sort-form">
@@ -59,38 +149,48 @@
                             <a id="aa-list-properties" href="#"><span class="fa fa-list"></span></a>
                         </div>
                     </div>
+                    <span style="text-transform: uppercase; margin-top:20px; font-weight: 600;">DANH MỤC @ViewBag.search @ViewBag.searchString MỚI NHẤT :</span>
                     <!-- start properties content head -->
                     <!-- Start properties content body -->
+                    @if (Model.Count() > 0)
+                    {
+                        <div class="aa-properties-content-body">
 
-                    <div class="aa-properties-content-body">
-                        @foreach (var item in Model)
-                        {
-                        <ul class="commentlist">
-                            <li>
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img alt="img" src="@item.Image" class="media-object news-img">
-                                    </div>
-                                    <div class="media-body">
-                                        <a class="author-name">Adam Barney</a><br>
-                                        <span class="comments-date">@item.RealEstateCategory.Name</span>
-                                        <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English</p>
-                                        <a class="reply-btn" href="#">Reply</a>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                        }
-                    </div>
+                            @foreach (var item in Model)
+                            {
+                                <ul class="commentlist">
+                                    <li>
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <img alt="img" src="@item.Image" class="media-object news-img">
+                                            </div>
+                                            <div class="media-body">
+                                                <a class="author-name" href="/RealEstateClient/Detail/@item.RealEstateID" style="font-size:18px ">@item.Name</a>
+                                                <span class="comments-date"> @item.Price </span>
+                                                <span class="comments-date" style="margin-left:20px"> @item.Acreage</span><br />
+                                                <span class="comments-date"> @item.Address </span>
+                                                <p>@item.Description</p>
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="aa-properties-content-body" style="text-align: center; text-transform: uppercase; margin-top: 70px;"> <span style="text-align:center">Danh sách trống</span></div>
+                    }
                     <div class="row">
                         <div class="col">
                             <div class="pagination-list">
-                                @Html.PagedListPager(Model, page => Url.Action("SearchCategory", new { page, search = @ViewBag.search , @searchString = @ViewBag.SearchString }))
+                                @Html.PagedListPager(Model, page => Url.Action("SearchCategory", new { page, search = @ViewBag.search, @searchString = @ViewBag.SearchString }))
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                    </div>
 
 
             <!-- Start properties sidebar -->

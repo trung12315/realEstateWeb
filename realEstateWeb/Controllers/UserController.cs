@@ -45,6 +45,7 @@ namespace realEstateWeb.Controllers
                     var userSession = new UserLogin();
                     userSession.Username = user.Username;
                     userSession.UserID = user.UserID;
+                    userSession.Name = user.Name;
                     Session.Add(CommonConstants.USER_SESSION, userSession);
                     return Redirect("/");
                 }
@@ -88,9 +89,14 @@ namespace realEstateWeb.Controllers
                 {
                     ModelState.AddModelError("", "Email nhập sai định dạng.");
                 }
+                else if (dao.CheckPhone(model.Phone))
+                {
+                    ModelState.AddModelError("", "Số điện thoại đã tồn tại");
+                }
                 else
                 {
                     var user = new User();
+                    user.Phone = model.Phone;
                     user.Username = model.UserName;
                     user.Name = model.Name;
                     user.Password = Encryptor.MD5Hash(model.Password);

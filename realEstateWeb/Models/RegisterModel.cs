@@ -29,6 +29,10 @@ namespace realEstateWeb.Models
         [Required(ErrorMessage = "Yêu cầu nhập họ tên.")]
         public string Name { set; get; }
 
+        [Required(ErrorMessage = "Yêu Câu nhập số điện thoại.")]
+        [Display(Name = "Your Phone")]
+        public string Phone { set; get; }
+
         [Required(ErrorMessage = "Yêu cầu nhập email.")]
         [Display(Name = "Your email")]
         public string Email { set; get; }

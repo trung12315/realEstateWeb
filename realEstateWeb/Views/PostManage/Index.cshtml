@@ -1,0 +1,134 @@
+﻿@model  List<Model.EF.RealEstate>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="~/Assets/Admin/js/controller/app.js"></script>
+
+
+}
+
+<div class="main">
+    <div class="body-left">
+        <div class="aside-info">
+            <div class="info-my">
+                <div class="my-info">
+                    <div class="image-info"><img src="./images/user.png" alt="" width="50"></div>
+                    <div class="thongtincuatoi">
+                        <h4>Nguyễn Thành Trung</h4>
+                        <span>025252514</span>
+                    </div>
+                </div>
+                <div class="my-code">
+                    <label for="">Mã thành viên: <strong>115837</strong></label><br>
+                    <label for="">TK Chính: <strong>0 đ</strong></label>
+                </div>
+                <div class="my-btn">
+                    <button id="btn-yellow">Nạp tiền</button>
+                    <button id="btn-red">Đăng tin</button>
+                </div>
+            </div>
+            <div class="info-tt">
+                <div class="tt-svg"><i class="fa-solid fa-file-lines"></i><a><span>Quản lí tin đăng</span></a></div>
+                <div class="tt-svg">
+                    <i class="fa-solid fa-pen-to-square"></i><a><span>Sửa thông tin cá nhân</span></a>
+                </div>
+                <div class="tt-svg"><i class="fa-solid fa-dollar-sign"></i><a><span>Nạp tiền vào tại khoản</span></a></div>
+                <div class="tt-svg"><i class="fa-solid fa-calendar"></i><span>Lịch thanh toán</span></div>
+                <div class="tt-svg">
+                    <i class="fa-solid fa-hand-holding-dollar"></i><a><span>Bảng giá dịch vụ</span></a>
+                </div>
+                <div class="tt-svg"><i class="fa-solid fa-comment"></i><a><span>Liên hệ</span></a></div>
+                <div class="tt-svg"><i class="fa-solid fa-arrow-right-from-bracket"></i><a><span>Thoát</span></a></div>
+            </div>
+        </div>
+    </div>
+    <div style="height:535px" class="body-right">
+        <div class="right-margin">
+            <div class="dangtin">
+                <ul>
+                    <li><a>Phòng trọ</a></li>
+                    <li>Quản lí</li>
+                    <li>Đăng tin mới</li>
+                </ul>
+            </div>
+
+            <div class="stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Bordered table</h4>
+                        <p class="card-description">
+                            Add class <code>.table-bordered</code>
+                        </p>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+
+                                    <th>Mã Tin</th>
+                                    <th>Ảnh đại diện</th>
+                                    <th>Tiêu đề</th>
+                                    <th>Giá</th>
+                                    <th>Ngày đăng</th>
+                                    <th>Trạng Thái</th>
+                                    <th>Tùy Chọn</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr id="row_@item.RealEstateID">
+                                        <td>@item.RealEstateID</td>
+                                        <td><img src="@item.Image" style="width: 50px; height: 50px;" /></td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Price</td>
+                                        <td>@item.CreateDate</td>
+                                        <td><a href="#" class="btn-active" data-id="@item.RealEstateID">@Html.Raw(item.Status ? "<strong>Kích hoạt</strong>" : "Khoá")</a></td>
+                                        <td>
+                                            <a href="#" data-id="@item.RealEstateID" class="btn-images">Quản lí ảnh </a>
+                                            <a href="/Admin/Content/Edit/@item.RealEstateID">Edit</a>
+                                            <br />
+                                            @Ajax.ActionLink("Delete", "Delete", new { @id = item.RealEstateID }, new AjaxOptions
+                                       {
+                                           Confirm = "Do you want to delete this record?",
+                                           OnComplete = "$(#'row_" + @item.RealEstateID + "').Remove()",
+                                           HttpMethod = "Delete"
+
+                                       })
+                                        </td>
+
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="imagesManange" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title">Quản lý ảnh</h4>
+            </div>
+            <div class="modal-body">
+                <div id="imagesList" style="margin:5px;">
+
+                </div>
+                <input type="button" id="btnChooImages" class="btn btn-primary" value="chọn ảnh" />
+                <input type="hidden" id="hidProductID" value="0" />
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btnSaveImages">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

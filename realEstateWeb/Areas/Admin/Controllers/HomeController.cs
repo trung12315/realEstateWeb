@@ -23,14 +23,17 @@ namespace realEstateWeb.Areas.Admin.Controllers
                 return Redirect("/Admin/Login");
             }
             else
-            { 
-            
+            {
+                var dao1 = new UserDao();
+                var b = dao1.TongUser();
+                ViewBag.TongUser = b.ToString();
 
-            var dao = new RealEstateDao();
-            var a = dao.TongBaiDang();
-            ViewBag.TongBaiDang = a.ToString();
-            return View();
-        }
+
+                var dao = new RealEstateDao();
+                var a = dao.TongBaiDang();
+                ViewBag.TongBaiDang = a.ToString();
+                return View();
+            }
         }
     }
 }

@@ -74,10 +74,12 @@
                                                 <img alt="img" src="@item.Image" class="media-object news-img">
                                             </div>
                                             <div class="media-body">
-                                                <a class="author-name">@item.Category.Name</a><br>
-                                                <span class="comments-date"> 20th April, 2016</span>
-                                                <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English</p>
-                                                <a class="reply-btn" href="#">Reply</a>
+                                                <a class="author-name" href="/RealEstateClient/Detail/@item.RealEstateID" style="font-size:18px ">@item.Name</a>
+                                                <span class="comments-date"> @item.Price </span>
+                                                <span class="comments-date" style="margin-left:20px"> @item.Acreage</span><br />
+                                                <span class="comments-date"> @item.Address </span>
+                                                <p>@item.Description</p>
+                                                
                                             </div>
                                         </div>
                                     </li>

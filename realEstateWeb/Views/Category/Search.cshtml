@@ -1,8 +1,8 @@
 ﻿@model  List<Model.EF.RealEstate>
 @{
     Layout = null;
-    <script src="~/Assets/client/js/app.js"></script>
 
+    <script src="~/Assets/client/js/app.js"></script>
 }
 
 <section id="aa-advance-search">
@@ -16,8 +16,8 @@
                             <div class="col-md-3">
                                 <div class="aa-single-advance-search">
                                     <label for="ddlProvince">Chọn danh mục </label>
-                                    <select name="search" class="trung">
-                                        <option >Tất cả</option>
+                                    <select id="abc" name="search" class="trung">
+                                        <option value="">Tất cả</option>
                                         <option value="Đất">Đất</option>
                                         <option value="Căn hộ chung cư">Căn Hộ chung cư</option>
                                         <option value="Nhà ở">Nhà ở</option>
@@ -29,8 +29,8 @@
                             <div class="col-md-2">
                                 <div class="aa-single-advance-search">
                                     <label for="ddlProvince">Chọn Tỉnh/TP</label>
-                                    <select id="ddlProvince" class="trung">
-                                        <option selected="" value="0">Tất cả </option>
+                                    <select id="ddlProvince" name="" class="trung">
+                                        <option  value="0">Tất cả </option>
                                     </select>
                                 </div>
                             </div>
@@ -57,7 +57,10 @@
                                 </div>
                             </div>
                             <div>
-                                <input type="hidden" id="divResult" name="searchString" value=" "/>
+                                <input type="hidden" id="divResult" name="searchString" value="" />
+                                <input type="hidden" id="divtp" name="tp" value="" />
+                                <input type="hidden" id="divqh" name="qh" value="" />
+                                <input type="hidden" id="divpx" name="px" value="" />
                             </div>
                         </div>
                     </div>
@@ -67,7 +70,7 @@
                                 <div class="aa-single-filter-search">
                                     <span>AREA (SQ)</span>
                                     <span>FROM</span>
-                                    <span id="skip-value-lower"  class="example-val">30.00</span>
+                                    <span id="skip-value-lower" class="example-val">30.00</span>
                                     <span>TO</span>
                                     <span id="skip-value-upper" class="example-val">100.00</span>
                                     <div id="aa-sqrfeet-range" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
@@ -92,3 +95,4 @@
         </div>
     </div>
 </section>
+

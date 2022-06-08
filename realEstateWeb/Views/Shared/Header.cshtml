@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <div class="aa-header-area">
                     <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="col-md-8 col-sm-6 col-xs-6">
                             <div class="aa-header-left">
                                 <div class="aa-telephone-no">
                                     <span class="fa fa-phone"></span>
@@ -16,14 +16,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <div class="aa-header-right">
+                        <div class="col-md-4 col-sm-6 col-xs-6">
+                            <div class="aa-header-right" >
                                 @{
                                     var sessiona = (UserLogin)Session[realEstateWeb.Common.CommonConstants.USER_SESSION];
+                                    var link = "/User/Login/";
                                 }
                                 @if (sessiona == null)
-                                {
-                                    <a href="/User/Login" class="aa-register">ĐĂNG TIN MỚI</a>
+                                    {
+                                            <a href="@link" class="aa-register">ĐĂNG TIN MỚI</a>
                                 }
                                 else
                                 {
@@ -39,16 +40,20 @@
                                 }
                                 else
                                 {
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                    <a href="" class="aa-login">@session.Username</a>
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <a href="" style="text-transform: uppercase;" class="aa-login" >@session.Name</a>
 
-                                    <a class="" data-toggle="dropdown" href="properties.html">...<span class="caret"></span></a>
-                                    <ul class="" role="menu">
+                                <div class="header-dropdown" >
+                                    <a  class="dropdown-toggle" data-toggle="dropdown" href="properties.html"><span class="caret"></span></a>
+
+
+                                    <ul class="dropdown-menu" role="menu" style="margin-left:65%" >
                                         <li><a class="" href="">@Html.ActionLink("Logout", "Logout", "User")</a></li>
                                         <li><a class="" href="">Quan li tai khoan </a></li>
 
                                     </ul>
-
+                                </div>
+                                    
                                 }
 
                             </div>
@@ -58,6 +63,7 @@
             </div>
         </div>
     </div>
+    
 </header>
 <!-- End header section -->
 <!-- Start menu section -->
