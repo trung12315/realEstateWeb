@@ -1,21 +1,20 @@
 ﻿body {
-    background-image: url('/Assets/client/images/stars.png');
-    background-color: #000;
+    background-image: url('/Assets/client/img/slider/promo-banner1.jpg');
+    background-color: #f8f8f8;
 }
 /* login */
 
 
 .login__box h5,
 .register__box h5 {
-    color: #fff;
+    color: #555;
     font-size: 16px;
     padding-top: 10px;
 }
 
 .login__box span,
 .register__box span {
-    color: #82b5a5;
-    font-weight: bold;
+    color: red;
     cursor: pointer;
     padding-left: 5px;
     padding-top: 9px;
@@ -28,17 +27,18 @@
 }
 
 .box {
+   
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 400px;
-    padding: 40px;
-    background: rgba(0, 0, 0, 0.8);
+    width: 450px;
+    padding: 15px 40px 15px 40px ;
+    background: #fff;
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0,0,0,.5 );
     border-radius: 10px;
-    z-index: 1000;
+    
 }
 
 .form-icon {
@@ -51,9 +51,8 @@
 }
 
 .box h2 {
-    margin: 0 0 30px;
+    margin: 30px 0 30px;
     padding: 0;
-    color: #fff;
     text-align: center;
 }
 
@@ -64,12 +63,11 @@
     .box .inputBox input {
         width: 100%;
         padding: 10px 0;
-        font-size: 16px;
-        color: #fff;
+        color: #555;
         letter-spacing: 2px;
         margin-top: 30px;
         border: none;
-        border-bottom: 1px solid #fff;
+        border-bottom: 1px solid #555;
         outline: none;
         background: transparent;
     }
@@ -89,7 +87,9 @@
         pointer-events: none;
         transition: .5s;
     }
-
+.form-control {
+    box-shadow: inset 0 0px 0px rgb(0 0 0 / 8%)
+}
     .box .inputBox input:focus ~ label,
     .box .inputBox input:valid ~ label {
         top: -18px;
@@ -102,7 +102,7 @@
     border: none;
     outline: none;
     color: #fff;
-    background: #82b5a5;
+    background: #59abe3;
     cursor: pointer;
     padding: 10px 20px;
     border-radius: 10px;
@@ -111,7 +111,7 @@
 
 .register__open,
 .login__open {
-    color: #82b5a5;
+    color: #59abe3;
     text-decoration: none;
     font-size: 18px;
     font-weight: bold;

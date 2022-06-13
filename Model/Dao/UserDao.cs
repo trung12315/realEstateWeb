@@ -2,6 +2,7 @@
 using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -20,32 +21,45 @@ namespace Model.Dao
         //{
         //    return db.Users.Where(x => x.Status == true).ToList();
         //}
-        public long Insert(User entity)
+        public long Insert(Custommer entity)
         {
-            db.Users.Add(entity);
+            db.Custommers.Add(entity);
             db.SaveChanges();
             return entity.UserID;
         }
-        public string TongUser()
+        public string TongUser(string txtNgayThangNamSinh)
         {
-            string TongBaiDang = db.Users.Count().ToString();
+            string TongBaiDang;
+            if (!string.IsNullOrEmpty(txtNgayThangNamSinh))
+            {
+                var date = Convert.ToDateTime(txtNgayThangNamSinh).Date;
+                var nextDay = date.AddDays(1);
+                TongBaiDang = db.Custommers.Where(x => x.CreateDate >= date && x.CreateDate < nextDay).Count().ToString();
+            }
+            else
+            {
+                TongBaiDang = db.Custommers.Count().ToString();
+            }
+               
             return TongBaiDang;
+            
+           
         }
-        public bool Update(User entity)
+        public bool Update(Custommer entity, int userid)
         {
             try
             {
-                var user = db.Users.Find(entity.UserID);
+                var user = db.Custommers.Find(userid);
                 user.Name = entity.Name;
-                if (!string.IsNullOrEmpty(entity.Password))
-                {
-                    user.Password = entity.Password;
-                }
-                user.Address = entity.Address;
-                user.Email = entity.Email;
+                //if (!string.IsNullOrEmpty(entity.Password))
+                //{
+                //    user.Password = entity.Password;
+                //}
                 user.Phone = entity.Phone;
-                user.ModifiedBy = entity.ModifiedBy;
+                user.Email = entity.Email;         
+
                 user.ModifiedDate = DateTime.Now;
+                
                 db.SaveChanges();
                 return true;
             }
@@ -57,9 +71,9 @@ namespace Model.Dao
             }
 
         }
-        public IEnumerable<User> ListAllPaging(string searchString, int page, int pageSize=3)
+        public IEnumerable<Custommer> ListAllPaging(string searchString, int page, int pageSize=6)
         {
-            IQueryable<User> model = db.Users;
+            IQueryable<Custommer> model = db.Custommers;
             if (!string.IsNullOrEmpty(searchString))
             {
                 model = model.Where(x => x.Username.Contains(searchString) || x.Name.Contains(searchString));
@@ -67,29 +81,29 @@ namespace Model.Dao
             return model.OrderByDescending(x => x.CreateDate).ToPagedList(page, pageSize);
         }
 
-        public User GetById(string userName)
+        public Custommer GetById(string userName)
         {
-            return db.Users.SingleOrDefault(x => x.Username == userName);
+            return db.Custommers.SingleOrDefault(x => x.Username == userName);
         }
 
-        public User ViewDetail1(int id)
+        public Custommer ViewDetail1(int id)
         {
-            var result = db.Users.SingleOrDefault(x => x.UserID == id);
+            var result = db.Custommers.SingleOrDefault(x => x.UserID == id);
             return result;
         }
 
-        public User ViewDetail(int id)
+        public Custommer ViewDetail(int id)
         {
-            return db.Users.Find(id);
+            return db.Custommers.Find(id);
         }
-        public User profileUser(string userName)
+        public Custommer profileUser(string userName)
         {
-            var result = db.Users.SingleOrDefault(x => x.Username == userName);
+            var result = db.Custommers.SingleOrDefault(x => x.Username == userName);
             return result;
         }
         public int Login(string userName, string passWord)
         {
-            var result = db.Users.SingleOrDefault(x => x.Username == userName);
+            var result = db.Custommers.SingleOrDefault(x => x.Username == userName);
             if (result == null)
             {
                 return 0;
@@ -112,7 +126,7 @@ namespace Model.Dao
 
         public bool changeStatus(long id)
         {
-            var user = db.Users.Find(id);
+            var user = db.Custommers.Find(id);
 
             user.Status = !user.Status;
             db.SaveChanges();
@@ -122,8 +136,8 @@ namespace Model.Dao
         {
             try
             {
-                var user = db.Users.Find(id);
-                db.Users.Remove(user);
+                var user = db.Custommers.Find(id);
+                db.Custommers.Remove(user);
                 db.SaveChanges();
                 return true;
             }
@@ -136,15 +150,15 @@ namespace Model.Dao
 
         public bool CheckUserName(string userName)
         {
-            return db.Users.Count(x => x.Username == userName) > 0;
+            return db.Custommers.Count(x => x.Username == userName) > 0;
         }
         public bool CheckPhone(string phone)
         {
-            return db.Users.Count(x => x.Phone == phone) > 0;
+            return db.Custommers.Count(x => x.Phone == phone) > 0;
         }
             public bool CheckEmail(string email)
         {
-            return db.Users.Count(x => x.Email == email) > 0;
+            return db.Custommers.Count(x => x.Email == email) > 0;
         }
         public bool isEmail(string email)
         {

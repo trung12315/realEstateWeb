@@ -18,6 +18,11 @@ namespace Model.EF
         [Key]
         public int CatID { get; set; }
 
+        [StringLength(10)]
+        public string Status { get; set; }
+
+        public DateTime? CreateDate { get; set; }
+
         [StringLength(20)]
         public string Name { get; set; }
 

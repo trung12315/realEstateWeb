@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 @section header{
-   
+
 }
 
 
@@ -28,52 +28,75 @@
                 </ul>
             </nav>
         </div>
-        <div class="row">
-            <div class="col-md-4 stretch-card grid-margin">
-                <div class="card bg-gradient-danger card-img-holder text-white">
-                    <div class="card-body">
-                        <img src="~/Assets/Admin/img/circle.svg" class="card-img-absolute" alt="circle-image" />
-                        <h4 class="font-weight-normal mb-3">
-                           Tổng số lượng bài đăng<i class="mdi mdi-chart-line mdi-24px float-right"></i>
-                        </h4>
-                        <h2 class="mb-5">@ViewBag.TongBaiDang</h2>
-                        <h6 class="card-text">Increased by 60%</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 stretch-card grid-margin">
-                <div class="card bg-gradient-info card-img-holder text-white">
-                    <div class="card-body">
-                        <img src="~/Assets/Admin/img/circle.svg" class="card-img-absolute" alt="circle-image" />
-                        <h4 class="font-weight-normal mb-3">
-                            Tổng số lượng thành viên <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
-                        </h4>
-                        <h2 class="mb-5">@ViewBag.TongUser</h2>
-                        <h6 class="card-text">Decreased by 10%</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 stretch-card grid-margin">
-                <div class="card bg-gradient-success card-img-holder text-white">
-                    <div class="card-body">
-                        <img src="~/Assets/Admin/img/circle.svg" class="card-img-absolute" alt="circle-image" />
-                        <h4 class="font-weight-normal mb-3">
-                           Số lượng người truy cập<i class="mdi mdi-diamond mdi-24px float-right"></i>
-                        </h4>
-                        <h2 class="mb-5">@ViewBag.SoNguoiTruyCap</h2>
-                        <h6 class="card-text">Increased by 5%</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        {
+            <div style="margin-bottom:30px">
 
-    </div>
+                <label class="tieude">Nhập ngày :</label>
+                <input type="text" value="@ViewBag.Search" name="txtNgayThangNamSinh" id="txtNgayThangNamSinh" />
+                <button class="btn btn-success" type="submit">Search</button>
+            </div>
+        }
+            <div class="row"style="margin-right:0px;">
+                <div class="col-md-4 stretch-card grid-margin">
+                    <div class="card bg-gradient-danger card-img-holder text-white">
+                        <div class="card-body">
+                            <img src="~/Assets/Admin/img/circle.svg" class="card-img-absolute" alt="circle-image" />
+                            <h4 class="font-weight-normal mb-3">
+                                Tổng số lượng bài đăng<i class="mdi mdi-chart-line mdi-24px float-right"></i>
+                            </h4>
+                            <h2 class="mb-5">@ViewBag.TongBaiDang</h2>
+                            <h6 class="card-text">Increased by 60%</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 stretch-card grid-margin">
+                    <div class="card bg-gradient-info card-img-holder text-white">
+                        <div class="card-body">
+                            <img src="~/Assets/Admin/img/circle.svg" class="card-img-absolute" alt="circle-image" />
+                            <h4 class="font-weight-normal mb-3">
+                                Tổng số lượng thành viên <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
+                            </h4>
+                            <h2 class="mb-5">@ViewBag.TongUser</h2>
+                            <h6 class="card-text">Decreased by 10%</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 stretch-card grid-margin">
+                    <div class="card bg-gradient-success card-img-holder text-white">
+                        <div class="card-body">
+                            <img src="~/Assets/Admin/img/circle.svg" class="card-img-absolute" alt="circle-image" />
+                            <h4 class="font-weight-normal mb-3">
+                                Số lượng người truy cập<i class="mdi mdi-diamond mdi-24px float-right"></i>
+                            </h4>
+                            <h2 class="mb-5">@ViewBag.SoNguoiTruyCap</h2>
+                            <h6 class="card-text">Increased by 5%</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
     <!-- content-wrapper ends -->
     <!-- partial:partials/_footer.html -->
-   
     <!-- partial -->
 </div>
+<script src="~/Assets/Admin/vendor/jquery/jquery.min.js"></script>
+
+<!-- Liên kết thư viện JQUERY UI -->
+<script src="~/Assets/Admin/vendor/jquery-ui/jquery-ui.min.js"></script>
+
+<!-- Viết code Jquery -->
+<script>
+    // Yêu cầu JQUERY UI thay thế INPUT text có id="txtNgayThangNamSinh" thành công cụ chọn ngày tháng Date Picker
+    $('#txtNgayThangNamSinh').datepicker(
+        {
+            showButtonPanel: true,    // option hiển thị nút "Today", "Done"
+            dateFormat: 'yy/mm/dd'    // option Định dạng format ngày tháng; d: Day Ngày; m: Month tháng; y: Year năm
+        }
+    );
+</script>
 <script src="~/Assets/Admin/vendor/js/vendor.bundle.base.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page -->

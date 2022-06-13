@@ -35,10 +35,7 @@ namespace Model.Dao
             {
                 var category = db.RealEstateCategories.Find(entity.CateID);
                 category.Name = entity.Name;
-                category.MetaKeywords = entity.MetaKeywords;
 
-                category.UpdateBy = entity.UpdateBy;
-                category.UpdateDate = DateTime.Now;
                 db.SaveChanges();
                 return true;
             }

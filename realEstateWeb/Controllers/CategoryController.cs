@@ -39,12 +39,12 @@ namespace realEstateWeb.Controllers
             SetViewBag();
             return View();
         }
-        public ActionResult SearchCategory(string search, string searchString, string tp, string qh, string px, int page = 1, int pageSize = 6)
+        public ActionResult SearchCategory( string search, string searchString, string tp, string qh, string px, int page = 1, int pageSize = 6 )
         {
             //int totalRecord = 0;
 
             var model = new RealEstateDao().Search(search, searchString, page, pageSize);
-            ViewBag.NewProducts = new RealEstateDao().ListNewRealEstate(10);
+            ViewBag.NewRealEstate = new RealEstateDao().ListNewRealEstate(7);
             var abc = "Tất cả";
             ViewBag.searchString = searchString;
           
@@ -88,13 +88,14 @@ namespace realEstateWeb.Controllers
 
             return View(model);
         }
-        public ActionResult Category(int id, int page = 1, int pageSize = 3)
+        public ActionResult Category(int id, int page = 1, int pageSize = 6)
         {
+            
             var category = new CategoryDao().ViewDetail(id);
             ViewBag.Category = category;
             int totalRecord = 0;
             var model = new RealEstateDao().ListByCategoryId(id, ref totalRecord, page, pageSize);
-
+            ViewBag.realestatetop = new RealEstateDao().ListNewRealEstate(7);
             ViewBag.Total = totalRecord;
             ViewBag.pageIndex = page;
             int maxpage = 5;

@@ -26,15 +26,29 @@ namespace Model.Dao
         //    XmlDocument doc = new XmlDocument();
 
         //}
-        public List<RealEstate> Manage(int id)
+        public IEnumerable<RealEstate> Manage(int id, string searchString, int page, int pageSize = 3)
         {
-            
-            var model = db.RealEstates.Where(x => x.UserID == id).OrderByDescending(x => x.CreateDate).ToList();
-            return model;
+            IQueryable<RealEstate> model = db.RealEstates;
+            if (!string.IsNullOrEmpty(searchString)) {
+                model = model.Where(x => x.UserID == id && x.Name.Contains(searchString));
+            }
+               
+            return model.Where(x => x.UserID == id).OrderByDescending(x => x.CreateDate).ToPagedList(page, pageSize); ;
         }
-        public string TongBaiDang()
+        public string TongBaiDang(string txtNgayThangNamSinh)
         {
-            string TongBaiDang = db.RealEstates.Count().ToString();
+            string TongBaiDang;
+            if (!string.IsNullOrEmpty(txtNgayThangNamSinh))
+            {
+                var date = Convert.ToDateTime(txtNgayThangNamSinh).Date;
+                var nextDay = date.AddDays(1);
+                TongBaiDang = db.RealEstates.Where(x => x.CreateDate >= date && x.CreateDate < nextDay).Count().ToString();
+            }
+            else
+            {
+                TongBaiDang = db.RealEstates.Count().ToString();
+            }
+
             return TongBaiDang;
         }
         public RealEstate GetByID(long id)
@@ -60,7 +74,7 @@ namespace Model.Dao
                 realEstate.Description = entity.Description;
                 realEstate.Detail = entity.Detail;
                 realEstate.Image = entity.Image;
-                realEstate.CategoryID = entity.CategoryID;
+
                 realEstate.Price = entity.Price;
                 realEstate.Address = entity.Address;
                 //realEstate.ModifiedDate = DateTime.Now.Date;
@@ -84,10 +98,23 @@ namespace Model.Dao
             image.LinkImage = images;
             db.SaveChanges();
         }
+        public void DeleteImage(int id)
+        {
+
+            var a = db.Images.Where(x => x.RealEstateID == id).ToList();
+            foreach (var item in a)
+            {
+                db.Images.Remove(item);
+                db.SaveChanges();
+            }
+        }
         public void UpdateImages(int id, string images)
         {
-            var product = db.RealEstates.Find(id);
-            product.MoreImage = images;
+            
+            Image image = new Image();
+            image.LinkImage = images;
+            image.RealEstateID = id;
+            db.Images.Add(image);
             db.SaveChanges();
         }
         public bool UpdateMaps(RealEstate entity)
@@ -104,7 +131,7 @@ namespace Model.Dao
                 realEstate.Lat = entity.Lat;
                 realEstate.Lng = entity.Lng;
                 //content.ViewCount = entity.ViewCount;
-                realEstate.CategoryID = entity.CategoryID;
+
                 realEstate.Price = entity.Price;
                 realEstate.Address = entity.Address;
                 db.SaveChanges();
@@ -118,7 +145,7 @@ namespace Model.Dao
             }
 
         }
-        public List<RealEstate> ListByCategoryId(int categoryID, ref int totalRecord, int pageIndex = 1, int pageSize = 3)
+        public List<RealEstate> ListByCategoryId(int categoryID, ref int totalRecord, int pageIndex = 1, int pageSize = 6)
         {
             totalRecord = db.RealEstates.Where(x => x.CatID == categoryID).Count();
             var model = db.RealEstates.Where(x => x.CatID == categoryID).OrderByDescending(x => x.CreateDate).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
@@ -179,7 +206,7 @@ namespace Model.Dao
                              Image = a.Image,
                              Description = a.Description,
                              CreatedDate = a.CreateDate,
-                             CreateBy = a.CreateBy,
+
                              RealEstateID = a.RealEstateID
 
                          }).AsEnumerable().Select(x => new RealEstate()
@@ -189,7 +216,7 @@ namespace Model.Dao
                              Image = x.Image,
                              Description = x.Description,
                              CreateDate = x.CreatedDate,
-                             CreateBy = x.CreateBy,
+
                              RealEstateID = x.RealEstateID
                          });
             return model.OrderByDescending(x => x.CreateDate).ToPagedList(page, pageSize);
@@ -202,6 +229,10 @@ namespace Model.Dao
         public RealEstate ViewDetail(int id)
         {
             return db.RealEstates.Find(id);
+        }
+        public List<Image> ViewDetail2(int id)
+        {
+            return db.Images.Where(x=>x.RealEstateID==id).ToList();
         }
         public Tag GetTag(string id)
         {
@@ -325,7 +356,7 @@ namespace Model.Dao
         public List<RealEstate> Listrelatedproducts(long id)
         {
             var realEstate = db.RealEstates.Find(id);
-            return db.RealEstates.Where(x => x.RealEstateID != id && x.CatID == realEstate.CatID ).OrderByDescending(x => x.CreateDate).Take(5).ToList();
+            return db.RealEstates.Where(x => x.RealEstateID != id && x.CatID == realEstate.CatID ).OrderByDescending(x => x.CreateDate).Take(7).ToList();
         }
    
         //public void RemoveAllContentTag(long contentId)

@@ -8,18 +8,22 @@ namespace Model.EF
 
     public partial class Report
     {
-        public int ID { get; set; }
+        [Key]
+        public int ReportsID { get; set; }
 
-        public int? RaelEstateTag { get; set; }
+        public int? RealEstateID { get; set; }
+
+        public int? UserID { get; set; }
+
+        [StringLength(10)]
+        public string Contents { get; set; }
 
         public bool Status { get; set; }
 
-        public DateTime? UpdateDate { get; set; }
-
-        public int? CreateBy { get; set; }
-
         public DateTime? CreateDate { get; set; }
 
-        public int? UpdateBy { get; set; }
+        public virtual Custommer Custommer { get; set; }
+
+        public virtual RealEstate RealEstate { get; set; }
     }
 }

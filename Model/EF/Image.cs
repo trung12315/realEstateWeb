@@ -14,6 +14,10 @@ namespace Model.EF
         [StringLength(250)]
         public string LinkImage { get; set; }
 
+        public DateTime? CreateDate { get; set; }
+
+        public int? DisplayOrder { get; set; }
+
         public int? RealEstateID { get; set; }
 
         public virtual RealEstate RealEstate { get; set; }

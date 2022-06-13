@@ -2,6 +2,9 @@
 @model PagedList.IPagedList<Model.EF.RealEstate>
 @using PagedList.Mvc;
 @{
+    // define format VND
+    var format = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+
     ViewBag.Title = "Trang chủ";
     Layout = "~/Views/Shared/_Layout.cshtml";
     //var image= Model.EF.Ina
@@ -78,9 +81,9 @@
 
                         <article class="aa-properties-item">
                             <a href="/RealEstateClient/Detail/@item.RealEstateID" class="aa-properties-item-img">
-                           
+
                                 <img src="@item.Image" alt="img">
-                             
+
                             </a>
                             <div class="aa-tag for-sale">
                                 @item.Category.Name
@@ -91,9 +94,9 @@
                                     <p>@item.CreateDate</p>
                                 </div>
                                 <div class="aa-properties-info">
-                                    <span>@item.User.Name</span>
-                                    <span></span>
-                                    <span>@item.Acreage</span>
+                                    <span>@item.Custommer.Name</span>
+                                    @*<span style="word-spacing: -5px; ">@item.Acreage m2</span>*@
+                                    <span style="float:right;">@String.Format(format, "{0:c0}", @item.Price)</span>
                                 </div>
                                 <div class="aa-properties-detial">
                                     <a class="aa-price"></a>
@@ -128,9 +131,9 @@
             <div class="col-md-12">
                 <div class="aa-agents-area">
                     <div class="aa-title">
-                        <h2>Our Agents</h2>
+                        <h2>Bất động sản hot</h2>
                         <span></span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum sit ea nobis quae vero voluptatibus.</p>
+                        
                     </div>
                     <!-- agents content -->
                     <div class="aa-agents-content">
@@ -147,10 +150,10 @@
                                             <h4><a href="#">@item.Name</a></h4>
                                             <span>@item.CreateDate</span>
                                             <div class="aa-agent-social">
-                                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                                <a href="#"><i class="fa fa-google-plus"></i></a>
+                                                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                                                <a href="#"><i class="fa-brands fa-twitter-square"></i></a>
+                                                <a href="#"><i class="fa-brands fa-google-plus-g"></i></a>
+                                                <a href="#"><i class="fa-brands fa-facebook-square"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -167,198 +170,35 @@
 </section>
 <!-- / Our Agent Section-->
 <!-- Client Testimonial -->
-<section id="aa-client-testimonial">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="aa-client-testimonial-area">
-                    <div class="aa-title">
-                        <h2>What Client Say</h2>
-                        <span></span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus eaque quas debitis animi ipsum, veritatis!</p>
-                    </div>
-                    <!-- testimonial content -->
-                    <div class="aa-testimonial-content">
-                        <!-- testimonial slider -->
-                        <ul class="aa-testimonial-slider">
-                            <li>
-                                <div class="aa-testimonial-single">
-                                    <div class="aa-testimonial-img">
-                                        <img src="~/Assets/client/img/testimonial-1.png" alt="testimonial img">
-                                    </div>
-                                    <div class="aa-testimonial-info">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate consequuntur ducimus cumque iure modi nesciunt recusandae eligendi vitae voluptatibus, voluptatum tempore, ipsum nisi perspiciatis. Rerum nesciunt fuga ab natus, dolorem?</p>
-                                    </div>
-                                    <div class="aa-testimonial-bio">
-                                        <p>David Muller</p>
-                                        <span>Web Designer</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="aa-testimonial-single">
-                                    <div class="aa-testimonial-img">
-                                        <img src="~/Assets/client/img/testimonial-3.png" alt="testimonial img">
-                                    </div>
-                                    <div class="aa-testimonial-info">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate consequuntur ducimus cumque iure modi nesciunt recusandae eligendi vitae voluptatibus, voluptatum tempore, ipsum nisi perspiciatis. Rerum nesciunt fuga ab natus, dolorem?</p>
-                                    </div>
-                                    <div class="aa-testimonial-bio">
-                                        <p>David Muller</p>
-                                        <span>Web Designer</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="aa-testimonial-single">
-                                    <div class="aa-testimonial-img">
-                                        <img src="~/Assets/client/img/testimonial-2.png" alt="testimonial img">
-                                    </div>
-                                    <div class="aa-testimonial-info">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate consequuntur ducimus cumque iure modi nesciunt recusandae eligendi vitae voluptatibus, voluptatum tempore, ipsum nisi perspiciatis. Rerum nesciunt fuga ab natus, dolorem?</p>
-                                    </div>
-                                    <div class="aa-testimonial-bio">
-                                        <p>David Muller</p>
-                                        <span>Web Designer</span>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <!-- Client Testimonial -->
 <!-- Client brand -->
-<section id="aa-client-brand">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="aa-client-brand-area">
-                    <ul class="aa-client-brand-slider">
-                        <li>
-                            <div class="aa-client-single-brand">
-                                <img src="~/Assets/client/img/client-brand-1.png" alt="brand image">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="aa-client-single-brand">
-                                <img src="~/Assets/client/img/client-brand-2.png" alt="brand image">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="aa-client-single-brand">
-                                <img src="~/Assets/client/img/client-brand-3.png" alt="brand image">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="aa-client-single-brand">
-                                <img src="~/Assets/client/img/client-brand-5.png" alt="brand image">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="aa-client-single-brand">
-                                <img src="~/Assets/client/img/client-brand-4.png" alt="brand image">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="aa-client-single-brand">
-                                <img src="~/Assets/client/img/client-brand-1.png" alt="brand image">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="aa-client-single-brand">
-                                <img src="~/Assets/client/img/client-brand-2.png" alt="brand image">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="aa-client-single-brand">
-                                <img src="~/Assets/client/img/client-brand-3.png" alt="brand image">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="aa-client-single-brand">
-                                <img src="~/Assets/client/img/client-brand-5.png" alt="brand image">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="aa-client-single-brand">
-                                <img src="~/Assets/client/img/client-brand-4.png" alt="brand image">
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <!-- / Client brand -->
 <!-- Latest blog -->
-<section id="aa-latest-blog">
+<footer id="aa-footer">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="aa-latest-blog-area">
-                    <div class="aa-title">
-                        <h2>Latest News</h2>
-                        <span></span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe magni, est harum repellendus. Accusantium, nostrum!</p>
-                    </div>
-                    <div class="aa-latest-blog-content">
-                        <div class="row">
-                            <!-- start single blog -->
-                            <div class="col-md-4">
-                                <article class="aa-blog-single">
-                                    <figure class="aa-blog-img">
-                                        <a href="#"><img src="~/Assets/client/img/blog-img-1.jpg" alt="img"></a>
-                                        <span class="aa-date-tag">15 April, 16</span>
-                                    </figure>
-                                    <div class="aa-blog-single-content">
-                                        <h3><a href="#">Lorem ipsum dolor sit amet, consectetur.</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio est quaerat magnam exercitationem voluptas, voluptatem sed quam ab laborum voluptatum tempore dolores itaque, molestias vitae.</p>
-                                        <div class="aa-blog-single-bottom">
-                                            <a href="#" class="aa-blog-author"><i class="fa fa-user"></i> Admin</a>
-                                            <a href="#" class="aa-blog-comments"><i class="fa fa-comment-o"></i>6</a>
-                                        </div>
-                                    </div>
-
-                                </article>
+                <div class="aa-footer-area">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="aa-footer-left">
+                                <p>Hotline: <a rel="nofollow" href="http://www.markups.io/">0364267605</a></p>
                             </div>
-                            <!-- start single blog -->
-                            <div class="col-md-4">
-                                <article class="aa-blog-single">
-                                    <figure class="aa-blog-img">
-                                        <a href="#"><img src="~/Assets/client/img/blog-img-2.jpg" alt="img"></a>
-                                        <span class="aa-date-tag">15 April, 16</span>
-                                    </figure>
-                                    <div class="aa-blog-single-content">
-                                        <h3><a href="#">Lorem ipsum dolor sit amet, consectetur.</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio est quaerat magnam exercitationem voluptas, voluptatem sed quam ab laborum voluptatum tempore dolores itaque, molestias vitae.</p>
-                                        <div class="aa-blog-single-bottom">
-                                            <a href="#" class="aa-blog-author"><i class="fa fa-user"></i> Admin</a>
-                                            <a href="#" class="aa-blog-comments"><i class="fa fa-comment-o"></i>6</a>
-                                        </div>
-                                    </div>
-                                </article>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="aa-footer-middle">
+                                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                                <a href="#"><i class="fa-brands fa-twitter-square"></i></a>
+                                <a href="#"><i class="fa-brands fa-google-plus-g"></i></a>
+                                <a href="#"><i class="fa-brands fa-facebook-square"></i></a>
                             </div>
-                            <!-- start single blog -->
-                            <div class="col-md-4">
-                                <article class="aa-blog-single">
-                                    <figure class="aa-blog-img">
-                                        <a href="#"><img src="~/Assets/client/img/blog-img-3.jpg" alt="img"></a>
-                                        <span class="aa-date-tag">15 April, 16</span>
-                                    </figure>
-                                    <div class="aa-blog-single-content">
-                                        <h3><a href="#">Lorem ipsum dolor sit amet, consectetur.</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio est quaerat magnam exercitationem voluptas, voluptatem sed quam ab laborum voluptatum tempore dolores itaque, molestias vitae.</p>
-                                        <div class="aa-blog-single-bottom">
-                                            <a href="#" class="aa-blog-author"><i class="fa fa-user"></i> Admin</a>
-                                            <a href="#" class="aa-blog-comments"><i class="fa fa-comment-o"></i>6</a>
-                                        </div>
-                                    </div>
-                                </article>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="aa-footer-right">
+                                <a href="#">Trang chủ</a>                                
+                                <a href="#">Hỗ trợ khách hàng</a>
+                                <a href="#">Hướng dẫn</a>
+                                <a href="#">Câu hỏi thường gặp</a>
                             </div>
                         </div>
                     </div>
@@ -366,5 +206,5 @@
             </div>
         </div>
     </div>
-</section>
+</footer>
 

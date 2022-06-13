@@ -10,12 +10,9 @@ var villageUrl = baseService + "/GetAllVillagedByWardId";
 
 $(document).ready(function () {
     // load danh sách country
-
     $("#abc").on('change', function () {
-            _getProvince();
-        
+    _getProvince();
     });
-    
     
     //$("#ddlCountry").on('change', function () {
     //    var id = $(this).val();

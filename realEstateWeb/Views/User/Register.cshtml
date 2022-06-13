@@ -2,13 +2,12 @@
 @using BotDetect.Web.Mvc;
 
 @{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     MvcCaptcha registercaptcha = new MvcCaptcha("registercaptcha");
     registercaptcha.UserInputID = "captchacode";
 }
-@{
-    ViewBag.Title = "Register";
-    Layout = null;
-}
+
 
 
 
@@ -37,7 +36,7 @@
         .captcha {
             display: flex;
             padding: 0;
-            margin: 30px;
+
         }
 
         .captcha__code {
@@ -45,7 +44,7 @@
         }
 
         .captcha__show {
-            width: 75%;
+            width: 65%;
         }
 
         .box .inputBox .captcha__content input {
@@ -53,101 +52,102 @@
         }
 
         .register__box h2 {
-            margin-top: 8rem;
+            margin-top: 3rem;
         }
     </style>
 </head>
 <body>
-    @using (Html.BeginForm("Register", "User", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
+    <div>
+        @using (Html.BeginForm("Register", "User", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
 
-    <div class="box register__box">
-        <h2>Register</h2>
+            <div class="box register__box" style="margin-top:250px;">
+                <h2>Đăng ký</h2>
 
-        <div class="form-group">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @if (ViewBag.Success != null)
-            {
-                <div class="alert alert-success">@ViewBag.Success</div>
-            }
-        </div>
-        <div class="inputBox">
-            <div class="input__content">
-                @Html.TextBoxFor(model => model.UserName, new { placeholder = "UserName", @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger", style = "color: red; " })
+                <div class="form-group">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @if (ViewBag.Success != null)
+                    {
+                        <div class="alert alert-success">@ViewBag.Success</div>
+                    }
+                </div>
+                <div class="inputBox">
+                    <div class="input__content">
+                        @Html.TextBoxFor(model => model.UserName, new { placeholder = "Tên đăng nhập", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger", style = "color: red; " })
+                    </div>
+                    <div class="input__alert">
+
+                    </div>
+
+                </div>
+
+                <div class="inputBox">
+                    <div class="input__content">
+                        @Html.PasswordFor(model => model.Password, new { placeholder = "Mật khẩu", @class = "form-control" })
+                    </div>
+                    <div class="input__alert">
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger", style = "color: red;  pointer-events: none" })
+                    </div>
+                </div>
+
+                <div class="inputBox">
+                    <div class="input__content">
+                        @Html.PasswordFor(model => model.ConfirmPassword, new { placeholder = "Xác nhận mật khẩu", @class = "form-control" })
+                    </div>
+                    <div class="input__alert">
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger", style = "color: red;  pointer-events: none" })
+                    </div>
+                </div>
+
+                <div class="inputBox">
+                    <div class="input__content">
+                        @Html.TextBoxFor(model => model.Name, new { placeholder = "Tên hiển thị", @class = "form-control" })
+                    </div>
+                    <div class="input__alert">
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger", style = "color: red;  pointer-events: none" })
+                    </div>
+                </div>
+
+                <div class="inputBox">
+                    <div class="input__content">
+                        @Html.TextBoxFor(model => model.Phone, new { placeholder = "Số điện thoại", @class = "form-control" })
+                    </div>
+                    <div class="input__alert">
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger", style = "color: red;  pointer-events: none" })
+                    </div>
+                </div>
+
+                <div class="inputBox">
+                    <div class="input__content">
+                        @Html.TextBoxFor(model => model.Email, new { placeholder = "Email", @class = "form-control" })
+                    </div>
+                    <div class="input__alert">
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger", style = "color: red;  pointer-events: none" })
+                    </div>
+                </div>
+
+                <div class="inputBox captcha">
+
+                    <div class="captcha__content captcha__code">
+                        @Html.TextBox("captchacode")
+
+                    </div>
+                    <div class="captcha__content captcha__show">
+                        @Html.Captcha(registercaptcha)
+                    </div>
+
+                </div><br>
+
+                <input type="submit" value="Register" style="margin-top:20px" />
+                <div class="register__content">
+                    <h5>Bạn đã có tài khoản?</h5> <a href="/User/Login" class="register__open">Đăng Nhập</a>
+                </div>
+
             </div>
-            <div class="input__alert">
-
-            </div>
-
-        </div>
-
-        <div class="inputBox">
-            <div class="input__content">
-                @Html.PasswordFor(model => model.Password, new { placeholder = "Create a password", @class = "form-control" })
-            </div>
-            <div class="input__alert">
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger", style = "color: red;  pointer-events: none" })
-            </div>
-        </div>
-
-        <div class="inputBox">
-            <div class="input__content">
-                @Html.PasswordFor(model => model.ConfirmPassword, new { placeholder = "Confirm  your password", @class = "form-control" })
-            </div>
-            <div class="input__alert">
-                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger", style = "color: red;  pointer-events: none" })
-            </div>
-        </div>
-
-        <div class="inputBox">
-            <div class="input__content">
-                @Html.TextBoxFor(model => model.Name, new { placeholder = "Name", @class = "form-control" })
-            </div>
-            <div class="input__alert">
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger", style = "color: red;  pointer-events: none" })
-            </div>
-        </div>
-
-        <div class="inputBox">
-            <div class="input__content">
-                @Html.TextBoxFor(model => model.Phone, new { placeholder = "Phone", @class = "form-control" })
-            </div>
-            <div class="input__alert">
-                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger", style = "color: red;  pointer-events: none" })
-            </div>
-        </div>
-
-        <div class="inputBox">
-            <div class="input__content">
-                @Html.TextBoxFor(model => model.Email, new { placeholder = "Email", @class = "form-control" })
-            </div>
-            <div class="input__alert">
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger", style = "color: red;  pointer-events: none" })
-            </div>
-        </div>
-
-        <div class="inputBox captcha">
-
-            <div class="captcha__content captcha__code">
-                @Html.TextBox("captchacode")
-
-            </div>
-            <div class="captcha__content captcha__show">
-                @Html.Captcha(registercaptcha)
-            </div>
-
-        </div><br>
-
-        <input type="submit" value="Register" style="margin-top:20px" />
-        <div class="register__content">
-            <h5>You already have an account?</h5> <a href="/User/Login" class="register__open">Login</a>
-        </div>
-
+        }
     </div>
-    }
-
 
 </body>
 </html>

@@ -5,8 +5,9 @@
 @using PagedList.Mvc;
 
 @{
+    var format = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
     //var dao = (Model.EF.RealEstate)ViewBag.CateID;
-    //var category = (Model.EF.Category)ViewBag.Category;
+    var NewRealEstate = (List<Model.EF.RealEstate>)ViewBag.NewRealEstate;
     ViewBag.Title = "SearchCategory";
     Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/Assets/client/js/app.js"></script>
@@ -166,8 +167,8 @@
                                             </div>
                                             <div class="media-body">
                                                 <a class="author-name" href="/RealEstateClient/Detail/@item.RealEstateID" style="font-size:18px ">@item.Name</a>
-                                                <span class="comments-date"> @item.Price </span>
-                                                <span class="comments-date" style="margin-left:20px"> @item.Acreage</span><br />
+                                                <span class="comments-date">@String.Format(format, "{0:c0}", @item.Price)</span>
+                                                <span class="comments-date" style="margin-left: 20px; word-spacing: -5px;"> @item.Acreage m2</span><br />
                                                 <span class="comments-date"> @item.Address </span>
                                                 <p>@item.Description</p>
 
@@ -203,42 +204,21 @@
                     <!-- Start Single properties sidebar -->
                     <div class="aa-properties-single-sidebar">
                         <h3>Tin mới đăng</h3>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="img/item/1.jpg" alt="img">
-                                </a>
+                        @foreach (var a in NewRealEstate)
+                        {
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="/RealEstateClient/Detail/@a.RealEstateID">
+                                        <img class="media-object" src="@a.Image" alt="img">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><a href="/RealEstateClient/Detail/@a.RealEstateID">@a.Name</a></h4>
+                                    <p>@a.Description</p>
+                                    <span>@a.Price</span>
+                                </div>
                             </div>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">This is Title</a></h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <span>$65000</span>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="img/item/1.jpg" alt="img">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">This is Title</a></h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <span>$65000</span>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="img/item/1.jpg" alt="img">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">This is Title</a></h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <span>$65000</span>
-                            </div>
-                        </div>
+                        }
                     </div>
                 </aside>
             </div>
@@ -246,4 +226,37 @@
     </div>
     
 </section>
-
+<footer id="aa-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-footer-area">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="aa-footer-left">
+                                <p>Designed by <a rel="nofollow" href="http://www.markups.io/">MarkUps.io</a></p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="aa-footer-middle">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-google-plus"></i></a>
+                                <a href="#"><i class="fa fa-youtube"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="aa-footer-right">
+                                <a href="#">Home</a>
+                                <a href="#">Support</a>
+                                <a href="#">License</a>
+                                <a href="#">FAQ</a>
+                                <a href="#">Privacy & Term</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -6,15 +6,17 @@ namespace Model.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("User")]
-    public partial class User
+    [Table("Custommer")]
+    public partial class Custommer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Custommer()
         {
             RealEstates = new HashSet<RealEstate>();
+            Reports = new HashSet<Report>();
         }
 
+        [Key]
         public int UserID { get; set; }
 
         [StringLength(50)]
@@ -37,19 +39,20 @@ namespace Model.EF
 
         public DateTime? ModifiedDate { get; set; }
 
-        public int? ModifiedBy { get; set; }
-
-        public int? UpdateBy { get; set; }
+        public int? UserTyPeID { get; set; }
 
         public DateTime? UpdateDate { get; set; }
-
-        public int? CreateBy { get; set; }
 
         public DateTime? CreateDate { get; set; }
 
         public bool Status { get; set; }
 
+        public virtual UserType UserType { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RealEstate> RealEstates { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Report> Reports { get; set; }
     }
 }

@@ -26,6 +26,7 @@ namespace realEstateWeb.Areas.Admin.Controllers
                 {
                     var user = dao.GetById(model.Username);
                     var userSession = new UserLogin();
+                    userSession.Name = user.Name;
                     userSession.Username = user.Username;
                     userSession.UserID = user.UserID;
                     Session.Add(CommonConstants.USER_SESSION, userSession);

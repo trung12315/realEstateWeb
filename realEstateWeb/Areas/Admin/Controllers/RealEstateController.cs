@@ -35,21 +35,7 @@ namespace realEstateWeb.Areas.Admin.Controllers
 
 
 
-        [HttpGet]
-        public ActionResult CreateMaps()
-        {
-            SetViewBag();
-            return View();
-        }
-        [HttpGet]
-        public ActionResult Edit(long id)
-        {
-            var dao = new RealEstateDao();
-            var content = dao.GetByID(id);
 
-            SetViewBag(content.CategoryID);
-            return View(content);
-        }
         [HttpPost]
         public ActionResult Edit(RealEstate model)
         {
@@ -68,7 +54,7 @@ namespace realEstateWeb.Areas.Admin.Controllers
                     ModelState.AddModelError("", "Cập nhật tin tức thành công");
                 }
             }
-            SetViewBag(model.CategoryID);
+            SetViewBag(model.CateID);
             return View("Index");
         }
 
@@ -78,7 +64,7 @@ namespace realEstateWeb.Areas.Admin.Controllers
             var dao = new RealEstateDao();
             var content = dao.GetByID(id);
 
-            SetViewBag(content.CategoryID);
+            SetViewBag(content.CateID);
             return View(content);
         }
         [HttpPost]
@@ -99,7 +85,7 @@ namespace realEstateWeb.Areas.Admin.Controllers
                     ModelState.AddModelError("", "Cập nhật thành công");
                 }
             }
-            SetViewBag(model.CategoryID);
+            SetViewBag(model.CateID);
             return View("IndexMaps");
         }
 
@@ -118,7 +104,7 @@ namespace realEstateWeb.Areas.Admin.Controllers
                 bdsWebContext db = new bdsWebContext();
                 RealEstate realestate = new RealEstate();
                 var session = (UserLogin)Session[CommonConstants.USER_SESSION];
-                realestate.CreateBy = session.Username;
+                //realestate.CreateBy = session.Username;
                 realestate.UserID = session.UserID;
                 DateTime dt = DateTime.Now;
                 String.Format("{0:dd/MM/yyyy}", dt);
@@ -245,24 +231,24 @@ namespace realEstateWeb.Areas.Admin.Controllers
             }
         }
 
-        public JsonResult LoadImages(int id)
-        {
-            RealEstateDao dao = new RealEstateDao();
-            var realestate = dao.ViewDetail(id);
-            var images = realestate.MoreImage;
-            XElement xImages = XElement.Parse(images);
-            List<string> listImagesReturn = new List<string>();
+        //public JsonResult LoadImages(int id)
+        //{
+        //    RealEstateDao dao = new RealEstateDao();
+        //    var realestate = dao.ViewDetail(id);
+        //    var images = realestate.MoreImage;
+        //    XElement xImages = XElement.Parse(images);
+        //    List<string> listImagesReturn = new List<string>();
 
-            foreach (XElement element in xImages.Elements())
-            {
-                listImagesReturn.Add(element.Value);
-            }
-            return Json(new
-            {
-                data = listImagesReturn
-            }, JsonRequestBehavior.AllowGet);
+        //    foreach (XElement element in xImages.Elements())
+        //    {
+        //        listImagesReturn.Add(element.Value);
+        //    }
+        //    return Json(new
+        //    {
+        //        data = listImagesReturn
+        //    }, JsonRequestBehavior.AllowGet);
 
-        }
+        //}
 
         public JsonResult SaveImages(int id, string images)
         {

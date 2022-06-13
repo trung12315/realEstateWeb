@@ -95,7 +95,7 @@ namespace realEstateWeb.Controllers
                 }
                 else
                 {
-                    var user = new User();
+                    var user = new Custommer();
                     user.Phone = model.Phone;
                     user.Username = model.UserName;
                     user.Name = model.Name;
@@ -124,7 +124,7 @@ namespace realEstateWeb.Controllers
             }
             return View(model);
         }
-
+    
 
     }
 }

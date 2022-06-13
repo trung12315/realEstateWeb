@@ -1,0 +1,160 @@
+﻿@model Model.EF.Custommer
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var user = (Model.EF.Custommer)ViewBag.User;
+
+
+
+}
+
+
+
+
+<div class="main">
+    <div class="body-left">
+        <div style="margin-left:10px" class="aside-info">
+
+            <div class="info-my">
+                <div class="my-info">
+                    <div class="image-info"><img src="~/Assets/client/img/user.png" alt="" width="50"></div>
+                    <div style="margin-left:10px;" class="thongtincuatoi">
+                        <h4>@user.Name</h4>
+                        <span>@user.Phone</span>
+                    </div>
+                </div>
+                <div class="my-code">
+                    <label for="">Mã thành viên:@user.UserID <strong></strong></label><br>
+                    <label for="">TK Chính: <strong>0 đ</strong></label>
+                </div>
+                <div class="my-btn">
+                    <button id="btn-yellow">Nạp tiền</button>
+                    <button id="btn-red">Đăng tin</button>
+                </div>
+            </div>
+            <div class="info-tt">
+                <div class="tt-svg"><i class="fa-solid fa-file-lines"></i><a><span>Quản lí tin đăng</span></a></div>
+                <div class="tt-svg">
+                    <i class="fa-solid fa-pen-to-square"></i><a><span>Sửa thông tin cá nhân</span></a>
+                </div>
+                <div class="tt-svg"><i class="fa-solid fa-dollar-sign"></i><a><span>Nạp tiền vào tại khoản</span></a></div>
+                <div class="tt-svg"><i class="fa-solid fa-calendar"></i><span>Lịch thanh toán</span></div>
+                <div class="tt-svg">
+                    <i class="fa-solid fa-hand-holding-dollar"></i><a><span>Bảng giá dịch vụ</span></a>
+                </div>
+                <div class="tt-svg"><i class="fa-solid fa-comment"></i><a><span>Liên hệ</span></a></div>
+                <div class="tt-svg"><i class="fa-solid fa-arrow-right-from-bracket"></i><a><span>Thoát</span></a></div>
+            </div>
+        </div>
+    </div>
+    <div class="body-right">
+        <div class="right-margin">
+            <div class="dangtin">
+                <ul>
+                    <li><a>Phòng trọ</a></li>
+                    <li>Quản lí</li>
+                    <li>Đăng tin mới</li>
+                </ul>
+            </div>
+
+            <div class="main-container">
+
+
+                <div class="container-left">
+                    <div class="address">
+                        <h2>Cập nhật thông tin cá nhân</h2>
+                    </div>
+                    @using (Html.BeginForm("Edit", "profileUser", FormMethod.Post, new { id = "detail-post-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group row mt-5">
+                            <label for="user_id" class="col-md-2 offset-md-2 col-form-label">Mã thành viên</label>
+                            <div class="col-md-6">
+                                <input type="text" readonly class="form-control disable" id="user_id" value="@user.UserID">
+                            </div>
+                        </div>
+                        @*<div class="form-group row">
+                                <label for="user_phone" class="col-md-2 offset-md-2 col-form-label">Số điện thoại</label>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                                    <div class="form-text text-muted"><a style="display: inline-block; margin-top: 5px;" href="https://phongtro123.com/quan-ly/doi-so-dien-thoai.html">Đổi số điện thoại</a></div>
+                                </div>
+                            </div>*@
+                        <div class="form-group row mt-5">
+                            <label for="user_name" class="col-md-2 offset-md-2 col-form-label">Tên hiển thị</label>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" ,id="name"})
+                                <label class="form-message" style="color: red;"></label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="user_email" class="col-md-2 offset-md-2 col-form-label">Email</label>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control",id="imail" })
+                                <label class="form-message" style="color: red;"></label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="user_zalo" class="col-md-2 offset-md-2 col-form-label">Số Zalo</label>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Phone, new { @class = "form-control",id="phone" })
+                                <label class="form-message" style="color: red;"></label>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-5">
+                            <label for="user_password" class="col-md-2 offset-md-2 col-form-label" style="padding-top: 0;">Mật khẩu</label>
+                            <div class="col-md-6">
+                                <a class="" href="https://phongtro123.com/quan-ly/doi-mat-khau.html">Đổi mật khẩu</a>
+                            </div>
+                        </div>
+
+
+                        <!--<div class="form-group row mt-5">
+                        <label for="user_avatar" class="col-md-2 offset-md-2 col-form-label" style="padding-top: 0;">Ảnh đại diện</label>
+                        <div class="col-md-6">
+                            <div class="user-avatar-upload-wrapper js-one-image-wrapper ">
+                                <div class="user-avatar-inner js-one-image-inner">
+                                    <div class="user-avatar-preview js-one-image-preview" style="background: url(https://phongtro123.com/images/default-user.png) center no-repeat; background-size: cover;"></div>
+                                </div>
+                                <div class="user-avatar-upload clearfix">
+                                    <a class="remove-image js-remove-one-image">Xóa hình này</a>
+                                    <input type="file" class="btn-add-avatar js-change-image-file" />
+                                    <input type="hidden" name="user_avatar" class="js-input-value" value="" />
+                                </div>
+                            </div>--> <!-- end one_featured_image_wrapper -->
+                        <!--</div>
+                        </div>-->
+                        <div class="form-group row mt-5">
+                            <label for="user_email" class="col-md-2 col-form-label"></label>
+                            <div class="col-md-8">
+                                <input type="submit" value="Cập nhật" class="btn btn-primary btn-user btn-block" />
+                            </div>
+                        </div>
+
+
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    
+        <script src="~/Assets/client/js/validation.js"></script>
+        <script>
+            Validator({
+                form: '#detail-post-form',
+                rules: [
+                    Validator.isEmail('#imail'),
+                    Validator.isPhoneNumber('#phone'),
+                    Validator.NameTT('#name')
+                ]
+            })
+        </script>
+}
+

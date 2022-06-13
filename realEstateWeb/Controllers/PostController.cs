@@ -57,7 +57,7 @@ namespace realEstateWeb.Controllers
                 bdsWebContext db = new bdsWebContext();
                 RealEstate realestate = new RealEstate();
                 var session = (UserLogin)Session[CommonConstants.USER_SESSION];
-                realestate.CreateBy = session.Username;
+                
                 realestate.UserID = session.UserID;
                 DateTime dt = DateTime.Now;
                 String.Format("{0:dd/MM/yyyy}", dt);
@@ -68,6 +68,7 @@ namespace realEstateWeb.Controllers
                 realestate.Address = viewModel.Address;
                 realestate.Name = viewModel.Name;
                 realestate.CateID = viewModel.CateID;
+                realestate.Price = viewModel.Price;
                 realestate.CatID = viewModel.CatID;
                 realestate.Description = viewModel.Description;
                 realestate.Acreage = viewModel.Acreage;
@@ -154,10 +155,17 @@ namespace realEstateWeb.Controllers
                     db.SaveChanges();
                 }
 
+             
 
-
-                return RedirectToAction("/");
+                return RedirectToAction("Create");
             }
+
+            var session1 = (UserLogin)Session[CommonConstants.USER_SESSION];
+         
+                var username = session1.UserID;
+                ViewBag.User = new UserDao().ViewDetail1(username);
+
+            
             SetViewBag();
             return View(viewModel);
         }
@@ -238,7 +246,7 @@ namespace realEstateWeb.Controllers
                 bdsWebContext db = new bdsWebContext();
                 RealEstate realestate = new RealEstate();
                 var session = (UserLogin)Session[CommonConstants.USER_SESSION];
-                realestate.CreateBy = session.Username;
+                //realestate.CreateBy = session.Username;
                 realestate.UserID = session.UserID;
                 DateTime dt = DateTime.Now;
                 String.Format("{0:dd/MM/yyyy}", dt);

@@ -1,10 +1,9 @@
-﻿@model  List<Model.EF.RealEstate>
+﻿@model  PagedList.IPagedList<Model.EF.RealEstate>
 @using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     <script src="~/Assets/Admin/js/controller/app.js"></script>
-
 
 }
 
@@ -13,7 +12,7 @@
         <div class="aside-info">
             <div class="info-my">
                 <div class="my-info">
-                    <div class="image-info"><img src="./images/user.png" alt="" width="50"></div>
+                    <div class="image-info"><img src="~/Assets/client/img/user.png" alt="" width="50"></div>
                     <div class="thongtincuatoi">
                         <h4>Nguyễn Thành Trung</h4>
                         <span>025252514</span>
@@ -47,60 +46,89 @@
         <div class="right-margin">
             <div class="dangtin">
                 <ul>
-                    <li><a>Phòng trọ</a></li>
-                    <li>Quản lí</li>
-                    <li>Đăng tin mới</li>
+                    <li><a>Danh mục</a></li>
+                    <li>Quản lí tin dăng</li>
+                    
                 </ul>
             </div>
 
-            <div class="stretch-card">
+            <div style="width:90%" class="stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Bordered table</h4>
-                        <p class="card-description">
-                            Add class <code>.table-bordered</code>
-                        </p>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
+                        @using (Html.BeginForm("Index", "PostManage", FormMethod.Get))
+                        {
+                            <div class="">
+                                <div class="">
+                                    <div style="display:flex" class="">
+                                        <div style="margin: 20px 20px 10px 0" class="">
+                                            <input type="text" value="@ViewBag.SearchString" class="form-control" name="searchString" placeholder="Search for..." />
+                                        </div>
+                                        <div class="">
+                                            <button class="btn btn-success" type="submit">Search</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
 
-                                    <th>Mã Tin</th>
-                                    <th>Ảnh đại diện</th>
-                                    <th>Tiêu đề</th>
-                                    <th>Giá</th>
-                                    <th>Ngày đăng</th>
-                                    <th>Trạng Thái</th>
-                                    <th>Tùy Chọn</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr id="row_@item.RealEstateID">
-                                        <td>@item.RealEstateID</td>
-                                        <td><img src="@item.Image" style="width: 50px; height: 50px;" /></td>
-                                        <td>@item.Name</td>
-                                        <td>@item.Price</td>
-                                        <td>@item.CreateDate</td>
-                                        <td><a href="#" class="btn-active" data-id="@item.RealEstateID">@Html.Raw(item.Status ? "<strong>Kích hoạt</strong>" : "Khoá")</a></td>
-                                        <td>
-                                            <a href="#" data-id="@item.RealEstateID" class="btn-images">Quản lí ảnh </a>
-                                            <a href="/Admin/Content/Edit/@item.RealEstateID">Edit</a>
-                                            <br />
-                                            @Ajax.ActionLink("Delete", "Delete", new { @id = item.RealEstateID }, new AjaxOptions
-                                       {
-                                           Confirm = "Do you want to delete this record?",
-                                           OnComplete = "$(#'row_" + @item.RealEstateID + "').Remove()",
-                                           HttpMethod = "Delete"
+                        <div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
 
-                                       })
-                                        </td>
-
-
+                                        <th>Mã Tin</th>
+                                        <th>Ảnh đại diện</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Giá</th>
+                                        <th>Ngày đăng</th>
+                                        
+                                        <th>Tùy Chọn</th>
                                     </tr>
+                                </thead>
+                                @if (Model.Count() > 0)
+                                {
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr id="row_@item.RealEstateID">
+                                                <td>@item.RealEstateID</td>
+                                                <td><img src="@item.Image" style="width: 50px; height: 50px;" /></td>
+                                                <td>@item.Name</td>
+                                                <td>@item.Price</td>
+                                                <td>@item.CreateDate</td>
+                                               
+                                                <td>
+                                                    <a href="#" data-id="@item.RealEstateID" class="btn-images">Quản lí ảnh </a>
+                                                    <a href="/Admin/Content/Edit/@item.RealEstateID">Edit</a>
+                                                    <br />
+                                                    @Ajax.ActionLink("Delete", "Delete", new { @id = item.RealEstateID }, new AjaxOptions
+                                               {
+                                                   Confirm = "Do you want to delete this record?",
+                                                   OnComplete = "$(#'row_" + @item.RealEstateID + "').Remove()",
+                                                   HttpMethod = "Delete"
+
+                                               })
+                                                </td>
+
+
+                                            </tr>
+
+                                        }
+                                    </tbody>
                                 }
-                            </tbody>
-                        </table>
+
+                                else
+                                {
+                                    <tbody>
+                                        <tr><td>Bạn chưa có tin đăng nào <a> bấm vào đây</a>để đăng tin </td></tr>
+                                    </tbody>
+                                }
+
+                            </table>
+                            <input type="hidden" id="strimage" name="image" />
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
+                        </div>
                     </div>
                 </div>
             </div>
@@ -132,3 +160,6 @@
 
     </div>
 </div>
+<script src="/Assets/Admin/js/plugins/ckfinder/ckfinder.js"></script>
+<script src="/Assets/Admin/js/plugins/ckeditor/ckeditor.js"></script>
+<script src="~/Assets/Admin/js/controller/realestateController.js"></script>

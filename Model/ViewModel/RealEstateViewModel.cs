@@ -19,7 +19,7 @@ namespace Model.ViewModel
 
         public string Description { get; set; }
 
-        public float Price { get; set; }
+        public int Price { get; set; }
 
         public string Image { get; set; }
 
@@ -37,7 +37,7 @@ namespace Model.ViewModel
         public string LinkImage1 { get; set; }
         public string Address { get; set; }
 
-        public string Acreage { get; set; }
+        public int Acreage { get; set; }
 
     }
 }

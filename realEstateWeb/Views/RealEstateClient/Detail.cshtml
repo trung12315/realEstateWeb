@@ -1,5 +1,6 @@
 ﻿@model Model.EF.RealEstate
 @{
+    var format = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var category = (Model.EF.RealEstateCategory)ViewBag.Category;
@@ -72,109 +73,22 @@
                             <div>
                                 <span style="display: inline-block; color: gray; padding-right: 100px "><i style="margin-right: 10px; " class="fa-solid fa-warehouse"></i>@Model.Acreage</span>
                                 <span style="display: inline-block;  color: gray; padding-right: 100px "><i style="margin-right: 10px;" class="fa-solid fa-clock"></i>@Model.CreateDate</span>
-                                <span style="display: inline-block;  color: gray; padding-right: 100px "><i style="margin-right: 10px;" class="fa-solid fa-hashtag"></i>@Model.CatID</span>
+                                <span style="display: inline-block;  color: gray; padding-right: 100px "><i style="margin-right: 10px;" class="fa-solid fa-hashtag"></i>@Model.RealEstateID</span>
                             </div>
 
-                            <span style="color: forestgreen;" class="aa-price">$@Model.Price</span>
+                            <span style="color: forestgreen;" class="aa-price">@String.Format(format, "{0:c0}", Model.Price)</span>
                             <h4>Thông tin mô tả</h4>
                             <p>@Model.Description</p>
 
-                            <ul>
-                                <li>4 Bedroom</li>
-                                <li>3 Baths</li>
-                                <li>Kitchen</li>
-                                <li>Air Condition</li>
-                                <li>Belcony</li>
-                                <li>Gym</li>
-                                <li>Garden</li>
-                                <li>CCTV</li>
-                                <li>Children Play Ground</li>
-                                <li>Comunity Center</li>
-                                <li>Security System</li>
-                            </ul>
-                            <h4>Property Video</h4>
-                            <iframe width="100%" height="480" src="https://www.youtube.com/embed/CegXQps0In4" frameborder="0" allowfullscreen></iframe>
+
+
+
                             <h4>Property Map</h4>
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6851.201919469417!2d-86.11773906635584!3d33.47324776828677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x888bdb60cc49c571%3A0x40451ca6baf275c7!2s36008+AL-77%2C+Talladega%2C+AL+35160%2C+USA!5e0!3m2!1sbn!2sbd!4v1460452919256" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                         </div>
                         <!-- Properties social share -->
-                        <div class="aa-properties-social">
-                            <ul>
-                                <li>Share</li>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                            </ul>
-                        </div>
                         <!-- Nearby properties -->
-                        <div class="aa-nearby-properties">
-                            <div class="aa-title">
-                                <h2>Nearby Properties</h2>
-                                <span></span>
-                            </div>
-                            <div class="aa-nearby-properties-area">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <article class="aa-properties-item">
-                                            <a class="aa-properties-item-img" href="#">
-                                                <img alt="img" src="img/item/1.jpg">
-                                            </a>
-                                            <div class="aa-tag for-sale">
-                                                For Sale
-                                            </div>
-                                            <div class="aa-properties-item-content">
-                                                <div class="aa-properties-info">
-                                                    <span>5 Rooms</span>
-                                                    <span>2 Beds</span>
-                                                    <span>3 Baths</span>
-                                                    <span>1100 SQ FT</span>
-                                                </div>
-                                                <div class="aa-properties-about">
-                                                    <h3><a href="#">Appartment Title</a></h3>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim molestiae vero ducimus quibusdam odit vitae.</p>
-                                                </div>
-                                                <div class="aa-properties-detial">
-                                                    <span class="aa-price">
-                                                        $35000
-                                                    </span>
-                                                    <a class="aa-secondary-btn" href="#">View Details</a>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <article class="aa-properties-item">
-                                            <a class="aa-properties-item-img" href="#">
-                                                <img alt="img" src="img/item/2.jpg">
-                                            </a>
-                                            <div class="aa-tag for-sale">
-                                                For Sale
-                                            </div>
-                                            <div class="aa-properties-item-content">
-                                                <div class="aa-properties-info">
-                                                    <span>5 Rooms</span>
-                                                    <span>2 Beds</span>
-                                                    <span>3 Baths</span>
-                                                    <span>1100 SQ FT</span>
-                                                </div>
-                                                <div class="aa-properties-about">
-                                                    <h3><a href="#">Appartment Title</a></h3>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim molestiae vero ducimus quibusdam odit vitae.</p>
-                                                </div>
-                                                <div class="aa-properties-detial">
-                                                    <span class="aa-price">
-                                                        $35000
-                                                    </span>
-                                                    <a class="aa-secondary-btn" href="#">View Details</a>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </div>
-                                </div>
-                            </div>
 
-                        </div>
 
                     </div>
                 </div>
@@ -183,36 +97,69 @@
             <div class="col-md-4">
                 <aside class="aa-properties-sidebar">
                     <div class="user" style="text-align:center">
-                         <img src="https://phongtro123.com/images/default-user.png" alt="" width="200" style="border-radius:50%;" />
-                        <h3 style="margin-bottom:0px;">viet</h3>
-                        <span style="margin-top:2px; font-size:10px;">dang hoạt động</span><br />
-                        <a class="btn phone">0367399815</a><br />
+                        <img src="https://phongtro123.com/images/default-user.png" alt="" width="200" style="border-radius:50%;" />
+                        <h3 style="margin-bottom:0px;">@Model.Custommer.Name</h3>
+                        <span style="margin-top:2px; font-size:10px;">đang hoạt động</span><br />
+                        <a class="btn phone">@Model.Custommer.Phone</a><br />
                         <a class="btn zalo">Nhắn Zalo</a><br />
-                       
+
                     </div>
                     <!-- Start Single properties sidebar -->
                     <div class="aa-properties-single-sidebar">
-                        <h3>Populer Properties</h3>
+                        <h3>Danh sách liên quan</h3>
                         @foreach (var a in relatedProducts)
                         {
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="/RealEstateClient/Detail/@a.RealEstateID">
-                                    <img class="media-object" src="@a.Image" alt="img">
-                                </a>
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="/RealEstateClient/Detail/@a.RealEstateID">
+                                        <img class="media-object" src="@a.Image" alt="img">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><a href="/RealEstateClient/Detail/@a.RealEstateID">@a.Name</a></h4>
+                                    <p>@a.Description</p>
+                                    <span>@a.Price</span>
+                                </div>
                             </div>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="/RealEstateClient/Detail/@a.RealEstateID">@a.Name</a></h4>
-                                <p>@a.Description</p>
-                                <span>@a.Price</span>
-                            </div>
-                        </div>
                         }
-                        
+
                     </div>
                 </aside>
             </div>
         </div>
     </div>
 </section>
-
+<footer id="aa-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-footer-area">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="aa-footer-left">
+                                <p>Designed by <a rel="nofollow" href="http://www.markups.io/">MarkUps.io</a></p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="aa-footer-middle">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-google-plus"></i></a>
+                                <a href="#"><i class="fa fa-youtube"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="aa-footer-right">
+                                <a href="#">Home</a>
+                                <a href="#">Support</a>
+                                <a href="#">License</a>
+                                <a href="#">FAQ</a>
+                                <a href="#">Privacy & Term</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

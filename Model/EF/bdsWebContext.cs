@@ -14,6 +14,7 @@ namespace Model.EF
 
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<Custommer> Custommers { get; set; }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<Menu> Menus { get; set; }
@@ -25,7 +26,7 @@ namespace Model.EF
         public virtual DbSet<Slide> Slides { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserType> UserTypes { get; set; }
         public virtual DbSet<district> districts { get; set; }
         public virtual DbSet<province> provinces { get; set; }
         public virtual DbSet<village> villages { get; set; }
@@ -33,6 +34,18 @@ namespace Model.EF
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Category>()
+                .Property(e => e.Status)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Custommer>()
+                .Property(e => e.Username)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Custommer>()
+                .Property(e => e.Password)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Feedback>()
                 .Property(e => e.UpdateBy)
                 .HasPrecision(18, 0);
@@ -41,17 +54,9 @@ namespace Model.EF
                 .Property(e => e.MetaTile)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<RealEstate>()
-                .Property(e => e.Acreage)
+            modelBuilder.Entity<Report>()
+                .Property(e => e.Contents)
                 .IsFixedLength();
-
-            modelBuilder.Entity<User>()
-                .Property(e => e.Username)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<User>()
-                .Property(e => e.Password)
-                .IsUnicode(false);
         }
     }
 }

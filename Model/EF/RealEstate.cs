@@ -13,6 +13,7 @@ namespace Model.EF
         public RealEstate()
         {
             Images = new HashSet<Image>();
+            Reports = new HashSet<Report>();
         }
 
         public int RealEstateID { get; set; }
@@ -23,36 +24,18 @@ namespace Model.EF
         [StringLength(250)]
         public string MetaTile { get; set; }
 
-        [StringLength(500)]
         public string Description { get; set; }
 
-        public double? Price { get; set; }
-
-        [StringLength(250)]
-        public string Image { get; set; }
-
-        [Column(TypeName = "xml")]
-        public string MoreImage { get; set; }
-
-        public long? CategoryID { get; set; }
+        public int? Price { get; set; }
 
         [StringLength(500)]
         public string Detail { get; set; }
 
         public DateTime? CreateDate { get; set; }
 
-        [StringLength(50)]
-        public string CreateBy { get; set; }
-
         public DateTime? UpdateDate { get; set; }
 
-        public int? UpdateBy { get; set; }
-
-        public bool? Browser { get; set; }
-
         public bool Status { get; set; }
-
-        public DateTime? Datehire { get; set; }
 
         [StringLength(250)]
         public string Address { get; set; }
@@ -63,8 +46,10 @@ namespace Model.EF
 
         public int? CateID { get; set; }
 
-        [StringLength(10)]
-        public string Acreage { get; set; }
+        public int? Acreage { get; set; }
+
+        [StringLength(250)]
+        public string Image { get; set; }
 
         [StringLength(50)]
         public string Lat { get; set; }
@@ -74,11 +59,14 @@ namespace Model.EF
 
         public virtual Category Category { get; set; }
 
+        public virtual Custommer Custommer { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Image> Images { get; set; }
 
         public virtual RealEstateCategory RealEstateCategory { get; set; }
 
-        public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Report> Reports { get; set; }
     }
 }
