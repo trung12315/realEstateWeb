@@ -54,11 +54,11 @@ namespace realEstateWeb.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Cập nhật người dùng thành công");
+                    ModelState.AddModelError("", "Cập nhật người dùng thất bại");
                 }
             }
            
-            return View(user);
+            return View("Edit");
 
         }
     }

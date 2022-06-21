@@ -1,4 +1,9 @@
-﻿
+﻿$(function () {
+   
+
+    $('#AlertBox').removeClass('hide');
+    $('#AlertBox').delay(1000).slideUp(500);
+});
 function Validator(options) {
     function validate(selectElement, rule) {
         var errormessage = rule.test(selectElement.value);

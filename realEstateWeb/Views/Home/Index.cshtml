@@ -78,6 +78,7 @@
                 <div class="row">
                     @foreach (var item in Model)
                     {
+                        <div class="col-md-3">
 
                         <article class="aa-properties-item">
                             <a href="/RealEstateClient/Detail/@item.RealEstateID" class="aa-properties-item-img">
@@ -100,12 +101,13 @@
                                 </div>
                                 <div class="aa-properties-detial">
                                     <a class="aa-price"></a>
-                                    <a href="/RealEstateClient/Detail/@item.RealEstateID" class="aa-secondary-btn">View Details</a>
+                                    <a href="/RealEstateClient/Detail/@item.RealEstateID" class="aa-secondary-btn">Chi tiết</a>
                                 </div>
                             </div>
                         </article>
+                    </div>
 
-                    }
+                }
                 </div>
             </div>
             <div class="row">

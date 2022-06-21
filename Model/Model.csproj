@@ -73,6 +73,7 @@
     <Compile Include="Dao\ImageDao.cs" />
     <Compile Include="Dao\RealEstateCategoryDao.cs" />
     <Compile Include="Dao\RealEstateDao.cs" />
+    <Compile Include="Dao\RepostDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="EF\bdsWebContext.cs" />
     <Compile Include="EF\Category.cs" />

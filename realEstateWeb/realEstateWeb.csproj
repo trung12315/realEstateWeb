@@ -152,6 +152,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\RealEstateController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ReportController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThongkeController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Model\LoginModel.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Controllers\PostManageController.cs" />
     <Compile Include="Controllers\profileUserController.cs" />
     <Compile Include="Controllers\RealEstateClientController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -240,6 +242,7 @@
     <Content Include="Assets\Admin\js\controller\ContentController.js" />
     <Content Include="Assets\Admin\js\controller\productController.js" />
     <Content Include="Assets\Admin\js\controller\realestateController.js" />
+    <Content Include="Assets\Admin\js\controller\ReportController.js" />
     <Content Include="Assets\Admin\js\controller\userController.js" />
     <Content Include="Assets\Admin\js\dashboard.js" />
     <Content Include="Assets\Admin\js\demo\chart-area-demo.js" />
@@ -3519,12 +3522,15 @@
     <Content Include="Assets\Admin\vendor\js\bootstrap.min.js.map" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Assets\Admin\vendor\jquery-ui\package.json" />
+    <Content Include="Areas\Admin\Views\Report\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Create.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -3542,7 +3548,6 @@
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\index1.cshtml" />
     <Content Include="Views\Shared\CategoryShared.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -3564,6 +3569,7 @@
     <Folder Include="Areas\Admin\Views\Thongke\" />
     <Folder Include="Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Report\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

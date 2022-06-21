@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace realEstateWeb.Controllers
 {
-    public class PostController : Controller
+    public class PostController : BaseController
     {
         // GET: Post
         public void SetViewBag(long? selectedId = null)
@@ -58,106 +58,20 @@ namespace realEstateWeb.Controllers
                 RealEstate realestate = new RealEstate();
                 var session = (UserLogin)Session[CommonConstants.USER_SESSION];
                 
-                realestate.UserID = session.UserID;
-                DateTime dt = DateTime.Now;
-                String.Format("{0:dd/MM/yyyy}", dt);
-
-
-
-                realestate.CreateDate = dt;
-                realestate.Address = viewModel.Address;
-                realestate.Name = viewModel.Name;
-                realestate.CateID = viewModel.CateID;
-                realestate.Price = viewModel.Price;
-                realestate.CatID = viewModel.CatID;
-                realestate.Description = viewModel.Description;
-                realestate.Acreage = viewModel.Acreage;
-                string[] arrListStr1 = image.Split(',');
-                realestate.Image = arrListStr1[0];
-                db.RealEstates.Add(realestate);
-                db.RealEstates.Add(realestate);
-                db.SaveChanges();
-
-                int foreignKey = realestate.RealEstateID;
-                string chuoicon = ",";
-                int strt = 0, cnt = -1, idx = -1;
-
-                while (strt != -1)
+                var userid = session.UserID;
+                var dao = new RealEstateDao();
+                var yes = dao.Dangtin(viewModel, userid, image);
+                
+                if(yes)
                 {
-                    strt = image.IndexOf(chuoicon, idx + 1);
-                    cnt += 1;
-                    idx = strt;
+                    SetAlert("Đăng tin thành công ", "success");
+                    return RedirectToAction("Create", "Post");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Đăng tin thất bại");
                 }
 
-                if (cnt == 1)
-                {
-                    string[] arrListStr = image.Split(',');
-                    Image image1 = new Image();
-
-                    image1.LinkImage = arrListStr[0];
-                    image1.RealEstateID = foreignKey;
-                    
-                    db.Images.Add(image1);
-                    db.SaveChanges();
-                    Image image2 = new Image();
-                    image2.LinkImage = arrListStr[1];
-                    image2.RealEstateID = foreignKey;
-                    db.Images.Add(image2);
-                    db.SaveChanges();
-                }
-                if (cnt == 2)
-                {
-                    string[] arrListStr = image.Split(',');
-                    Image image1 = new Image();
-
-                    image1.LinkImage = arrListStr[0];
-                    db.Images.Add(image1);
-                    db.SaveChanges();
-
-                    image1.RealEstateID = foreignKey;
-                    Image image2 = new Image();
-                    image2.LinkImage = arrListStr[1];
-                    image2.RealEstateID = foreignKey;
-                    db.Images.Add(image2);
-                    db.SaveChanges();
-
-                    Image image3 = new Image();
-                    image3.LinkImage = arrListStr[2];
-                    image3.RealEstateID = foreignKey;
-                    db.Images.Add(image3);
-                    db.SaveChanges();
-                }
-                if (cnt == 3)
-                {
-                    string[] arrListStr = image.Split(',');
-                    Image image1 = new Image();
-                    image1.LinkImage = arrListStr[0];
-                    image1.RealEstateID = foreignKey;
-                    db.Images.Add(image1);
-                    db.SaveChanges();
-
-                    Image image2 = new Image();
-                    image2.LinkImage = arrListStr[1];
-                    image2.RealEstateID = foreignKey;
-                    db.Images.Add(image2);
-                    db.SaveChanges();
-
-                    Image image3 = new Image();
-                    image3.LinkImage = arrListStr[2];
-                    image3.RealEstateID = foreignKey;
-                    db.Images.Add(image3);
-                    db.SaveChanges();
-
-                    Image image4 = new Image();
-                    image4.LinkImage = arrListStr[2];
-                    image4.RealEstateID = foreignKey;
-                    db.Images.Add(image4);
-                    db.SaveChanges();
-                }
-
-             
-
-                return RedirectToAction("Create");
             }
 
             var session1 = (UserLogin)Session[CommonConstants.USER_SESSION];
@@ -169,38 +83,7 @@ namespace realEstateWeb.Controllers
             SetViewBag();
             return View(viewModel);
         }
-        //public JsonResult SaveImages( string images)
-        //{
-        //    RealEstate realestate = new RealEstate();
-        //    JavaScriptSerializer serializer = new JavaScriptSerializer();
-        //    var listImages = serializer.Deserialize<List<string>>(images);
-        //    int foreignKey = realestate.RealEstateID;
-        //    Image image = new Image();
-        //    foreach (var item in listImages)
-        //    {
-        //        var subStringItem = item.Substring(23);
-        //        image.LinkImage = subStringItem;
-        //        image.RealEstateID = foreignKey;
-        //    }
-        //    RealEstateDao dao = new RealEstateDao();
-        //    try
-        //    {
-        //        dao.UpdateImage(subStringItem.ToString());
 
-        //        return Json(new
-        //        {
-        //            status = true
-        //        });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Json(new
-        //        {
-        //            status = false
-        //        });
-        //    }
-
-        //}
 
         public JsonResult SaveImage(string images)
         {

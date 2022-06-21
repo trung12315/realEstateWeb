@@ -1,6 +1,10 @@
 ﻿// File javascript để lấy dữ liệu
 
 // Khai báo URL service của bạn ở đây
+$(function () {
+    $('Alert').remove('hide');
+    $('Alert').delay(1000).slideUp(500);
+});
 var baseService = "/Home";
 
 var provinceUrl = baseService + "/GetAllProvinces";

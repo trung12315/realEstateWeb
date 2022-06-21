@@ -1,4 +1,6 @@
 ﻿using Model.Dao;
+using Model.EF;
+using realEstateWeb.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +31,37 @@ namespace realEstateWeb.Areas.Admin.Controllers
         {
             new UserDao().Delete(id);
             return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public ActionResult Create(Custommer user)
+        {
+            if (ModelState.IsValid)
+            {
+                var dao = new UserDao();
+
+                var encryptedMD5Pas = Encryptor.MD5Hash(user.Password);
+                user.Password = encryptedMD5Pas;
+                long id = dao.Insert(user);
+                if (id > 0)
+                {
+                    SetAlert("Thêm người dùng thành công", "success");
+                    return RedirectToAction("Index", "User");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Thêm người dùng thành công");
+                }
+            }
+            return View("Index");
+
         }
     }
 }

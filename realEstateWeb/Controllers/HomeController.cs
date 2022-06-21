@@ -28,18 +28,7 @@ namespace realEstateWeb.Controllers
         }
         //[ChildActionOnly]
 
-        public ActionResult index1()
-        {
-            return View();
-        }
-        //public JsonResult GetAllCountries()
-        //{
-        //    using (var db = new  bdsWebContext())
-        //    {
-        //        var data = db.Countries.OrderBy(x => x.CountryCode).ToList();
-        //        return Json(data, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
+
 
         public JsonResult GetAllProvinces()
         {

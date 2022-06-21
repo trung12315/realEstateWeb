@@ -15,9 +15,9 @@
                 success: function (response) {
                     console.log(response)
                     if (response.status == true) {
-                        btn.text('kích hoạt');
+                        btn.text('Đã duyệt');
                     } else {
-                        btn.text('khóa');
+                        btn.text('Chờ kiểm duyệt');
                     }
                 }
             });

@@ -231,24 +231,7 @@ namespace realEstateWeb.Areas.Admin.Controllers
             }
         }
 
-        //public JsonResult LoadImages(int id)
-        //{
-        //    RealEstateDao dao = new RealEstateDao();
-        //    var realestate = dao.ViewDetail(id);
-        //    var images = realestate.MoreImage;
-        //    XElement xImages = XElement.Parse(images);
-        //    List<string> listImagesReturn = new List<string>();
-
-        //    foreach (XElement element in xImages.Elements())
-        //    {
-        //        listImagesReturn.Add(element.Value);
-        //    }
-        //    return Json(new
-        //    {
-        //        data = listImagesReturn
-        //    }, JsonRequestBehavior.AllowGet);
-
-        //}
+      
 
         public JsonResult SaveImages(int id, string images)
         {

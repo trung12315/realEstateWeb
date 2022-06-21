@@ -26,6 +26,105 @@ namespace Model.Dao
         //    XmlDocument doc = new XmlDocument();
 
         //}
+        public bool Dangtin(RealEstateViewModel viewModel,int userid,string image) {
+            RealEstate realestate = new RealEstate();
+            DateTime dt = DateTime.Now;
+            String.Format("{0:dd/MM/yyyy}", dt);
+
+
+            realestate.UserID = userid;
+            realestate.CreateDate = dt;
+            realestate.Address = viewModel.Address;
+            realestate.Name = viewModel.Name;
+            realestate.CateID = viewModel.CateID;
+            realestate.Price = viewModel.Price;
+            realestate.CatID = viewModel.CatID;
+            realestate.Description = viewModel.Description;
+            realestate.Acreage = viewModel.Acreage;
+            string[] arrListStr1 = image.Split(',');
+            realestate.Image = arrListStr1[0];
+
+            db.RealEstates.Add(realestate);
+            db.SaveChanges();
+
+            int foreignKey = realestate.RealEstateID;
+            string chuoicon = ",";
+            int strt = 0, cnt = -1, idx = -1;
+
+            while (strt != -1)
+            {
+                strt = image.IndexOf(chuoicon, idx + 1);
+                cnt += 1;
+                idx = strt;
+            }
+
+            if (cnt == 1)
+            {
+                string[] arrListStr = image.Split(',');
+                Image image1 = new Image();
+
+                image1.LinkImage = arrListStr[0];
+                image1.RealEstateID = foreignKey;
+
+                db.Images.Add(image1);
+                db.SaveChanges();
+                Image image2 = new Image();
+                image2.LinkImage = arrListStr[1];
+                image2.RealEstateID = foreignKey;
+                db.Images.Add(image2);
+                db.SaveChanges();
+            }
+            if (cnt == 2)
+            {
+                string[] arrListStr = image.Split(',');
+                Image image1 = new Image();
+                image1.RealEstateID = foreignKey;
+                image1.LinkImage = arrListStr[0];
+                db.Images.Add(image1);
+                db.SaveChanges();
+
+
+                Image image2 = new Image();
+                image2.LinkImage = arrListStr[1];
+                image2.RealEstateID = foreignKey;
+                db.Images.Add(image2);
+                db.SaveChanges();
+
+                Image image3 = new Image();
+                image3.LinkImage = arrListStr[2];
+                image3.RealEstateID = foreignKey;
+                db.Images.Add(image3);
+                db.SaveChanges();
+            }
+            if (cnt == 3)
+            {
+                string[] arrListStr = image.Split(',');
+                Image image1 = new Image();
+                image1.LinkImage = arrListStr[0];
+                image1.RealEstateID = foreignKey;
+                db.Images.Add(image1);
+                db.SaveChanges();
+
+                Image image2 = new Image();
+                image2.LinkImage = arrListStr[1];
+                image2.RealEstateID = foreignKey;
+                db.Images.Add(image2);
+                db.SaveChanges();
+
+                Image image3 = new Image();
+                image3.LinkImage = arrListStr[2];
+                image3.RealEstateID = foreignKey;
+                db.Images.Add(image3);
+                db.SaveChanges();
+
+                Image image4 = new Image();
+                image4.LinkImage = arrListStr[2];
+                image4.RealEstateID = foreignKey;
+                db.Images.Add(image4);
+                db.SaveChanges();
+            }
+            return true;
+        }
         public IEnumerable<RealEstate> Manage(int id, string searchString, int page, int pageSize = 3)
         {
             IQueryable<RealEstate> model = db.RealEstates;
