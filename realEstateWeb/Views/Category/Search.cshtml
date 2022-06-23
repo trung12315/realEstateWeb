@@ -30,7 +30,7 @@
                                 <div class="aa-single-advance-search">
                                     <label for="ddlProvince">Chọn Tỉnh/TP</label>
                                     <select id="ddlProvince" name="" class="trung">
-                                        <option  value="0">Tất cả </option>
+                                        <option value="0">Tất cả </option>
                                     </select>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="aa-single-advance-search">
-                                    <input  class="aa-search-btn" type="submit" value="Tìm Kiếm">
+                                    <input class="aa-search-btn" type="submit" value="Tìm Kiếm">
                                 </div>
                             </div>
                             <div>
@@ -67,26 +67,47 @@
                     <div class="aa-advance-search-bottom">
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="aa-single-filter-search">
-                                    <span>DIỆN TÍCH (m2)</span>
-                                    <span>TỪ</span>
-                                   <span id="skip-value-lower" name="trung" class="example-val">30</span>
-                                    <span>ĐẾN</span>
-                                    <span id="skip-value-upper" class="example-val">100</span>
-                                    <div id="aa-sqrfeet-range" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
+                                <div class="price-input">
+                                    <div class="field">
+                                        <span>TỪ</span>
+                                        <input type="number" name="giamin" class="input-min" value="0">
+                                    </div>
+                                    @*<div class="separator">-</div>*@
+                                    <div class="field">
+                                        <span>ĐẾN</span>
+                                        <input type="number" name="giamax" class="input-max" value="10">
                                     </div>
                                 </div>
+                                <div class="slider">
+                                    <div class="progress"></div>
+                                </div>
+                                <div class="range-input">
+                                    <input type="range" class="range-min" min="0" max="100" value="0" step="1">
+                                    <input type="range" class="range-max" min="0" max="100" value="10" step="1">
+                                </div>
+                                <div style="text-align:center; margin-top:5px;"><span>GIÁ (Triệu đồng)</span></div>
                             </div>
                             <div class="col-md-6">
-                                <div class="aa-single-filter-search" >
-                                    <span>GIÁ (VNĐ)</span>
-                                    <span>TỪ</span>
-                                    <span id="skip-value-lower2" class="example-val">30.00</span>
-                                    <span>ĐẾN</span>
-                                    <span id="skip-value-upper2" class="example-val">100.00</span>
-                                    <div id="aa-price-range" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
+                                <div class="price-input1">
+                                    <div class="field">
+                                        <span>TỪ</span>
+                                        <input type="number" name="dtmin" class="input-min1" value="0">
+                                    </div>
+                                    @*<div class="separator1">-</div>*@
+                                    <div class="field">
+                                        <span>ĐẾN</span>
+                                        <input type="number" name="dtmax" class="input-max1" value="1000">
                                     </div>
                                 </div>
+                                <div class="slider1">
+                                    <div class="progress1"></div>
+                                </div>
+                                <div class="range-input1">
+                                    <input type="range" class="range-min1" min="0" max="1000" value="0" step="10">
+                                    <input type="range" class="range-max1" min="0" max="1000" value="1000" step="10">
+                                </div>
+                                <div  style="text-align:center; margin-top:5px;"><span>DIỆN TÍCH (m2)</span></div>
+                                
                             </div>
                         </div>
                     </div>
@@ -95,4 +116,87 @@
         </div>
     </div>
 </section>
+@{
+    <script>
+        const rangeInput1 = document.querySelectorAll(".range-input1 input"),
+            priceInput1 = document.querySelectorAll(".price-input1 input"),
+            range1 = document.querySelector(".slider1 .progress1");
+        let priceGap1 = 0;
+        priceInput1.forEach(input => {
+            input.addEventListener("input", e => {
+                let minPrice1 = parseInt(priceInput1[0].value),
+                    maxPrice1 = parseInt(priceInput1[1].value);
+
+                if ((maxPrice1 - minPrice1 >= priceGap1) && maxPrice1 <= rangeInput1[1].max) {
+                    if (e.target.className === "input-min1") {
+                        rangeInput1[0].value = minPrice1;
+                        range1.style.left = ((minPrice1 / rangeInput1[0].max) * 10) + "%";
+                    } else {
+                        rangeInput1[1].value = maxPrice1;
+                        range1.style.right = 10 - (maxPrice1 / rangeInput1[1].max) * 10 + "%";
+                    }
+                }
+            });
+        });
+        rangeInput1.forEach(input => {
+            input.addEventListener("input", e => {
+                let minVal1 = parseInt(rangeInput1[0].value),
+                    maxVal1 = parseInt(rangeInput1[1].value);
+                if ((maxVal1 - minVal1) < priceGap1) {
+                    if (e.target.className === "range-min1") {
+                        rangeInput1[0].value = maxVal1 - priceGap1
+                    } else {
+                        rangeInput1[1].value = minVal1 + priceGap1;
+                    }
+                } else {
+                    priceInput1[0].value = minVal1;
+                    priceInput1[1].value = maxVal1;
+                    range1.style.left = ((minVal1 / rangeInput1[0].max) * 100) + "%";
+                    range1.style.right = 100 - (maxVal1 / rangeInput1[1].max) * 100 + "%";
+                }
+            });
+        });
+    </script>
+    <script>
+        const rangeInput = document.querySelectorAll(".range-input input"),
+            priceInput = document.querySelectorAll(".price-input input"),
+            range = document.querySelector(".slider .progress");
+        let priceGap = 0;
+        priceInput.forEach(input => {
+            input.addEventListener("input", e => {
+                let minPrice = parseInt(priceInput[0].value),
+                    maxPrice = parseInt(priceInput[1].value);
+
+                if ((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[1].max) {
+                    if (e.target.className === "input-min") {
+                        rangeInput[0].value = minPrice;
+                        range.style.left = ((minPrice / rangeInput[0].max) * 100) + "%";
+                    } else {
+                        rangeInput[1].value = maxPrice;
+                        range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+                    }
+                }
+            });
+        });
+        rangeInput.forEach(input => {
+            input.addEventListener("input", e => {
+                let minVal = parseInt(rangeInput[0].value),
+                    maxVal = parseInt(rangeInput[1].value);
+                if ((maxVal - minVal) < priceGap) {
+                    if (e.target.className === "range-min") {
+                        rangeInput[0].value = maxVal - priceGap
+                    } else {
+                        rangeInput[1].value = minVal + priceGap;
+                    }
+                } else {
+                    priceInput[0].value = minVal;
+                    priceInput[1].value = maxVal;
+                    range.style.left = ((minVal / rangeInput[0].max) * 100) + "%";
+                    range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+                }
+            });
+        });
+    </script>
+
+}
 

@@ -39,11 +39,17 @@ namespace realEstateWeb.Controllers
             SetViewBag();
             return View();
         }
-        public ActionResult SearchCategory( string search, string searchString, string tp, string qh, string px, int page = 1, int pageSize = 6 )
+        public ActionResult SearchCategory( string search,int giamin,int giamax,int dtmin,int dtmax, string searchString, string tp, string qh, string px, int page = 1, int pageSize = 6 )
         {
             //int totalRecord = 0;
-
-            var model = new RealEstateDao().Search(search, searchString, page, pageSize);
+            ViewBag.giamax = giamax;
+            ViewBag.giamin = giamin;
+            giamax = giamax * 1000000;
+            giamin = giamin * 1000000;
+            var model = new RealEstateDao().Search(search,giamin,giamax,dtmin,dtmax, searchString, page, pageSize);
+            
+            ViewBag.dtmin = dtmin;
+            ViewBag.dtmax = dtmax;
             ViewBag.NewRealEstate = new RealEstateDao().ListNewRealEstate(7);
             var abc = "Tất cả";
             ViewBag.searchString = searchString;

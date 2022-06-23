@@ -179,7 +179,7 @@
                                 <div class="media-body">
                                     <h4 class="media-heading"><a href="/RealEstateClient/Detail/@a.RealEstateID">@a.Name</a></h4>
                                     <p>@a.Description</p>
-                                    <span>@a.Price</span>
+                                    <span>@String.Format(format, "{0:c0}", @a.Price)</span>
                                 </div>
                             </div>
                         }

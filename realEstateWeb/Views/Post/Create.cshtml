@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
-        var user = (Model.EF.Custommer)ViewBag.User;
+    var user = (Model.EF.Custommer)ViewBag.User;
     <script src="~/Assets/Admin/js/controller/app.js"></script>
 
 
@@ -33,9 +33,9 @@
                 </div>
             </div>
             <div class="info-tt">
-                <div class="tt-svg"><i class="fa-solid fa-file-lines"></i><a><span>Quản lí tin đăng</span></a></div>
+                <div class="tt-svg"><i class="fa-solid fa-file-lines"></i><a href="/PostManage/Index"><span>Quản lí tin đăng</span></a></div>
                 <div class="tt-svg">
-                    <i class="fa-solid fa-pen-to-square"></i><a><span>Sửa thông tin cá nhân</span></a>
+                    <i class="fa-solid fa-pen-to-square"></i><a href="/profileUser/Edit"><span>Sửa thông tin cá nhân</span></a>
                 </div>
                 <div class="tt-svg"><i class="fa-solid fa-dollar-sign"></i><a><span>Nạp tiền vào tại khoản</span></a></div>
                 <div class="tt-svg"><i class="fa-solid fa-calendar"></i><span>Lịch thanh toán</span></div>
@@ -63,13 +63,12 @@
             {
                 <div id="Alert" class="alert @TempData["AlertType"] ">
                     @TempData["AlertMessage"]
-                </div>  
+                </div>
             }
             <div class="canhbao">
                 <p>
-                    Nếu bạn đã từng đăng tin trên Phongtro123.com, hãy sử dụng chức năng ĐẨY TIN / GIA HẠN / NÂNG CẤP
-                    VIP trong mục QUẢN LÝ TIN ĐĂNG để làm mới, đẩy tin lên cao thay vì đăng tin mới. Tin đăng trùng
-                    nhau sẽ không được duyệt.
+                    Nếu bạn đã từng đăng tin trên NhaDatTot. Chú ý "tin đăng phải trung thực chính xác, tin đăng trùng
+                    nhau sẽ không được duyệt, tin đăng đã có người sở hữu thì phải ẩn, tránh cho khách hàng nhầm lẫn mất thời gian liên lạc"
                 </p>
             </div>
             <div class="main-container">
@@ -84,7 +83,7 @@
                         @Html.AntiForgeryToken()
                         <div class="adress-new">
 
-                           
+
                             <div class="new">
                                 <div>
                                     <label for="ddlProvince">Tỉnh/Thành Phố</label>
@@ -171,7 +170,7 @@
                             @Html.TextBoxFor(model => model.Price, new { @class = "form-control", id = "giact" })
                             <small>Nhập đầy đủ số,ví dụ 1 triệu thì nhập là 1000000 </small><br />
                             @*<div class="input-group-append"><span class="input-group-text">đồng</span></div>
-                        </div>*@
+                </div>*@
                             <label class="form-message" style="color: red;"></label>
                         </div>
                         <div class="thongtinlienhe">
@@ -184,15 +183,7 @@
                             <label class="form-message" style="color: red;"></label>
 
                         </div>
-                        <div class="thongtinlienhe">
-                            <label class="aaa" for="">Đối tượng cho thuê</label><br>
-                            <select name="" id="doituong" class="form-control" style="width:30%">
-                                <option value="">--Tất cả--</option>
-                                <option value="1">Nam</option>
-                                <option value="1">Nữ</option>
-                            </select>
-                            <label class="form-message" style="color: red;"></label>
-                        </div>
+                        
 
 
                         <div class="hinhanh">
@@ -202,8 +193,9 @@
                                 <div class="addimages">
                                     <img id="btnChooImages" src="~/Assets/client/img/slider/addimage.png" alt="" width="110" height="95">
                                 </div>
-                                <div id="imagesList" style="margin:5px;">
+                                <div id="imagesList" style="margin:5px; display:flex; ">
                                 </div>
+
                                 <input type="hidden" id="strimage" name="image" />
                             </div>
                             <label class="form-message" style="color: red;"></label>
@@ -217,8 +209,7 @@
                                 <input type="submit" id="btnSaveImages" value="Đăng Tin" class="btn btn-primary btn-user btn-block" />
                             </div>
 
-                        </div>
-
+                        </div>               
                     }
                 </div>
                 <div class="container-right">
@@ -248,7 +239,7 @@
 </div>
 
 @{
-
+   
     <script src="/Assets/Admin/js/plugins/ckfinder/ckfinder.js"></script>
     <script src="/Assets/Admin/js/plugins/ckeditor/ckeditor.js"></script>
     <script>
@@ -259,7 +250,7 @@
             a.preventDefault();
             var finder = new CKFinder();
             finder.selectActionFunction = function (url) {
-                $('#imagesList').append('<div><img src="' + url + '" width="100" /><a href="#" class="btn-delImage"><i class="fa fa-times"></i></a></div>');
+                $('#imagesList').append('<div><img src="' + url + '" width="100" height="60" /><a href="#" class="btn-delImage"><i class="fa fa-times"></i></a></div>');
 
                 $('.btn-delImage').off('click').on('click', function (a) {
                     a.preventDefault();
@@ -290,7 +281,6 @@
                 Validator.isTitle('#name'),
                 Validator.isNDMT('#ndmt'),
                 Validator.isGender1('#loaitd'),
-                Validator.isGender2('#doituong'),
                 Validator.isDienTich('#giact'),
 
             ]

@@ -250,13 +250,17 @@ namespace Model.Dao
             var model = db.RealEstates.Where(x => x.CatID == categoryID).OrderByDescending(x => x.CreateDate).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             return model;
         }
-        public IEnumerable<RealEstate> Search(string search, string searchString, int pageIndex , int pageSize=6 )
+        public IEnumerable<RealEstate> Search(string search,int giamin,int giamax,int dtmin,int dtmax, string searchString, int pageIndex , int pageSize=6 )
         {
             IQueryable<RealEstate> model = db.RealEstates;
             if (!string.IsNullOrEmpty(searchString) || !string.IsNullOrEmpty(search))
             {
                 //totalRecord = db.RealEstates.Where(x => x.Address.Contains(SearchString) && x.RealEstateCategory.Name.Contains(search)).Count();
-                model = model.Where(x => x.Address.Contains(searchString) && x.RealEstateCategory.Name.Contains(search));
+                model = model.Where(x => x.Address.Contains(searchString) && x.RealEstateCategory.Name.Contains(search)&& dtmin <= x.Acreage && x.Acreage <= dtmax&& giamin<= x.Price&& giamax >= x.Price);
+            }
+            else if(string.IsNullOrEmpty(searchString) || string.IsNullOrEmpty(search))
+            {
+                model = model.Where( x=>x.Acreage>= dtmin && x.Acreage <= dtmax && giamin <= x.Price && giamax >= x.Price);
             }
             else
             {

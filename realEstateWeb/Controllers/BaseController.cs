@@ -17,7 +17,7 @@ namespace realEstateWeb.Controllers
             if (session == null)
             {
                 filterContext.Result = new RedirectToRouteResult(new
-                    RouteValueDictionary(new { controller = "Login", action = "Index", Area = "Admin" }));
+                    RouteValueDictionary(new { controller = "User", action = "Login"}));
             }
             base.OnActionExecuting(filterContext);
         }
