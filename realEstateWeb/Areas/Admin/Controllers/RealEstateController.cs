@@ -158,8 +158,12 @@ namespace realEstateWeb.Areas.Admin.Controllers
         [HttpDelete]
         public ActionResult Delete(int id)
         {
-            new RealEstateDao().Delete(id);
-            return RedirectToAction("Index");
+           var a= new RealEstateDao().Delete(id);
+            if (a == true) {
+                ModelState.AddModelError("", "Bạn đã xóa 1 bản ghi");
+                return Redirect("/");
+            }
+            return Redirect("/");
         }
 
         [HttpPost]

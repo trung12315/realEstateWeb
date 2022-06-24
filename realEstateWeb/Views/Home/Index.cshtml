@@ -80,34 +80,34 @@
                     {
                         <div class="col-md-3">
 
-                        <article class="aa-properties-item">
-                            <a href="/RealEstateClient/Detail/@item.RealEstateID" class="aa-properties-item-img">
+                            <article class="aa-properties-item">
+                                <a href="/RealEstateClient/Detail/@item.RealEstateID" class="aa-properties-item-img">
 
-                                <img src="@item.Image" alt="img">
+                                    <img src="@item.Image" alt="img">
 
-                            </a>
-                            <div class="aa-tag for-sale">
-                                @item.Category.Name
-                            </div>
-                            <div class="aa-properties-item-content">
-                                <div class="aa-properties-about">
-                                    <h3><a href="/RealEstateClient/Detail/@item.RealEstateID">@item.Name</a></h3>
-                                    <p>@item.CreateDate</p>
+                                </a>
+                                <div class="aa-tag for-sale">
+                                    @item.Category.Name
                                 </div>
-                                <div class="aa-properties-info">
-                                    <span>@item.Custommer.Name</span>
-                                    @*<span style="word-spacing: -5px; ">@item.Acreage m2</span>*@
-                                    <span style="float:right;">@String.Format(format, "{0:c0}", @item.Price)</span>
+                                <div class="aa-properties-item-content">
+                                    <div class="aa-properties-about">
+                                        <h3><a href="/RealEstateClient/Detail/@item.RealEstateID">@item.Name</a></h3>
+                                        <p>@item.CreateDate</p>
+                                    </div>
+                                    <div class="aa-properties-info">
+                                        <span>@item.Custommer.Name</span>
+                                        @*<span style="word-spacing: -5px; ">@item.Acreage m2</span>*@
+                                        <span style="float:right;">@String.Format(format, "{0:c0}", @item.Price)</span>
+                                    </div>
+                                    <div class="aa-properties-detial">
+                                        <a class="aa-price"></a>
+                                        <a href="/RealEstateClient/Detail/@item.RealEstateID" class="aa-secondary-btn">Chi tiết</a>
+                                    </div>
                                 </div>
-                                <div class="aa-properties-detial">
-                                    <a class="aa-price"></a>
-                                    <a href="/RealEstateClient/Detail/@item.RealEstateID" class="aa-secondary-btn">Chi tiết</a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+                            </article>
+                        </div>
 
-                }
+                    }
                 </div>
             </div>
             <div class="row">
@@ -135,7 +135,7 @@
                     <div class="aa-title">
                         <h2>Bất động sản hot</h2>
                         <span></span>
-                        
+
                     </div>
                     <!-- agents content -->
                     <div class="aa-agents-content">
@@ -176,6 +176,59 @@
 <!-- Client brand -->
 <!-- / Client brand -->
 <!-- Latest blog -->
+<section id="aa-agents" style="padding: 100px 0 10px 0;">
+    <div class="container">
+        <div class="aa-title">
+            <h2>Bản đồ khu vực tập trug bất động sản</h2>
+            <span></span>
+
+        </div>
+        <div id="map" style="height: 400px;width:100%; overflow: hidden"></div>
+    </div>
+</section>
+
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNI_ZWPqvdS6r6gPVO50I4TlYkfkZdXh8&callback=initMap&libraries=&v=weekly"
+        async></script>
+<script>
+        var markers = @Html.Raw(@ViewBag.Markers);
+        window.onload = function () {
+            var mapOptions = {
+                center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
+                zoom: 5.5,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var infoWindow = new google.maps.InfoWindow();
+            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+            for (i = 0; i < markers.length; i++) {
+                var data = markers[i]
+                var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    icon: {
+                        path: google.maps.SymbolPath.CIRCLE,
+                        scale: 8,
+                        fillColor: "#F00",
+                        fillOpacity: 1,
+                        strokeWeight: 0.4
+                    },
+                    map: map,
+                    title: data.title,
+
+                });
+
+                (function (marker, data) {
+                    google.maps.event.addListener(marker, "click", function (e) {
+                        infoWindow.setContent('<span class="titleMap">' + data.title + '</span>' + '<br><img src="' + data.description + '" style="background-size: contain">');
+                        infoWindow.open(map, marker);
+                    });
+                })(marker, data);
+            }
+        }
+</script>
+
 <footer id="aa-footer">
     <div class="container">
         <div class="row">
@@ -197,7 +250,7 @@
                         </div>
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="aa-footer-right">
-                                <a href="#">Trang chủ</a>                                
+                                <a href="#">Trang chủ</a>
                                 <a href="#">Hỗ trợ khách hàng</a>
                                 <a href="#">Hướng dẫn</a>
                                 <a href="#">Câu hỏi thường gặp</a>

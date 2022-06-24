@@ -3563,6 +3563,7 @@
     <Content Include="Views\Post\Create.cshtml" />
     <Content Include="Views\PostManage\Index.cshtml" />
     <Content Include="Views\profileUser\Edit.cshtml" />
+    <Content Include="Views\Home\IndexMaps.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
