@@ -40,11 +40,11 @@ namespace Model.EF
         [StringLength(250)]
         public string Address { get; set; }
 
-        public int? UserID { get; set; }
+        public int UserID { get; set; }
 
-        public int? CatID { get; set; }
+        public int CatID { get; set; }
 
-        public int? CateID { get; set; }
+        public int CateID { get; set; }
 
         public int? Acreage { get; set; }
 

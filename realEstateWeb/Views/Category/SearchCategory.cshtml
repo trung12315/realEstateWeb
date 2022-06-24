@@ -40,7 +40,7 @@
                                 <div class="aa-single-advance-search">
                                     <label for="ddlProvince">Chọn danh mục </label>
                                     <select id="abc" name="search" class="trung">
-                                        <option value="">Tất cả</option>
+                                        <option value="">@ViewBag.search</option>
                                         <option value="Đất">Đất</option>
                                         <option value="Căn hộ chung cư">Căn Hộ chung cư</option>
                                         <option value="Nhà ở">Nhà ở</option>
@@ -53,7 +53,7 @@
                                 <div class="aa-single-advance-search">
                                     <label for="ddlProvince">Chọn Tỉnh/TP</label>
                                     <select id="ddlProvince" name="" class="trung">
-                                        <option value="0">Tất cả </option>
+                                        <option value="@ViewBag.tp">@ViewBag.tp</option>
                                     </select>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                                 <div class="aa-single-advance-search">
                                     <label for="ddlProvince">Chọn Quận/huyện</label>
                                     <select id="ddlDistrict" name="" class="trung">
-                                        <option selected="" value="0">Tất cả</option>
+                                        <option selected="" value="@ViewBag.qh">@ViewBag.qh</option>
                                     </select>
                                 </div>
 
@@ -70,7 +70,7 @@
                                 <div class="aa-single-advance-search">
                                     <label for="ddlProvince">Chọn Phường/xã</label>
                                     <select id="ddlWard" name="" class="trung">
-                                        <option selected="" value="0">Tất cả</option>
+                                        <option selected="" value="@ViewBag.px">@ViewBag.px</option>
                                     </select>
                                 </div>
                             </div>

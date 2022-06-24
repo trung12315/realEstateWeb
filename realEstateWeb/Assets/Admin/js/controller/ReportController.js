@@ -15,9 +15,9 @@
                 success: function (response) {
                     console.log(response)
                     if (response.status == true) {
-                        btn.text('Đã phê duyệt');
+                        btn.text('Hiện BĐS');
                     } else {
-                        btn.text('Chờ phê duyệt');
+                        btn.text('Ẩn bất động sản');
                     }
                 }
             });

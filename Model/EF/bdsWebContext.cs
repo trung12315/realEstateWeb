@@ -38,6 +38,11 @@ namespace Model.EF
                 .Property(e => e.Status)
                 .IsFixedLength();
 
+            modelBuilder.Entity<Category>()
+                .HasMany(e => e.RealEstates)
+                .WithRequired(e => e.Category)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Custommer>()
                 .Property(e => e.Username)
                 .IsUnicode(false);
@@ -45,6 +50,16 @@ namespace Model.EF
             modelBuilder.Entity<Custommer>()
                 .Property(e => e.Password)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Custommer>()
+                .HasMany(e => e.RealEstates)
+                .WithRequired(e => e.Custommer)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Custommer>()
+                .HasMany(e => e.Reports)
+                .WithRequired(e => e.Custommer)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Feedback>()
                 .Property(e => e.UpdateBy)
@@ -54,9 +69,15 @@ namespace Model.EF
                 .Property(e => e.MetaTile)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Report>()
-                .Property(e => e.Contents)
-                .IsFixedLength();
+            modelBuilder.Entity<RealEstateCategory>()
+                .HasMany(e => e.RealEstates)
+                .WithRequired(e => e.RealEstateCategory)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<UserType>()
+                .HasMany(e => e.Custommers)
+                .WithRequired(e => e.UserType)
+                .WillCascadeOnDelete(false);
         }
     }
 }

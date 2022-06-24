@@ -73,9 +73,7 @@
                                     <td><a href="#" class="btn-active" data-id="@item.RealEstateID">@Html.Raw(item.Status ? "<strong>Đã duyệt</strong>" : "Chờ kiểm duyệt")</a></td>
 
                                     <td>
-                                       
-                                        <a href="/Admin/Content/Edit/@item.RealEstateID">Edit</a>
-                                        <br />
+                                        <a href="/RealEstateClient/Detail/@item.RealEstateID">Xem chi tiết</a><br />
                                         @Ajax.ActionLink("Delete", "Delete", new { @id = item.RealEstateID }, new AjaxOptions
                                    {
                                        Confirm = "Bạn có muốn xóa bất động sản này  ?",
@@ -83,7 +81,7 @@
                                        HttpMethod = "Delete"
 
                                    })
-                                       
+
                                     </td>
 
 

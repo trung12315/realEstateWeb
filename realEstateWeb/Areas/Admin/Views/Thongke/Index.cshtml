@@ -1,0 +1,98 @@
+﻿@model PagedList.IPagedList<Model.EF.RealEstate>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    DateTime dt = DateTime.Now;
+    string date = dt.ToString("dd/M/yyyy");
+    var nextDay = dt.AddDays(-1).ToString("dd/M/yyyy");
+    var nextDay1 = dt.AddDays(-2).ToString("dd/M/yyyy");
+
+}
+@section header{
+
+}
+
+
+
+
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                    <i class="mdi mdi-home"></i>
+                </span> Trang Thống Kê
+            </h3>
+            <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <span></span>Thống kê <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-12 grid-margin">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Thống kê 3 ngày gần nhất</h4>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Ngày</th>
+                                        <th>Tổng User</th>
+                                        <th>Tổng bài đăng</th>
+                                        
+                                  
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            @date
+                                        </td>
+                                        <td>@ViewBag.TongUser1</td>
+                                        <td>
+                                            @ViewBag.TongBaiDang1
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @nextDay
+                                        </td>
+                                        <td>@ViewBag.TongUser2</td>
+                                        <td>
+                                            @ViewBag.TongBaiDang2
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @nextDay1
+                                        </td>
+                                        <td>@ViewBag.TongUser3</td>
+                                        <td>
+                                            @ViewBag.TongBaiDang3
+                                        </td>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- content-wrapper ends -->
+    <!-- partial:partials/_footer.html -->
+    <!-- partial -->
+</div>
+
+

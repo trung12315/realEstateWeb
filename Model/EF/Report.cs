@@ -13,8 +13,7 @@ namespace Model.EF
 
         public int? RealEstateID { get; set; }
 
-
-        public int? UserID { get; set; }
+        public int UserID { get; set; }
 
         [StringLength(100)]
         public string Contents { get; set; }

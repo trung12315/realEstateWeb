@@ -119,13 +119,13 @@ input[type="number"]::-webkit-inner-spin-button {
 .slider1 {
     height: 5px;
     position: relative;
-    background: #ddd;
+    background: #fff;
     border-radius: 5px;
 }
 .slider .progress {
     height: 100%;
-    left: 0%;
-    right: 0%;
+    left: 0;
+    right: 0;
     position: absolute;
     border-radius: 5px;
     background: #59ABE3;
@@ -134,8 +134,8 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 .slider1 .progress1 {
     height: 100%;
-    left: 0%;
-    right: 0%;
+    left: 0;
+    right: 0;
     position: absolute;
     border-radius: 5px;
     background: #59ABE3;

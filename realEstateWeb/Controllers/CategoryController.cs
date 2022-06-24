@@ -56,7 +56,7 @@ namespace realEstateWeb.Controllers
           
             if (!string.IsNullOrEmpty(search))
             {
-                ViewBag.search = search;
+                ViewBag.search= search;
             }
             else { ViewBag.search = abc; }
             //ViewBag.Total = totalRecord;

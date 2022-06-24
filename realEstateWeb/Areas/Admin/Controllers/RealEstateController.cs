@@ -143,32 +143,14 @@ namespace realEstateWeb.Areas.Admin.Controllers
             return View(viewModel);
         }
 
-        //[HttpPost]
-        //[ValidateInput(false)]
-        //public ActionResult CreateMaps(RealEstate model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var session = (UserLogin)Session[CommonConstants.USER_SESSION];
-        //        model.CreateBy = session.Username;
-        //        //model.MetaDescriptions = "400";
-        //        //model.ViewCount = 400;
-        //        model.Status = true;
-        //        new RealEstateDao().Create(model);
-        //        return RedirectToAction("Index");
-        //    }
-        //    SetViewBag();
-        //    return View();
-        //}
-
+   
         public void SetViewBag(long? selectedId = null)
         {
             var dao = new RealEstateCategoryDao();
             var dao1 = new CategoryDao();
             ViewBag.CateID = new SelectList(dao.ListAll(), "CateID", "Name", selectedId);
             ViewBag.CatID = new SelectList(dao1.ListAll(), "CatID", "Name", selectedId);
-            //var dao1 = new UserDao();
-            //ViewBag.CatID = new SelectList(dao.ListAll(), "UserID", "Phone", selectedId);
+
         }
 
 

@@ -3204,6 +3204,7 @@
     <Content Include="Assets\client\js\jquery.min.js" />
     <Content Include="Assets\client\js\jquery.mixitup.js" />
     <Content Include="Assets\client\js\nouislider.js" />
+    <Content Include="Assets\client\js\sb-admin-2.js" />
     <Content Include="Assets\client\js\slick.js" />
     <Content Include="Assets\client\js\validation.js" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -3524,6 +3525,7 @@
     <Content Include="Assets\Admin\vendor\jquery-ui\package.json" />
     <Content Include="Areas\Admin\Views\Report\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Thongke\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3566,7 +3568,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
-    <Folder Include="Areas\Admin\Views\Thongke\" />
     <Folder Include="Data\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Report\" />

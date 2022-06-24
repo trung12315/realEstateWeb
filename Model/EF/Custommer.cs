@@ -39,7 +39,7 @@ namespace Model.EF
 
         public DateTime? ModifiedDate { get; set; }
 
-        public int? UserTyPeID { get; set; }
+        public int UserTyPeID { get; set; }
 
         public DateTime? UpdateDate { get; set; }
 

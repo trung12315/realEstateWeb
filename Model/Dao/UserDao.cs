@@ -27,6 +27,36 @@ namespace Model.Dao
             db.SaveChanges();
             return entity.UserID;
         }
+        public string TongUser3()
+        {
+            DateTime dt = DateTime.Now;
+            string TongBaiDang;
+            var nextDay = dt.AddDays(-2);
+            var date = nextDay.AddDays(1);
+
+            TongBaiDang = db.Custommers.Where(x => x.CreateDate >= nextDay && x.CreateDate < date).Count().ToString();
+            return TongBaiDang;
+        }
+        public string TongUser2()
+        {
+            DateTime dt = DateTime.Now;
+            var date = Convert.ToDateTime(dt).Date;
+            string TongBaiDang;
+            var nextDay = date.AddDays(-1);
+            
+            TongBaiDang = db.Custommers.Where(x => x.CreateDate >= nextDay && x.CreateDate < date).Count().ToString();
+            return TongBaiDang;
+        }
+        public string TongUser1()
+        {
+            DateTime dt = DateTime.Now;
+            string TongBaiDang;
+
+            var date = Convert.ToDateTime(dt).Date;
+            var nextDay = date.AddDays(1);
+            TongBaiDang = db.Custommers.Where(x => x.CreateDate >= date && x.CreateDate < nextDay).Count().ToString();                     
+            return TongBaiDang;
+        }
         public string TongUser(string txtNgayThangNamSinh)
         {
             string TongBaiDang;
@@ -116,7 +146,29 @@ namespace Model.Dao
                 }
                 else
                 {
-                    if (result.Password == passWord)
+                    if (result.Password == passWord && result.UserTyPeID == 1)
+                        return 1;
+                    else
+                        return -2;
+                }
+            }
+        }
+        public int LoginUser(string userName, string passWord)
+        {
+            var result = db.Custommers.SingleOrDefault(x => x.Username == userName);
+            if (result == null)
+            {
+                return 0;
+            }
+            else
+            {
+                if (result.Status == false)
+                {
+                    return -1;
+                }
+                else
+                {
+                    if (result.Password == passWord && result.UserTyPeID == 2||result.UserTyPeID==1)
                         return 1;
                     else
                         return -2;

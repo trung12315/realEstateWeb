@@ -20,7 +20,7 @@ namespace realEstateWeb.Controllers
         {
             var session = (UserLogin)Session[CommonConstants.USER_SESSION];
             var realestate = new RealEstateDao().ViewDetail(id);
-            ViewBag.Category = new RealEstateCategoryDao().ViewDetail(realestate.CatID.Value);
+            ViewBag.Category = new RealEstateCategoryDao().ViewDetail(realestate.CatID);
             ViewBag.relatedProducts = new RealEstateDao().Listrelatedproducts(id);
             ViewBag.Image = new RealEstateDao().ListImage(id);
 

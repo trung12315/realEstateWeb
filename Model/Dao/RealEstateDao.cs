@@ -134,6 +134,35 @@ namespace Model.Dao
                
             return model.Where(x => x.UserID == id).OrderByDescending(x => x.CreateDate).ToPagedList(page, pageSize); ;
         }
+        public string BaiDang3()
+        {
+            DateTime dt = DateTime.Now;
+            string TongBaiDang;
+            var nextDay = dt.AddDays(-2);
+            var date = nextDay.AddDays(1);
+
+            TongBaiDang = db.RealEstates.Where(x => x.CreateDate >= nextDay && x.CreateDate < date).Count().ToString();
+            return TongBaiDang;
+        }
+        public string  BaiDang2()
+        {
+            DateTime dt = DateTime.Now;
+            string TongBaiDang;
+            var nextDay = dt.AddDays(-1);
+
+            TongBaiDang = db.RealEstates.Where(x => x.CreateDate >= nextDay && x.CreateDate < dt).Count().ToString();
+            return TongBaiDang;
+        }
+        public string BaiDang1()
+        {
+            DateTime dt = DateTime.Now;
+            string TongBaiDang;
+
+            var date = Convert.ToDateTime(dt).Date;
+            var nextDay = date.AddDays(1);
+            TongBaiDang = db.RealEstates.Where(x => x.CreateDate >= date && x.CreateDate < nextDay).Count().ToString();
+            return TongBaiDang;
+        }
         public string TongBaiDang(string txtNgayThangNamSinh)
         {
             string TongBaiDang;
@@ -347,6 +376,24 @@ namespace Model.Dao
             try
             {
                 var content = db.RealEstates.Find(id);
+                var Imas = content.Images.ToList();
+                if (Imas != null)
+                {
+                    foreach(var Ima in Imas)
+                    {
+                        db.Images.Remove(Ima);
+                        db.SaveChanges();
+                    }
+                }
+                var Report = content.Reports.ToList();
+                if (Report != null)
+                {
+                    foreach (var report in Report)
+                    {
+                        db.Reports.Remove(report);
+                        db.SaveChanges();
+                    }
+                }
                 db.RealEstates.Remove(content);
                 db.SaveChanges();
                 return true;

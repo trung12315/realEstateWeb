@@ -38,7 +38,7 @@ namespace realEstateWeb.Controllers
             {
 
                 var dao = new UserDao();
-                var result = dao.Login(model.UserName, Encryptor.MD5Hash(model.Password));
+                var result = dao.LoginUser(model.UserName, Encryptor.MD5Hash(model.Password));
                 if (result == 1)
                 {
                     var user = dao.GetById(model.UserName);
@@ -95,6 +95,7 @@ namespace realEstateWeb.Controllers
                 }
                 else
                 {
+
                     var user = new Custommer();
                     user.Phone = model.Phone;
                     user.Username = model.UserName;
@@ -103,6 +104,7 @@ namespace realEstateWeb.Controllers
                     user.Email = model.Email;
                     user.CreateDate = DateTime.Now;
                     user.Status = true;
+                    user.UserTyPeID = 2;
 
                     var result = dao.Insert(user);
                     if (result > 0)

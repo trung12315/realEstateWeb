@@ -48,7 +48,7 @@
                 <ul>
                     <li><a>Danh mục</a></li>
                     <li>Quản lí tin dăng</li>
-                    
+
                 </ul>
             </div>
 
@@ -81,7 +81,7 @@
                                         <th>Tiêu đề</th>
                                         <th>Giá</th>
                                         <th>Ngày đăng</th>
-                                        
+
                                         <th>Tùy Chọn</th>
                                     </tr>
                                 </thead>
@@ -97,18 +97,17 @@
                                                 <td>@item.Name</td>
                                                 <td>@item.Price</td>
                                                 <td>@item.CreateDate</td>
-                                               
+
                                                 <td>
                                                     <a href="#" data-id="@item.RealEstateID" class="btn-images">Quản lí ảnh </a>
-                                                    <a href="/Admin/Content/Edit/@item.RealEstateID">Edit</a>
                                                     <br />
                                                     @Ajax.ActionLink("Delete", "Delete", new { @id = item.RealEstateID }, new AjaxOptions
-                                               {
-                                                   Confirm = "Do you want to delete this record?",
-                                                   OnComplete = "$(#'row_" + @item.RealEstateID + "').Remove()",
-                                                   HttpMethod = "Delete"
+                                   {
+                                       Confirm = "Bạn có muốn xóa bất động sản này  ?",
+                                       OnComplete = "$(#'row_" + @item.RealEstateID + "').Remove()",
+                                       HttpMethod = "Delete"
 
-                                               })
+                                   })
                                                 </td>
 
 

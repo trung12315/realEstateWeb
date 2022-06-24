@@ -67,8 +67,7 @@
                                     <td>@item.Phone</td>
                                     <td><a href="#" class="btn-active" data-id="@item.UserID">@(item.Status ?"Kích hoạt" : "Khóa")</a></td>
                                     <td>
-                                        <a href="/Admin/User/Edit/@item.UserID>">Sửa</a>
-                                        <br />
+                                        
                                         <a onClick="window.location.reload();">
                                             @Ajax.ActionLink("Xóa", "Delete", new { @id = item.UserID }, new AjaxOptions
                                    {

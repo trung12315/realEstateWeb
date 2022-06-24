@@ -27,6 +27,12 @@ namespace realEstateWeb.Controllers
             }
             
         }
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            new RealEstateDao().Delete(id);
+            return RedirectToAction("Index");
+        }
         public JsonResult LoadImages(int id)
         {
             RealEstateDao dao = new RealEstateDao();
